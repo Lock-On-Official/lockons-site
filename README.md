@@ -36,14 +36,19 @@ src/
 │   ├── brand/            logo e a mira em SVG
 │   ├── site-header/      header fixo e menu do celular
 │   ├── site-footer/      rodapé com links para todas as páginas
-│   ├── ui/               botão (ButtonLink), selo do hero (Eyebrow) e etiqueta de etapa (Chip)
+│   ├── ui/               botão (ButtonLink), selo do hero (Eyebrow), etiqueta (Chip), ícones e lista com visto
 │   ├── cards/            cartão de oportunidade e cartão de indicador
 │   ├── scene-3d/         cena 3D em CSS: palco (Scene3D), itens (SceneItem), mira (Reticle3D) e a cena do hero
+│   ├── section/          cabeçalho de seção e bloco texto + ilustração (FeatureSplit)
+│   ├── mockups/          ilustrações das telas (contatos, funil, atividades), com dados fictícios
+│   ├── chaos-board/      quadro "do caos ao foco", que se organiza com a rolagem
+│   ├── audience-tabs/    abas "Para quem" e o painel de cada papel
+│   ├── faq/              perguntas em acordeão
 │   ├── cta-band/         faixa azul-marinho de fechamento
 │   ├── breadcrumbs/      trilha de navegação com BreadcrumbList
 │   └── seo/              JsonLd, para dados estruturados
-├── content/routes.ts     mapa único das páginas: rodapé e sitemap saem daqui
-├── lib/                  configuração do site (site.ts), metadados por página (seo.ts) e formatação (format.ts)
+├── content/              textos das páginas (home, papéis, perguntas) e o mapa único das páginas (routes.ts)
+├── lib/                  configuração (site.ts), metadados (seo.ts), dados estruturados e formatação
 └── styles/tokens.css     cores, fontes e medidas do protótipo aprovado
 ```
 
@@ -57,4 +62,6 @@ src/
 - **Visual:** use os tokens de `src/styles/tokens.css`. O azul-royal (`--royal`) é só para o que é clicável.
 - **Fontes:** Sora (títulos) e Inter (texto), servidas pelo `next/font` do próprio domínio.
 - **Cena 3D:** é só CSS, sem biblioteca. Os itens são posicionados num palco de 440 × 440 px (`x`, `y`) e em profundidade (`z`). A cena se ajusta à largura disponível e inclina com o mouse dentro do elemento marcado com `data-scene-tilt`. Com "reduzir movimento" ligado no sistema, fica parada.
-- **Dados de exemplo** nos cartões (empresas e valores) são fictícios.
+- **Dados de exemplo** nos cartões e nas ilustrações (empresas, pessoas, valores) são fictícios.
+- **Textos:** ficam em `src/content/` e só descrevem o que o produto entrega (ver `docs/escopo-mvp.md` do `crm-lockon`). Ao mudar o escopo, revise principalmente `faq.ts`.
+- **Dados estruturados:** Organization e WebSite em todas as páginas (layout); SoftwareApplication na home. Sem preço nem avaliação enquanto não existirem.

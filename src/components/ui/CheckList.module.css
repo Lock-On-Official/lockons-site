@@ -1,0 +1,22 @@
+.list {
+  display: grid;
+  gap: 0.55rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.95rem;
+}
+
+.list li {
+  display: flex;
+  gap: 0.55rem;
+  align-items: flex-start;
+}
+
+.check {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  margin-top: 0.15rem;
+  color: var(--sky);
+}

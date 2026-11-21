@@ -1,0 +1,86 @@
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.9rem;
+  view-timeline-name: --chaos-board;
+}
+
+.column {
+  display: grid;
+  align-content: start;
+  gap: 0.8rem;
+  padding: 0.8rem;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.columnHead {
+  display: flex;
+  align-items: baseline;
+  gap: 0.45rem;
+  font-size: 0.8rem;
+}
+
+.stage {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.count {
+  padding: 0 0.4rem;
+  border-radius: var(--radius-pill);
+  background: var(--tint);
+  color: var(--navy-2);
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.total {
+  margin-left: auto;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.cards {
+  display: grid;
+  gap: 0.8rem;
+}
+
+/* Só anima onde há suporte e movimento permitido; nos demais casos o estado final é o padrão. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .slot {
+      --from: var(--chaos);
+      animation: settle linear both;
+      animation-timeline: --chaos-board;
+      /* começa quando o quadro entra na tela e termina perto do meio dela */
+      animation-range: cover 5% cover 45%;
+    }
+
+    @keyframes settle {
+      from {
+        transform: var(--from);
+        opacity: 0.6;
+      }
+      to {
+        transform: none;
+        opacity: 1;
+      }
+    }
+  }
+}
+
+@media (max-width: 700px) {
+  .board {
+    grid-template-columns: 1fr;
+  }
+
+  .cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .slot {
+    --from: var(--chaos-m);
+  }
+}

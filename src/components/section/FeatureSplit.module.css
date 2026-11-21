@@ -1,0 +1,76 @@
+.split {
+  --tilt: -6deg;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  align-items: center;
+  gap: clamp(2rem, 5vw, 4.5rem);
+}
+
+.reverse {
+  --tilt: 6deg;
+}
+
+.reverse .copy {
+  order: 2;
+}
+
+.copy {
+  display: grid;
+  gap: 1rem;
+  min-width: 0;
+}
+
+.eyebrow {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--navy-2);
+}
+
+.title {
+  font-size: clamp(1.4rem, 2.6vw, 1.85rem);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+}
+
+.text {
+  color: var(--muted);
+  max-width: 32rem;
+}
+
+/* inclinação leve da tela, que endireita no hover */
+.visual {
+  min-width: 0;
+  perspective: 1200px;
+}
+
+.visual > * {
+  transform: rotateY(var(--tilt)) rotateX(2deg);
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.split:hover .visual > * {
+  transform: none;
+}
+
+@media (max-width: 900px) {
+  .split {
+    grid-template-columns: 1fr;
+  }
+
+  .reverse .copy {
+    order: 0;
+  }
+
+  .visual > * {
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .visual > * {
+    transform: none;
+  }
+}
