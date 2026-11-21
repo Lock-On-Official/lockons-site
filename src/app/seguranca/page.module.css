@@ -1,0 +1,131 @@
+.after {
+  margin-top: 2.4rem;
+}
+
+.tableWrap {
+  margin-top: 2.4rem;
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--surface);
+  box-shadow: var(--shadow-card);
+}
+
+.matrix {
+  width: 100%;
+  min-width: 640px;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.matrix th,
+.matrix td {
+  padding: 0.95rem 1.2rem;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+}
+
+.matrix tbody tr:last-child th,
+.matrix tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.matrix thead th {
+  background: var(--bg);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--navy-2);
+}
+
+/* colunas dos papéis centralizadas e de largura igual */
+.matrix thead th:not(:first-child),
+.matrix td {
+  width: 19%;
+  text-align: center;
+}
+
+.matrix tbody th {
+  font-weight: 500;
+  color: var(--ink);
+}
+
+/* a coluna "Ação" fica parada enquanto os papéis rolam de lado no celular */
+.matrix tbody th,
+.matrix thead th:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  background: var(--surface);
+}
+
+.matrix thead th:first-child {
+  background: var(--bg);
+}
+
+/* celular: larguras fixas (ação estreita, papéis dividindo o resto) para caberem mais papéis na tela */
+@media (max-width: 640px) {
+  .matrix {
+    min-width: 30rem;
+    table-layout: fixed;
+    font-size: 0.85rem;
+  }
+
+  .matrix th,
+  .matrix td {
+    padding: 0.75rem 0.6rem;
+  }
+
+  .matrix thead th:first-child,
+  .matrix tbody th {
+    width: 9.5rem;
+  }
+
+  .matrix thead th:not(:first-child),
+  .matrix td {
+    width: auto;
+  }
+
+  .matrix tbody th {
+    box-shadow: 6px 0 10px -6px rgba(18, 60, 157, 0.18);
+  }
+
+  .scope {
+    font-size: 0.8rem;
+  }
+}
+
+.matrix tbody tr:hover {
+  background: rgba(220, 232, 252, 0.35);
+}
+
+.scope {
+  font-size: 0.86rem;
+  font-weight: 500;
+  color: var(--navy-2);
+}
+
+.mark {
+  display: inline-grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+}
+
+.mark svg {
+  width: 16px;
+  height: 16px;
+  stroke-width: 2.4;
+}
+
+.yes {
+  background: var(--tint);
+  color: var(--royal);
+}
+
+.no {
+  background: var(--bg);
+  color: var(--muted);
+}

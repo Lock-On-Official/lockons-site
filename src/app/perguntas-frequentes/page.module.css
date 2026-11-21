@@ -1,0 +1,44 @@
+/* atalhos para as categorias, logo abaixo do hero */
+.categories {
+  padding-bottom: clamp(2rem, 5vw, 3rem);
+}
+
+.categories ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 0 auto;
+  list-style: none;
+}
+
+.categories a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.6rem 0.5rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  background: var(--surface);
+  box-shadow: 0 1px 2px rgba(18, 60, 157, 0.05);
+  color: var(--navy-2);
+  font-size: 0.92rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: border-color 0.15s, background-color 0.15s;
+}
+
+.categories a:hover {
+  border-color: var(--sky);
+  background: var(--tint);
+}
+
+.categories a span {
+  display: grid;
+  place-items: center;
+  min-width: 1.6rem;
+  height: 1.6rem;
+  padding-inline: 0.35rem;
+  border-radius: var(--radius-pill);
+  background: var(--tint);
+  font-size: 0.75rem;
+}

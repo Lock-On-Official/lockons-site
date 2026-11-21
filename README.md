@@ -52,7 +52,7 @@ src/
 │   ├── cta-band/         faixa azul-marinho de fechamento
 │   ├── breadcrumbs/      trilha de navegação com BreadcrumbList
 │   └── seo/              JsonLd, para dados estruturados
-├── content/              textos das páginas (home, produto e funcionalidades, papéis, perguntas) e o mapa único das páginas (routes.ts)
+├── content/              textos das páginas (home, produto e funcionalidades, papéis, segurança, implantação, perguntas, fotos) e o mapa único das páginas (routes.ts)
 ├── lib/                  configuração (site.ts), metadados (seo.ts), dados estruturados e formatação
 └── styles/tokens.css     cores, fontes e medidas do protótipo aprovado
 ```
@@ -71,11 +71,11 @@ src/
 - **Largura:** o conteúdo ocupa 90% da tela (5% de margem de cada lado, `--gutter`).
 - **Fontes:** Sora (títulos) e Inter (texto), servidas pelo `next/font` do próprio domínio.
 - **Mira 3D:** exclusiva do hero da home. É só CSS, sem biblioteca: itens num palco de 440 × 440 px (`x`, `y`) e em profundidade (`z`); a cena se ajusta à largura e inclina com o mouse dentro do elemento com `data-scene-tilt`.
-- **Heros das páginas internas:** cada página tem ilustração e animação próprias em `src/components/hero-visuals/` (painel modular, rede de contatos, funil, agenda, painel de indicadores, mapa de lojas, foto com cartões). São desenhadas em 560 × 500 px e escaladas pelo `ScaleBox`.
+- **Heros das páginas internas:** cada página tem ilustração e animação próprias em `src/components/hero-visuals/` (painel modular, rede de contatos, funil, agenda, painel de indicadores, mapa de lojas, foto com cartões, camadas de acesso, importação da planilha, conversa de perguntas). São desenhadas em 560 × 500 px e escaladas pelo `ScaleBox`.
 - **Movimento:** toda animação tem estado final legível e para com "reduzir movimento" ligado no sistema.
 - **Dados de exemplo** nos cartões e nas ilustrações (empresas, pessoas, valores) são fictícios.
 - **Textos:** ficam em `src/content/` e só descrevem o que o produto entrega (ver `docs/escopo-mvp.md` do `crm-lockon`). Ao mudar o escopo, revise principalmente `faq.ts`.
-- **Dados estruturados:** Organization e WebSite em todas as páginas (layout); SoftwareApplication na home. Sem preço nem avaliação enquanto não existirem.
+- **Dados estruturados:** Organization e WebSite em todas as páginas (layout); SoftwareApplication na home e em /produto; BreadcrumbList nas internas; FAQPage só em /perguntas-frequentes, que reúne todas as perguntas do site sem repetir (`src/content/resources.ts`). Sem preço nem avaliação enquanto não existirem.
 
 ## Fotos
 

@@ -474,9 +474,127 @@
   color: var(--navy);
 }
 
+/* histórico de alterações */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.filters span {
+  padding: 0.2rem 0.6rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+
+.filters .filterOn {
+  border-color: var(--royal);
+  background: var(--tint);
+  color: var(--navy-2);
+  font-weight: 600;
+}
+
+.audit {
+  display: grid;
+  gap: 0.35rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.audit li {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.55rem 0.6rem;
+  border-bottom: 1px dashed var(--line);
+}
+
+.audit li:last-child {
+  border-bottom: 0;
+}
+
+.auditIcon {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
+  background: var(--tint);
+  color: var(--navy-2);
+}
+
+.auditIcon svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* relatório da importação */
+.tiles4 {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+
+.tileOk b {
+  color: #127a43;
+}
+
+.tileError b {
+  color: #b42318;
+}
+
+.lineNo {
+  display: grid;
+  place-items: center;
+  min-width: 2.2rem;
+  padding: 0.15rem 0.4rem;
+  border-radius: 6px;
+  background: var(--bg);
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.task:has(.lineNo) {
+  grid-template-columns: auto minmax(0, 1fr);
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.ghost,
+.primary {
+  padding: 0.45rem 0.85rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.ghost {
+  border: 1px solid var(--line);
+  color: var(--navy-2);
+}
+
+.primary {
+  background: var(--royal);
+  color: #fff;
+}
+
 @media (max-width: 480px) {
   .split {
     grid-template-columns: 1fr;
+  }
+
+  .tiles4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 

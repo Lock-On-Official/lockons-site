@@ -26,9 +26,9 @@ export const routes: readonly SiteRoute[] = [
   { path: "/para-quem/gestores-comerciais", label: "Gestores comerciais", group: "audience", published: true },
   { path: "/para-quem/diretores", label: "Diretores", group: "audience", published: true },
 
-  { path: "/seguranca", label: "Segurança", group: "resources", published: false },
-  { path: "/implantacao", label: "Implantação", group: "resources", published: false },
-  { path: "/perguntas-frequentes", label: "Perguntas frequentes", group: "resources", published: false },
+  { path: "/seguranca", label: "Segurança", group: "resources", published: true },
+  { path: "/implantacao", label: "Implantação", group: "resources", published: true },
+  { path: "/perguntas-frequentes", label: "Perguntas frequentes", group: "resources", published: true },
   { path: "/agendar-demonstracao", label: "Agendar demonstração", group: "resources", published: false },
 
   { path: "/privacidade", label: "Privacidade", group: "legal", published: false },

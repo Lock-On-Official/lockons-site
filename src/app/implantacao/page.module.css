@@ -1,0 +1,96 @@
+/* passo a passo: quatro cartões numerados, ligados por setas no desktop */
+.steps {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.1rem;
+  margin: 2.6rem 0 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: step;
+}
+
+.step {
+  position: relative;
+  display: grid;
+  align-content: start;
+  gap: 0.55rem;
+  padding: 1.4rem;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--surface);
+  box-shadow: var(--shadow-card);
+  counter-increment: step;
+}
+
+/* número grande no canto: a ordem dos passos é informação */
+.step::before {
+  content: counter(step);
+  position: absolute;
+  top: 0.9rem;
+  right: 1.1rem;
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--tint);
+}
+
+.step:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -0.95rem;
+  z-index: 1;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-top: 2px solid var(--royal-2);
+  border-right: 2px solid var(--royal-2);
+  rotate: 45deg;
+  translate: 0 -50%;
+}
+
+.step h3 {
+  font-size: 1.08rem;
+  font-weight: 600;
+}
+
+.step p {
+  font-size: 0.93rem;
+  color: var(--muted);
+}
+
+.stepIcon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--royal), var(--sky));
+  color: #fff;
+}
+
+.stepIcon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.readyCopy {
+  display: grid;
+  gap: 1.4rem;
+}
+
+@media (max-width: 1000px) {
+  .steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .step::after {
+    display: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .steps {
+    grid-template-columns: 1fr;
+  }
+}
