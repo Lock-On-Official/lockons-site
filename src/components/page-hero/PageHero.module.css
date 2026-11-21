@@ -12,6 +12,11 @@
   margin-top: clamp(1.5rem, 4vw, 2.5rem);
 }
 
+/* sem ilustração (ex.: perguntas frequentes): uma coluna só */
+.single {
+  grid-template-columns: minmax(0, 46rem);
+}
+
 .copy {
   display: grid;
   gap: 1.2rem;

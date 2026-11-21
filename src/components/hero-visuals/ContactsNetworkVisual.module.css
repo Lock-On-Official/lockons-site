@@ -1,0 +1,189 @@
+.lines {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.lines line {
+  stroke: var(--royal-2);
+  stroke-width: 2;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  opacity: 0.55;
+  animation: draw 0.7s ease-out var(--delay) forwards;
+}
+
+.orbit {
+  stroke: var(--sky);
+  stroke-width: 1.2;
+  stroke-dasharray: 3 7;
+  opacity: 0.5;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: spin 40s linear infinite;
+}
+
+/* empresa no centro */
+.hub {
+  position: absolute;
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+  width: 150px;
+  padding: 14px 10px;
+  translate: -50% -50%;
+  border: 1.5px solid var(--royal);
+  border-radius: 18px;
+  background: var(--surface);
+  box-shadow: var(--shadow-card-locked);
+  text-align: center;
+  font-size: 11px;
+  color: var(--muted);
+  animation: pop 0.6s cubic-bezier(0.2, 0.9, 0.25, 1.2) both;
+}
+
+.hub b {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.hubIcon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--royal), var(--sky));
+  color: #fff;
+}
+
+.hubIcon svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* pessoas */
+.person {
+  position: absolute;
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+  translate: -50% -50%;
+  padding: 10px 12px 8px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+  box-shadow: var(--shadow-card);
+  animation: pop 0.55s cubic-bezier(0.2, 0.9, 0.25, 1.2) var(--delay) both;
+}
+
+.avatar {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--royal-2), var(--sky));
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.name {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.focus {
+  border: 1.5px solid var(--royal);
+}
+
+/* ficha do contato travado */
+.detail {
+  position: absolute;
+  left: 368px;
+  top: 160px;
+  display: grid;
+  gap: 2px;
+  width: 186px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+  box-shadow: 0 22px 48px rgba(18, 60, 157, 0.22);
+  font-size: 11.5px;
+  color: var(--muted);
+  animation: slide-in 0.5s ease-out 1.6s both;
+}
+
+.detailTitle {
+  font-family: var(--font-display);
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.timeline {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px dashed var(--line);
+  color: var(--navy-2);
+  font-weight: 500;
+}
+
+.timeline svg {
+  width: 14px;
+  height: 14px;
+}
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes pop {
+  from {
+    opacity: 0;
+    scale: 0.6;
+  }
+  to {
+    opacity: 1;
+    scale: 1;
+  }
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    translate: 0 12px;
+  }
+}
+
+@keyframes spin {
+  to {
+    rotate: 360deg;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lines line {
+    stroke-dashoffset: 0;
+    animation: none;
+  }
+
+  .orbit,
+  .hub,
+  .person,
+  .detail {
+    animation: none;
+  }
+}

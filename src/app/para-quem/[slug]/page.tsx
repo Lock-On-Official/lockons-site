@@ -9,7 +9,7 @@ import { ActivitiesMock } from "@/components/mockups/ActivitiesMock";
 import { DashboardMock } from "@/components/mockups/DashboardMock";
 import { StoresMock } from "@/components/mockups/StoresMock";
 import { PageHero } from "@/components/page-hero/PageHero";
-import { DirectorScene, ManagerScene, SellerScene } from "@/components/scene-3d/AudienceScenes";
+import { RolePhotoVisual } from "@/components/hero-visuals/RolePhotoVisual";
 import { FeatureSplit } from "@/components/section/FeatureSplit";
 import { Section } from "@/components/section/Section";
 import { SectionHeader } from "@/components/section/SectionHeader";
@@ -39,10 +39,11 @@ export async function generateMetadata({ params }: AudiencePageProps): Promise<M
   return pageMetadata({ ...audience.page.seo, path: audience.href });
 }
 
-const scenes: Record<Audience["id"], ReactNode> = {
-  vendedores: <SellerScene />,
-  gestores: <ManagerScene />,
-  diretores: <DirectorScene />,
+// Foto do papel com os cartões do dia a dia dele (a mira 3D é só da home).
+const visuals: Record<Audience["id"], ReactNode> = {
+  vendedores: <RolePhotoVisual role="seller" />,
+  gestores: <RolePhotoVisual role="manager" />,
+  diretores: <RolePhotoVisual role="director" />,
 };
 
 const mocks: Record<Audience["id"], ReactNode> = {
@@ -81,7 +82,7 @@ export default async function AudiencePage({ params }: AudiencePageProps) {
         title={page.hero.title}
         sub={page.hero.sub}
         secondary={{ label: "Ver a rotina", href: "#rotina" }}
-        scene={scenes[audience.id]}
+        visual={visuals[audience.id]}
       />
 
       <Section id="rotina" labelledBy="rotina-title" tone="tint" decor="reticle">

@@ -25,9 +25,7 @@ export function AudiencePanel({ audience, visual }: AudiencePanelProps) {
           </ButtonLink>
         </div>
       </div>
-      <div className={styles.visual} aria-hidden="true">
-        {visual}
-      </div>
+      <div className={styles.visual}>{visual}</div>
     </div>
   );
 }

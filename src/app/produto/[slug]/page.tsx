@@ -11,13 +11,11 @@ import { DashboardMock } from "@/components/mockups/DashboardMock";
 import { PipelineMock } from "@/components/mockups/PipelineMock";
 import { StoresMock } from "@/components/mockups/StoresMock";
 import { PageHero } from "@/components/page-hero/PageHero";
-import {
-  ActivitiesScene,
-  ContactsScene,
-  IndicatorsScene,
-  PipelineScene,
-  StoresScene,
-} from "@/components/scene-3d/FeatureScenes";
+import { AgendaVisual } from "@/components/hero-visuals/AgendaVisual";
+import { ContactsNetworkVisual } from "@/components/hero-visuals/ContactsNetworkVisual";
+import { DashboardVisual } from "@/components/hero-visuals/DashboardVisual";
+import { FunnelVisual } from "@/components/hero-visuals/FunnelVisual";
+import { StoresMapVisual } from "@/components/hero-visuals/StoresMapVisual";
 import { FeatureSplit } from "@/components/section/FeatureSplit";
 import { Section } from "@/components/section/Section";
 import { SectionHeader } from "@/components/section/SectionHeader";
@@ -45,12 +43,13 @@ export async function generateMetadata({ params }: FeaturePageProps): Promise<Me
   return pageMetadata({ ...feature.seo, path: featurePath(feature.slug) });
 }
 
-const scenes: Record<FeatureSlug, ReactNode> = {
-  "gestao-de-contatos": <ContactsScene />,
-  "funil-de-vendas": <PipelineScene />,
-  "atividades-e-follow-up": <ActivitiesScene />,
-  "indicadores-de-vendas": <IndicatorsScene />,
-  "multiplas-lojas": <StoresScene />,
+// Ilustração própria de cada funcionalidade (a mira 3D é só da home).
+const visuals: Record<FeatureSlug, ReactNode> = {
+  "gestao-de-contatos": <ContactsNetworkVisual />,
+  "funil-de-vendas": <FunnelVisual />,
+  "atividades-e-follow-up": <AgendaVisual />,
+  "indicadores-de-vendas": <DashboardVisual />,
+  "multiplas-lojas": <StoresMapVisual />,
 };
 
 const mocks: Record<FeatureSlug, ReactNode> = {
@@ -82,7 +81,7 @@ export default async function FeaturePage({ params }: FeaturePageProps) {
         title={feature.hero.title}
         sub={feature.hero.sub}
         secondary={{ label: "Ver como funciona", href: "#como-funciona" }}
-        scene={scenes[feature.slug]}
+        visual={visuals[feature.slug]}
       />
 
       <Section id="como-funciona" labelledBy="como-funciona-title" tone="tint" decorSide="left" decor="reticle">

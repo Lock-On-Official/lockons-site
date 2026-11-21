@@ -1,0 +1,55 @@
+.fit {
+  position: relative;
+  width: 100%;
+  max-width: 560px;
+  aspect-ratio: 560 / 500;
+  justify-self: center;
+  container-type: inline-size;
+}
+
+.box {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 560px;
+  height: 500px;
+  transform-origin: 0 0;
+  transform: scale(var(--k, 1));
+}
+
+/* cada ilustração é um bloco que ocupa a caixa inteira e posiciona os elementos dentro dele */
+.box > * {
+  position: absolute;
+  inset: 0;
+}
+
+/* escala aproximada antes do JavaScript, para não vazar no celular; o JS acerta depois */
+@container (max-width: 550px) {
+  .box {
+    --k: 0.85;
+  }
+}
+
+@container (max-width: 470px) {
+  .box {
+    --k: 0.75;
+  }
+}
+
+@container (max-width: 415px) {
+  .box {
+    --k: 0.66;
+  }
+}
+
+@container (max-width: 365px) {
+  .box {
+    --k: 0.58;
+  }
+}
+
+@container (max-width: 320px) {
+  .box {
+    --k: 0.5;
+  }
+}

@@ -15,17 +15,20 @@ interface PageHeroProps {
   title: ReactNode;
   sub: string;
   secondary?: { label: string; href: string };
-  /** Cena 3D da página (variação da mira). */
-  scene: ReactNode;
+  /**
+   * Ilustração própria da página (componentes de hero-visuals). A mira 3D é exclusiva da home:
+   * cada página interna tem uma ilustração e uma animação ligadas ao assunto dela.
+   */
+  visual?: ReactNode;
 }
 
-/** Hero das páginas internas: o mesmo desenho do hero da home, um pouco menor, com a trilha de navegação. */
-export function PageHero({ trail, eyebrow, eyebrowId, title, sub, secondary, scene }: PageHeroProps) {
+/** Hero das páginas internas: título e ações à esquerda, a ilustração da página à direita, com a trilha. */
+export function PageHero({ trail, eyebrow, eyebrowId, title, sub, secondary, visual }: PageHeroProps) {
   return (
-    <section className={styles.hero} data-scene-tilt aria-labelledby="page-title">
+    <section className={styles.hero} aria-labelledby="page-title">
       <div className="container">
         <Breadcrumbs trail={trail} />
-        <div className={styles.grid}>
+        <div className={visual ? styles.grid : `${styles.grid} ${styles.single}`}>
           <div className={styles.copy}>
             <Eyebrow idPrefix={eyebrowId}>{eyebrow}</Eyebrow>
             <h1 id="page-title" className={styles.title}>
@@ -41,7 +44,7 @@ export function PageHero({ trail, eyebrow, eyebrowId, title, sub, secondary, sce
               )}
             </div>
           </div>
-          {scene}
+          {visual}
         </div>
       </div>
     </section>

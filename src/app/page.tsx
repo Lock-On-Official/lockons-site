@@ -11,6 +11,7 @@ import { InfoCards } from "@/components/info-cards/InfoCards";
 import { ActivitiesMock } from "@/components/mockups/ActivitiesMock";
 import { ContactsMock } from "@/components/mockups/ContactsMock";
 import { PipelineMock } from "@/components/mockups/PipelineMock";
+import { PhotoCard } from "@/components/photo-card/PhotoCard";
 import { HeroScene } from "@/components/scene-3d/HeroScene";
 import { FeatureSplit } from "@/components/section/FeatureSplit";
 import { Section } from "@/components/section/Section";
@@ -33,6 +34,7 @@ import {
   trust,
   type Pillar,
 } from "@/content/home";
+import { photos } from "@/content/photos";
 import { demoPath } from "@/content/routes";
 import { pageMetadata } from "@/lib/seo";
 import { softwareApplication } from "@/lib/structured-data";
@@ -47,19 +49,28 @@ const pillarMocks: Record<Pillar["mock"], ReactNode> = {
   activities: <ActivitiesMock />,
 };
 
-// Ilustração de cada papel, com dados fictícios.
+// Foto de cada papel com um cartão do sistema por cima (dados fictícios).
 const audienceVisuals: Record<Audience["id"], ReactNode> = {
   vendedores: (
-    <OpportunityCard
-      stage="Alta prioridade"
-      name="Construtora Horizonte"
-      value={18400}
-      due="Retornar hoje, 15h"
-      hot
+    <PhotoCard
+      photo={photos.seller}
+      card={
+        <OpportunityCard stage="Alta prioridade" name="Construtora Horizonte" value={18400} due="Retornar hoje, 15h" hot />
+      }
     />
   ),
-  gestores: <KpiCard label="Conversão das suas lojas" value="31%" bars={[38, 52, 44, 66, 84]} />,
-  diretores: <KpiCard label="Valor ganho · todas as lojas" value="R$ 182.400" bars={[46, 58, 50, 72, 90]} />,
+  gestores: (
+    <PhotoCard
+      photo={photos.manager}
+      card={<KpiCard label="Conversão das suas lojas" value="31%" bars={[38, 52, 44, 66, 84]} />}
+    />
+  ),
+  diretores: (
+    <PhotoCard
+      photo={photos.director}
+      card={<KpiCard label="Todas as lojas no mês" value="R$ 127.400" bars={[44, 56, 50, 68, 86]} />}
+    />
+  ),
 };
 
 /* Ritmo das seções: pontilhado → azul-claro → azul-marinho (destaque) → pontilhado → azul-claro... */

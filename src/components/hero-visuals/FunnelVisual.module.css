@@ -1,0 +1,213 @@
+.funnel {
+  position: absolute;
+  left: 40px;
+  top: 40px;
+  display: grid;
+  gap: 10px;
+  width: 480px;
+  filter: drop-shadow(0 18px 30px rgba(18, 60, 157, 0.22));
+}
+
+/* cada faixa é um trapézio: o topo tem a largura da faixa de cima, a base a da faixa de baixo */
+.band {
+  display: grid;
+  place-items: center;
+  align-content: center;
+  height: 78px;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 500;
+  animation: band-in 0.6s cubic-bezier(0.2, 0.9, 0.25, 1) both;
+}
+
+.band b {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.band0 {
+  clip-path: polygon(0 0, 100% 0, 91.67% 100%, 8.33% 100%);
+  background: linear-gradient(180deg, var(--navy), var(--navy-2));
+}
+
+.band1 {
+  clip-path: polygon(8.33% 0, 91.67% 0, 83.33% 100%, 16.67% 100%);
+  background: linear-gradient(180deg, var(--royal), #1a4cc4);
+  animation-delay: 0.1s;
+}
+
+.band2 {
+  clip-path: polygon(16.67% 0, 83.33% 0, 75% 100%, 25% 100%);
+  background: linear-gradient(180deg, var(--royal-2), #2f78ea);
+  animation-delay: 0.2s;
+}
+
+.band3 {
+  clip-path: polygon(25% 0, 75% 0, 68.75% 100%, 31.25% 100%);
+  background: linear-gradient(180deg, var(--sky), #6dbaf6);
+  color: var(--navy-deep);
+  animation-delay: 0.3s;
+}
+
+/* oportunidades caindo pelo funil */
+.token {
+  position: absolute;
+  /* à direita do centro: não passa por cima do nome e do número das etapas */
+  left: 328px;
+  top: 0;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 2px solid var(--surface);
+  border-radius: 50%;
+  background: linear-gradient(135deg, #fff, var(--tint));
+  box-shadow: 0 6px 14px rgba(4, 16, 60, 0.3);
+  color: var(--navy);
+  font-size: 11px;
+  font-weight: 600;
+  opacity: 0;
+  animation: fall 5.2s cubic-bezier(0.45, 0, 0.55, 1) var(--delay) infinite;
+}
+
+.lost {
+  animation-name: fall-lost;
+}
+
+.reason {
+  position: absolute;
+  left: 392px;
+  top: 282px;
+  padding: 5px 10px;
+  border: 1px solid #f3c0c0;
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: var(--shadow-card);
+  color: #b42318;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+  opacity: 0;
+  animation: reason 5.2s ease-out 2.6s infinite;
+}
+
+/* resultado: onde a mira trava */
+.result {
+  position: absolute;
+  left: 170px;
+  top: 418px;
+  display: grid;
+  justify-items: center;
+  width: 220px;
+  padding: 10px 14px;
+  border: 1.5px solid var(--royal);
+  border-radius: 14px;
+  background: var(--surface);
+  box-shadow: var(--shadow-card-locked);
+  font-size: 12px;
+  color: var(--muted);
+  animation: band-in 0.6s ease-out 0.5s both;
+}
+
+.result b {
+  font-family: var(--font-display);
+  font-size: 17px;
+  color: var(--navy);
+}
+
+@keyframes band-in {
+  from {
+    opacity: 0;
+    translate: 0 -12px;
+  }
+}
+
+/* desce pelo meio do funil, encolhendo, e some ao chegar no resultado */
+@keyframes fall {
+  0% {
+    opacity: 0;
+    translate: 0 0;
+    scale: 1;
+  }
+  8% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+    translate: 0 400px;
+    scale: 0.8;
+  }
+  92%,
+  100% {
+    opacity: 0;
+    translate: 0 420px;
+    scale: 0.7;
+  }
+}
+
+/* desce até a negociação e sai pela lateral */
+@keyframes fall-lost {
+  0% {
+    opacity: 0;
+    translate: 0 0;
+  }
+  8% {
+    opacity: 1;
+  }
+  45% {
+    opacity: 1;
+    translate: 0 250px;
+  }
+  65% {
+    opacity: 1;
+    translate: 150px 232px;
+    rotate: 20deg;
+  }
+  80%,
+  100% {
+    opacity: 0;
+    translate: 170px 236px;
+    rotate: 25deg;
+  }
+}
+
+@keyframes reason {
+  0%,
+  50% {
+    opacity: 0;
+    translate: -6px 0;
+  }
+  60%,
+  85% {
+    opacity: 1;
+    translate: 0 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .band,
+  .result {
+    animation: none;
+  }
+
+  /* parado: uma oportunidade no meio do funil e a perda com o motivo à vista */
+  .token {
+    animation: none;
+    opacity: 1;
+    translate: 0 170px;
+  }
+
+  .token + .token {
+    display: none;
+  }
+
+  .reason {
+    animation: none;
+    opacity: 1;
+  }
+}

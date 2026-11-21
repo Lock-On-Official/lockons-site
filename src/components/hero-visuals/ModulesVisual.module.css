@@ -1,0 +1,273 @@
+.scene {
+  overflow: visible;
+}
+
+.tile {
+  position: absolute;
+  display: grid;
+  align-content: start;
+  gap: 0.55rem;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--surface);
+  box-shadow: var(--shadow-card);
+  font-size: 12px;
+  color: var(--muted);
+  animation: assemble 0.9s cubic-bezier(0.2, 0.9, 0.25, 1.1) var(--delay) both;
+}
+
+.a {
+  left: 10px;
+  top: 30px;
+  width: 262px;
+  height: 150px;
+}
+
+.b {
+  left: 290px;
+  top: 10px;
+  width: 262px;
+  height: 200px;
+}
+
+.c {
+  left: 10px;
+  top: 198px;
+  width: 262px;
+  height: 162px;
+}
+
+.d {
+  left: 290px;
+  top: 228px;
+  width: 262px;
+  height: 132px;
+}
+
+.e {
+  left: 10px;
+  top: 378px;
+  width: 542px;
+  height: 104px;
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.chip {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: var(--tint);
+  color: var(--navy-2);
+}
+
+.chip svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* contatos */
+.avatars {
+  display: flex;
+}
+
+.avatars i {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  margin-right: -8px;
+  border: 2px solid var(--surface);
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--royal-2), var(--sky));
+  color: #fff;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 600;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 6px 10px;
+  border: 1.5px solid var(--royal);
+  border-radius: 8px;
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.search svg {
+  width: 14px;
+  height: 14px;
+  color: var(--muted);
+}
+
+/* funil */
+.bar {
+  display: grid;
+  grid-template-columns: 82px 1fr 18px;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.bar i {
+  height: 10px;
+  width: var(--w);
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--royal), var(--sky));
+}
+
+.bar b {
+  color: var(--ink);
+  text-align: right;
+}
+
+/* atividades */
+.task {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 6px 8px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--ink);
+}
+
+.task::before {
+  content: "";
+  flex-shrink: 0;
+  width: 13px;
+  height: 13px;
+  border: 1.5px solid var(--muted);
+  border-radius: 4px;
+}
+
+.done {
+  color: var(--muted);
+  text-decoration: line-through;
+}
+
+.done::before {
+  border-color: var(--royal);
+  background: var(--royal);
+}
+
+.late {
+  border-color: var(--alert);
+  background: #fffaf0;
+}
+
+.late em {
+  margin-left: auto;
+  font-style: normal;
+  font-weight: 600;
+  color: #9a5b00;
+}
+
+/* indicadores */
+.kpi {
+  font-family: var(--font-display);
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--navy);
+}
+
+.kpiLabel {
+  font-size: 12px;
+}
+
+/* lojas */
+.stores {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+}
+
+.stores > span {
+  display: grid;
+  gap: 2px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  background: var(--bg);
+}
+
+.stores b {
+  font-family: var(--font-display);
+  font-size: 13px;
+  color: var(--navy);
+}
+
+.stores .total {
+  background: var(--tint);
+}
+
+/* faixa de luz que percorre o painel montado: o "foco" passando pelos módulos */
+.scan {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 140px;
+  background: linear-gradient(90deg, transparent, rgba(72, 169, 244, 0.22), transparent);
+  pointer-events: none;
+  opacity: 0;
+  animation: scan 6s ease-in-out 1.6s infinite;
+}
+
+@keyframes assemble {
+  from {
+    opacity: 0;
+    translate: var(--from);
+    rotate: -4deg;
+    scale: 0.94;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+    rotate: 0deg;
+    scale: 1;
+  }
+}
+
+@keyframes scan {
+  0% {
+    opacity: 0;
+    translate: -160px 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  45% {
+    opacity: 1;
+    translate: 580px 0;
+  }
+  50%,
+  100% {
+    opacity: 0;
+    translate: 580px 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tile,
+  .scan {
+    animation: none;
+  }
+
+  .scan {
+    display: none;
+  }
+}

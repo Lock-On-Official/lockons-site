@@ -1,0 +1,40 @@
+.figure {
+  position: relative;
+  margin: 0;
+  padding-bottom: 28px;
+}
+
+.photo {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  border-radius: 20px;
+  box-shadow: 0 20px 44px rgba(18, 60, 157, 0.2);
+}
+
+.photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(18, 60, 157, 0) 50%, rgba(18, 60, 157, 0.35) 100%);
+  pointer-events: none;
+}
+
+.img {
+  object-fit: cover;
+  object-position: center 30%;
+}
+
+.card {
+  position: absolute;
+  left: -14px;
+  bottom: 0;
+  width: min(230px, 70%);
+  rotate: -2deg;
+}
+
+@media (max-width: 800px) {
+  .card {
+    left: 10px;
+  }
+}

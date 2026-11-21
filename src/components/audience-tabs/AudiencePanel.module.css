@@ -27,21 +27,10 @@
   color: var(--muted);
 }
 
-/* ilustração sobre a mesma grade de pontos do fundo */
+/* foto do papel com um cartão do sistema por cima (PhotoCard) */
 .visual {
-  display: grid;
-  place-items: center;
-  min-height: 220px;
-  padding: 1.5rem;
-  border-radius: 14px;
-  background-color: var(--bg);
-  background-image: radial-gradient(var(--dot) 1px, transparent 1.4px);
-  background-size: 22px 22px;
-}
-
-.visual > * {
-  width: min(230px, 100%);
-  transform: rotate(-2deg);
+  min-width: 0;
+  padding-left: 14px;
 }
 
 @media (max-width: 800px) {

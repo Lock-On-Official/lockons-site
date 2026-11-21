@@ -1,7 +1,7 @@
 import { CtaBand } from "@/components/cta-band/CtaBand";
 import { InfoCards } from "@/components/info-cards/InfoCards";
 import { PageHero } from "@/components/page-hero/PageHero";
-import { ProductScene } from "@/components/scene-3d/FeatureScenes";
+import { ModulesVisual } from "@/components/hero-visuals/ModulesVisual";
 import { Section } from "@/components/section/Section";
 import { SectionHeader } from "@/components/section/SectionHeader";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -46,7 +46,7 @@ export default function ProductPage() {
         title={hero.title}
         sub={hero.sub}
         secondary={hero.secondary}
-        scene={<ProductScene />}
+        visual={<ModulesVisual />}
       />
 
       <Section id={productPage.features.id} labelledBy="funcionalidades-title" tone="tint" decor="reticle">
