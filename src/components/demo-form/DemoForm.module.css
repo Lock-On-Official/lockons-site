@@ -1,0 +1,166 @@
+.card {
+  position: relative;
+  display: grid;
+  gap: 1rem;
+  width: 100%;
+  max-width: 560px;
+  justify-self: center;
+  padding: clamp(1.2rem, 3vw, 1.8rem);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: var(--surface);
+  box-shadow: 0 26px 56px rgba(18, 60, 157, 0.18);
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.mark {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--tint);
+}
+
+.mark svg {
+  width: 30px;
+  height: 30px;
+}
+
+.title {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+/* aviso de indisponível: âmbar, como os alertas do sistema */
+.notice {
+  display: flex;
+  gap: 0.75rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--alert);
+  border-radius: 14px;
+  background: #fffaf0;
+  font-size: 0.9rem;
+  color: var(--ink);
+}
+
+.notice > span {
+  display: grid;
+  gap: 0.15rem;
+}
+
+.notice b {
+  font-weight: 600;
+  color: #7a4800;
+}
+
+.noticeIcon {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  color: #9a5b00;
+}
+
+.form {
+  margin: 0;
+}
+
+.fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.85rem 1rem;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+}
+
+.field {
+  display: grid;
+  gap: 0.35rem;
+  min-width: 0;
+  font-size: 0.86rem;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.field em {
+  font-style: normal;
+  font-weight: 400;
+  color: var(--muted);
+}
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  padding: 0.65rem 0.8rem;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--ink);
+  font: inherit;
+  font-weight: 400;
+}
+
+.field textarea {
+  resize: vertical;
+}
+
+.field input:focus-visible,
+.field select:focus-visible,
+.field textarea:focus-visible {
+  outline: 2px solid var(--sky);
+  outline-offset: 1px;
+  border-color: var(--royal);
+}
+
+.wide {
+  grid-column: 1 / -1;
+}
+
+.consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  font-size: 0.84rem;
+  color: var(--muted);
+}
+
+.consent input {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  margin-top: 0.1rem;
+  accent-color: var(--royal);
+}
+
+.submit {
+  grid-column: 1 / -1;
+  width: 100%;
+  padding-block: 0.8rem;
+}
+
+/* desativado: campos apagados, sem parecer clicáveis */
+.fields:disabled .field input,
+.fields:disabled .field select,
+.fields:disabled .field textarea {
+  background: var(--bg);
+  cursor: not-allowed;
+}
+
+.fields:disabled .field,
+.fields:disabled .consent {
+  opacity: 0.65;
+}
+
+@media (max-width: 520px) {
+  .fields {
+    grid-template-columns: 1fr;
+  }
+}

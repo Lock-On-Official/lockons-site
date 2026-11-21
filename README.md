@@ -75,6 +75,8 @@ src/
 - **Movimento:** toda animação tem estado final legível e para com "reduzir movimento" ligado no sistema.
 - **Dados de exemplo** nos cartões e nas ilustrações (empresas, pessoas, valores) são fictícios.
 - **Textos:** ficam em `src/content/` e só descrevem o que o produto entrega (ver `docs/escopo-mvp.md` do `crm-lockon`). Ao mudar o escopo, revise principalmente `faq.ts`.
+- **Formulário de demonstração:** fica desativado, com aviso (`available: false` em `src/content/demo.ts`), por decisão do time. Para ligar: criar o envio no servidor para o e-mail da LOCKONS, trocar `available` para `true` e tratar o envio no formulário (`src/components/demo-form/`).
+- **Páginas legais:** Privacidade e Termos mostram só a estrutura e ficam com `noindex` e fora do sitemap enquanto `draft: true` em `src/content/legal.ts`. Quando o jurídico entregar o texto: preencher as seções, trocar `draft` para `false` e marcar a rota como publicada em `routes.ts`.
 - **Dados estruturados:** Organization e WebSite em todas as páginas (layout); SoftwareApplication na home e em /produto; BreadcrumbList nas internas; FAQPage só em /perguntas-frequentes, que reúne todas as perguntas do site sem repetir (`src/content/resources.ts`). Sem preço nem avaliação enquanto não existirem.
 
 ## Fotos

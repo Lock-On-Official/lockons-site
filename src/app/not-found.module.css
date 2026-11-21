@@ -1,0 +1,137 @@
+.page {
+  padding-block: clamp(3rem, 8vw, 6rem);
+  overflow-x: clip;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 2rem;
+}
+
+.copy {
+  display: grid;
+  gap: 1.2rem;
+  min-width: 0;
+}
+
+.code {
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--navy-2);
+}
+
+.title {
+  font-size: clamp(2.2rem, 4.6vw, 3.6rem);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+
+.title em {
+  font-style: normal;
+}
+
+.text {
+  max-width: 30rem;
+  font-size: 1.06rem;
+  color: var(--muted);
+}
+
+.shortcuts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1.4rem;
+  margin: 0.4rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.shortcutIcon {
+  width: 18px;
+  height: 18px;
+}
+
+/* área "radar" onde a mira procura o alvo */
+.radar {
+  position: relative;
+  justify-self: center;
+  width: min(100%, 440px);
+  aspect-ratio: 1;
+  border: 1px solid var(--band-tint-line);
+  border-radius: 32px;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(72, 169, 244, 0.16), transparent 60%),
+    radial-gradient(rgba(18, 60, 157, 0.14) 1.2px, transparent 1.6px) 0 0 / 20px 20px,
+    linear-gradient(180deg, var(--band-tint-start), var(--band-tint-end));
+  overflow: hidden;
+}
+
+/* o "alvo" que a mira não encontra, num canto */
+.target {
+  position: absolute;
+  right: 16%;
+  bottom: 18%;
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  border: 1.5px dashed var(--royal-2);
+  border-radius: 14px;
+  color: var(--navy-2);
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 600;
+  opacity: 0.7;
+}
+
+.scope {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 46%;
+  translate: -50% -50%;
+  color: var(--royal);
+  animation: search 9s ease-in-out infinite;
+}
+
+/* a mira percorre a área, passa perto do alvo e não trava */
+@keyframes search {
+  0%,
+  100% {
+    translate: -50% -50%;
+  }
+  20% {
+    translate: -95% -85%;
+  }
+  40% {
+    translate: -10% -95%;
+  }
+  60% {
+    translate: -20% -20%;
+    rotate: 25deg;
+  }
+  80% {
+    translate: -90% -15%;
+    rotate: -10deg;
+  }
+}
+
+@media (max-width: 860px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .radar {
+    width: min(100%, 360px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scope {
+    animation: none;
+  }
+}

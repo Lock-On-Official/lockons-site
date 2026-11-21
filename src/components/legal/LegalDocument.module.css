@@ -1,0 +1,133 @@
+.body {
+  padding-block: 0.5rem clamp(3.5rem, 8vw, 6rem);
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 15rem) minmax(0, 46rem);
+  justify-content: start;
+  gap: clamp(2rem, 6vw, 5rem);
+  align-items: start;
+}
+
+/* sumário fixo enquanto a pessoa lê */
+.toc {
+  position: sticky;
+  top: calc(var(--header-h) + 1.5rem);
+  padding: 1.1rem 1.2rem;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--surface);
+}
+
+.tocTitle {
+  margin-bottom: 0.6rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.toc ol {
+  display: grid;
+  gap: 0.15rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: item;
+}
+
+.toc li {
+  counter-increment: item;
+}
+
+.toc a {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.35rem 0.5rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.toc a::before {
+  content: counter(item) ".";
+  min-width: 1.3rem;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.toc a:hover {
+  background: var(--tint);
+  color: var(--navy-2);
+}
+
+.article {
+  display: grid;
+  gap: 1.8rem;
+  min-width: 0;
+}
+
+.draft {
+  display: flex;
+  gap: 0.8rem;
+  padding: 1rem 1.2rem;
+  border: 1px solid var(--alert);
+  border-radius: 14px;
+  background: #fffaf0;
+}
+
+.draft > span {
+  display: grid;
+  gap: 0.2rem;
+}
+
+.draft b {
+  color: #7a4800;
+}
+
+.draftIcon {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  color: #9a5b00;
+}
+
+.block {
+  display: grid;
+  gap: 0.6rem;
+  padding-bottom: 1.6rem;
+  border-bottom: 1px solid var(--line);
+  scroll-margin-top: calc(var(--header-h) + 1.5rem);
+}
+
+.block h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.number {
+  color: var(--royal-2);
+}
+
+.block p {
+  max-width: 65ch;
+  color: var(--ink);
+}
+
+.block .pending {
+  color: var(--muted);
+  font-style: italic;
+}
+
+@media (max-width: 860px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .toc {
+    position: static;
+  }
+}

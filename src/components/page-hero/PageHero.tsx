@@ -20,10 +20,21 @@ interface PageHeroProps {
    * cada página interna tem uma ilustração e uma animação ligadas ao assunto dela.
    */
   visual?: ReactNode;
+  /** Botão "Agendar demonstração". Desligue na própria página de demonstração e nas páginas legais. */
+  showDemoCta?: boolean;
 }
 
 /** Hero das páginas internas: título e ações à esquerda, a ilustração da página à direita, com a trilha. */
-export function PageHero({ trail, eyebrow, eyebrowId, title, sub, secondary, visual }: PageHeroProps) {
+export function PageHero({
+  trail,
+  eyebrow,
+  eyebrowId,
+  title,
+  sub,
+  secondary,
+  visual,
+  showDemoCta = true,
+}: PageHeroProps) {
   return (
     <section className={styles.hero} aria-labelledby="page-title">
       <div className="container">
@@ -35,14 +46,16 @@ export function PageHero({ trail, eyebrow, eyebrowId, title, sub, secondary, vis
               {title}
             </h1>
             <p className={styles.sub}>{sub}</p>
-            <div className={styles.ctas}>
-              <ButtonLink href={demoPath}>Agendar demonstração</ButtonLink>
-              {secondary && (
-                <ButtonLink href={secondary.href} variant="text">
-                  {secondary.label}
-                </ButtonLink>
-              )}
-            </div>
+            {(showDemoCta || secondary) && (
+              <div className={styles.ctas}>
+                {showDemoCta && <ButtonLink href={demoPath}>Agendar demonstração</ButtonLink>}
+                {secondary && (
+                  <ButtonLink href={secondary.href} variant="text">
+                    {secondary.label}
+                  </ButtonLink>
+                )}
+              </div>
+            )}
           </div>
           {visual}
         </div>
