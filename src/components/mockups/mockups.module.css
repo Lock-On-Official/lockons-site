@@ -102,10 +102,49 @@
 
 .rows {
   display: grid;
+  align-content: start;
   gap: 0.35rem;
+  /* altura de 3 linhas fixa: a lista muda enquanto "digitam" e a página ao lado não pula */
+  height: calc(3 * 3.1rem + 2 * 0.35rem);
+  overflow: hidden;
   margin: 0;
   padding: 0;
   list-style: none;
+}
+
+.typed {
+  white-space: pre;
+}
+
+/* mantém a altura da linha com o campo vazio, entre uma busca e outra */
+.typed::after {
+  content: "\200b";
+}
+
+/* linha nova entra suave quando a busca a encontra */
+.rowIn {
+  animation: row-in 0.22s ease-out;
+}
+
+@keyframes row-in {
+  from {
+    opacity: 0;
+    translate: 0 4px;
+  }
+}
+
+.rows .rowsEmpty {
+  grid-template-columns: 1fr;
+  place-items: center;
+  min-height: 3.1rem;
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.match {
+  border-radius: 3px;
+  background: rgba(72, 169, 244, 0.28);
+  color: inherit;
 }
 
 .rows li {
@@ -135,8 +174,12 @@
 }
 
 .note {
+  overflow: hidden;
   font-size: 0.75rem;
   color: var(--muted);
+  /* uma linha só: a moldura não muda de altura entre as buscas */
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 /* funil */

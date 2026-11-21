@@ -115,7 +115,7 @@ export default function HomePage() {
       </Section>
 
       {/* Momento-assinatura: o quadro se organiza com a rolagem e aceita arrastar os cartões */}
-      <Section id={chaosToFocus.id} labelledBy="caos-title" tone="navy">
+      <Section id={chaosToFocus.id} labelledBy="caos-title" tone="navy" decorSide="left">
         <div className={`container ${styles.chaosGrid}`}>
           <div className={styles.chaosCopy}>
             <SectionHeader
@@ -168,7 +168,7 @@ export default function HomePage() {
       </Section>
 
       {/* Para quem: alvo do link "Para quem" do header */}
-      <Section id={audiencesSection.id} labelledBy="para-quem-title" tone="tint">
+      <Section id={audiencesSection.id} labelledBy="para-quem-title" tone="tint" decorSide="left">
         <div className="container">
           <SectionHeader
             id="para-quem-title"
@@ -190,7 +190,7 @@ export default function HomePage() {
       </Section>
 
       {/* Confiança e implantação: responde "e se der errado?" perto da decisão */}
-      <Section labelledBy="confianca-title">
+      <Section labelledBy="confianca-title" decorSide="left">
         <div className="container">
           <SectionHeader id="confianca-title" eyebrow={trust.eyebrow} title={trust.title} lead={trust.lead} />
           <div className={styles.after}>

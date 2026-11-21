@@ -85,7 +85,7 @@ export default async function FeaturePage({ params }: FeaturePageProps) {
         scene={scenes[feature.slug]}
       />
 
-      <Section id="como-funciona" labelledBy="como-funciona-title" tone="tint">
+      <Section id="como-funciona" labelledBy="como-funciona-title" tone="tint" decorSide="left">
         <div className="container">
           <FeatureSplit
             id="como-funciona-title"
@@ -135,7 +135,7 @@ export default async function FeaturePage({ params }: FeaturePageProps) {
         </SplitGrid>
       </Section>
 
-      <Section labelledBy="relacionadas-title">
+      <Section labelledBy="relacionadas-title" decorSide="left">
         <div className="container">
           <SectionHeader
             id="relacionadas-title"

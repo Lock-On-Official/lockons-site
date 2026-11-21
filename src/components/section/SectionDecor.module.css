@@ -1,0 +1,157 @@
+/* atrás do conteúdo da seção (a Section isola o empilhamento) e cortado nas bordas dela */
+.layer {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* mira grande nas faixas */
+.reticle {
+  position: absolute;
+  top: 50%;
+  width: clamp(360px, 48vw, 680px);
+  aspect-ratio: 1;
+  translate: 0 -50%;
+  color: var(--royal);
+  opacity: 0.08;
+}
+
+.right {
+  right: -14%;
+}
+
+.left {
+  left: -14%;
+}
+
+.onNavy {
+  color: #fff;
+  opacity: 0.07;
+}
+
+.spin {
+  transform-box: view-box;
+  transform-origin: 50% 50%;
+  animation: spin 180s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    rotate: 360deg;
+  }
+}
+
+/* marcas de alvo no fundo pontilhado */
+.plus {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  opacity: 0.45;
+}
+
+.plus::before,
+.plus::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 100%;
+  height: 1.5px;
+  border-radius: 1px;
+  background: var(--sky);
+  translate: -50% -50%;
+}
+
+.plus::after {
+  rotate: 90deg;
+}
+
+.p1 {
+  left: 5%;
+  top: 14%;
+}
+
+.p2 {
+  right: 6%;
+  top: 24%;
+}
+
+.p3 {
+  left: 8%;
+  bottom: 16%;
+}
+
+.p4 {
+  right: 9%;
+  bottom: 10%;
+}
+
+/* cantos de enquadramento, como os da mira travada nos cartões */
+.corner {
+  position: absolute;
+  width: 34px;
+  height: 34px;
+  border: 2px solid var(--sky);
+  border-radius: 4px;
+  opacity: 0.35;
+}
+
+.cornerTopLeft {
+  left: 2.5%;
+  top: 7%;
+  border-right: 0;
+  border-bottom: 0;
+}
+
+.cornerTopRight {
+  right: 2.5%;
+  top: 7%;
+  border-left: 0;
+  border-bottom: 0;
+}
+
+.cornerBottomLeft {
+  left: 2.5%;
+  bottom: 7%;
+  border-right: 0;
+  border-top: 0;
+}
+
+.cornerBottomRight {
+  right: 2.5%;
+  bottom: 7%;
+  border-left: 0;
+  border-top: 0;
+}
+
+@media (max-width: 700px) {
+  .reticle {
+    width: 360px;
+    opacity: 0.06;
+  }
+
+  .right {
+    right: -45%;
+  }
+
+  .left {
+    left: -45%;
+  }
+
+  .onNavy {
+    opacity: 0.05;
+  }
+
+  /* no celular as marcas ficariam em cima do texto: só os cantos */
+  .plus {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spin {
+    animation: none;
+  }
+}
