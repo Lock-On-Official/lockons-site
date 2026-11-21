@@ -106,6 +106,97 @@
   }
 }
 
+/* pessoa, loja e módulo: ícone ou iniciais à esquerda */
+.person,
+.task {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-width: 0;
+}
+
+.personText {
+  display: grid;
+  min-width: 0;
+}
+
+.personText > span:last-child:not(:first-child) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.avatar,
+.storeIcon {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--royal-2), var(--sky));
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.storeIcon {
+  border-radius: 9px;
+  background: var(--tint);
+  color: var(--navy-2);
+}
+
+.storeIcon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.module {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 0.75rem;
+}
+
+/* atividade */
+.taskBox {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  border: 1.5px solid var(--muted);
+  border-radius: 5px;
+}
+
+.taskBoxDone {
+  border-color: var(--royal);
+  background: var(--royal)
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m5 12.5 4.5 4.5L19 7.5'/%3E%3C/svg%3E")
+    center / 12px no-repeat;
+}
+
+.struck {
+  color: var(--muted);
+  text-decoration: line-through;
+}
+
+.when {
+  font-weight: 500;
+  color: var(--navy-2);
+}
+
+.whenLate {
+  color: #9a5b00;
+}
+
+.overdue {
+  border-color: var(--alert);
+  background: #fffaf0;
+}
+
+.overdue.locked {
+  border-color: var(--royal);
+}
+
 .kpiValue {
   font-family: var(--font-display);
   font-size: 1.35rem;

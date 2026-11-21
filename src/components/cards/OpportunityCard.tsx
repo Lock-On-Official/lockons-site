@@ -1,6 +1,7 @@
 import { Chip } from "@/components/ui/Chip";
 import { formatBRL } from "@/lib/format";
 
+import { LockBrackets } from "./LockBrackets";
 import styles from "./cards.module.css";
 
 interface OpportunityCardProps {
@@ -23,14 +24,7 @@ export function OpportunityCard({ stage, name, value, due, hot = false, locked =
       <span className={styles.name}>{name}</span>
       <span className={styles.value}>{formatBRL(value)}</span>
       {due && <span className={styles.due}>{due}</span>}
-      {locked && (
-        <span className={styles.brackets} aria-hidden="true">
-          <i />
-          <i />
-          <i />
-          <i />
-        </span>
-      )}
+      {locked && <LockBrackets />}
     </div>
   );
 }

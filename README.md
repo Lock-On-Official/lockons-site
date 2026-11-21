@@ -39,15 +39,17 @@ src/
 │   ├── ui/               botão (ButtonLink), selo do hero (Eyebrow), etiqueta (Chip), ícones e lista com visto
 │   ├── cards/            cartão de oportunidade e cartão de indicador
 │   ├── scene-3d/         cena 3D em CSS: palco (Scene3D), itens (SceneItem), mira (Reticle3D) e a cena do hero
-│   ├── section/          cabeçalho de seção e bloco texto + ilustração (FeatureSplit)
-│   ├── mockups/          ilustrações das telas (contatos, funil, atividades), com dados fictícios
+│   ├── section/          Section (tom do fundo), SectionHeader, SplitGrid (duas colunas) e FeatureSplit (texto + ilustração)
+│   ├── page-hero/        hero das páginas internas, com a trilha de navegação e a cena 3D
+│   ├── info-cards/       grade de cartões com ícone, título, texto e link
+│   ├── mockups/          ilustrações das telas (contatos, funil, atividades, indicadores, lojas), com dados fictícios
 │   ├── chaos-board/      quadro "do caos ao foco", que se organiza com a rolagem
 │   ├── audience-tabs/    abas "Para quem" e o painel de cada papel
 │   ├── faq/              perguntas em acordeão
 │   ├── cta-band/         faixa azul-marinho de fechamento
 │   ├── breadcrumbs/      trilha de navegação com BreadcrumbList
 │   └── seo/              JsonLd, para dados estruturados
-├── content/              textos das páginas (home, papéis, perguntas) e o mapa único das páginas (routes.ts)
+├── content/              textos das páginas (home, produto e funcionalidades, papéis, perguntas) e o mapa único das páginas (routes.ts)
 ├── lib/                  configuração (site.ts), metadados (seo.ts), dados estruturados e formatação
 └── styles/tokens.css     cores, fontes e medidas do protótipo aprovado
 ```
@@ -60,6 +62,7 @@ src/
   2. exporte `metadata` com `pageMetadata({ title, description, path })`, que define o canonical da própria página;
   3. marque `published: true` em `src/content/routes.ts`, para ela entrar no sitemap.
 - **Visual:** use os tokens de `src/styles/tokens.css`. O azul-royal (`--royal`) é só para o que é clicável.
+- **Funcionalidade nova:** acrescente em `src/content/features.ts` (o tipo `FeatureSlug` obriga a dar cena e ilustração em `src/app/produto/[slug]/page.tsx`) e a rota em `routes.ts`. Endereços fora da lista dão 404.
 - **Seções:** use `<Section tone>`. As páginas alternam `plain` (fundo pontilhado) e `tint` (azul-claro), com `navy` para o momento de destaque e a `CtaBand` azul-marinho no fim.
 - **Fontes:** Sora (títulos) e Inter (texto), servidas pelo `next/font` do próprio domínio.
 - **Cena 3D:** é só CSS, sem biblioteca. Os itens são posicionados num palco de 440 × 440 px (`x`, `y`) e em profundidade (`z`). A cena se ajusta à largura disponível e inclina com o mouse dentro do elemento marcado com `data-scene-tilt`. Com "reduzir movimento" ligado no sistema, fica parada.

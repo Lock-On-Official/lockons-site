@@ -15,12 +15,12 @@ export interface SiteRoute {
 export const routes: readonly SiteRoute[] = [
   { path: "/", label: "Início", group: "home", published: true },
 
-  { path: "/produto", label: "Visão geral", group: "product", published: false },
-  { path: "/produto/gestao-de-contatos", label: "Gestão de contatos", group: "product", published: false },
-  { path: "/produto/funil-de-vendas", label: "Funil de vendas", group: "product", published: false },
-  { path: "/produto/atividades-e-follow-up", label: "Atividades e follow-up", group: "product", published: false },
-  { path: "/produto/indicadores-de-vendas", label: "Indicadores de vendas", group: "product", published: false },
-  { path: "/produto/multiplas-lojas", label: "Múltiplas lojas", group: "product", published: false },
+  { path: "/produto", label: "Visão geral", group: "product", published: true },
+  { path: "/produto/gestao-de-contatos", label: "Gestão de contatos", group: "product", published: true },
+  { path: "/produto/funil-de-vendas", label: "Funil de vendas", group: "product", published: true },
+  { path: "/produto/atividades-e-follow-up", label: "Atividades e follow-up", group: "product", published: true },
+  { path: "/produto/indicadores-de-vendas", label: "Indicadores de vendas", group: "product", published: true },
+  { path: "/produto/multiplas-lojas", label: "Múltiplas lojas", group: "product", published: true },
 
   { path: "/para-quem/vendedores", label: "Vendedores", group: "audience", published: false },
   { path: "/para-quem/gestores-comerciais", label: "Gestores comerciais", group: "audience", published: false },

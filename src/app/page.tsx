@@ -7,6 +7,7 @@ import { OpportunityCard } from "@/components/cards/OpportunityCard";
 import { ChaosBoard } from "@/components/chaos-board/ChaosBoard";
 import { CtaBand } from "@/components/cta-band/CtaBand";
 import { FaqList } from "@/components/faq/FaqList";
+import { InfoCards } from "@/components/info-cards/InfoCards";
 import { ActivitiesMock } from "@/components/mockups/ActivitiesMock";
 import { ContactsMock } from "@/components/mockups/ContactsMock";
 import { PipelineMock } from "@/components/mockups/PipelineMock";
@@ -14,6 +15,7 @@ import { HeroScene } from "@/components/scene-3d/HeroScene";
 import { FeatureSplit } from "@/components/section/FeatureSplit";
 import { Section } from "@/components/section/Section";
 import { SectionHeader } from "@/components/section/SectionHeader";
+import { SplitGrid } from "@/components/section/SplitGrid";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Eyebrow } from "@/components/ui/Eyebrow";
@@ -93,30 +95,23 @@ export default function HomePage() {
 
       {/* Prova: o que o painel mede hoje (sem número inventado) */}
       <Section labelledBy="indicadores-title" tone="tint">
-        <div className={`container ${styles.indicatorsGrid}`}>
-          <SectionHeader
-            id="indicadores-title"
-            eyebrow={indicators.eyebrow}
-            title={indicators.title}
-            lead={indicators.lead}
-            action={
-              <ButtonLink href={indicators.link.href} variant="text">
-                {indicators.link.label}
-              </ButtonLink>
-            }
-          />
-          <ul className={styles.cardGrid}>
-            {indicators.items.map((item) => (
-              <li key={item.title} className={styles.infoCard}>
-                <span className={styles.iconWrap}>
-                  <Icon name={item.icon} />
-                </span>
-                <h3>{item.title}</h3>
-                <p>{item.text}</p>
-              </li>
-            ))}
-          </ul>
-        </div>
+        <SplitGrid
+          aside={
+            <SectionHeader
+              id="indicadores-title"
+              eyebrow={indicators.eyebrow}
+              title={indicators.title}
+              lead={indicators.lead}
+              action={
+                <ButtonLink href={indicators.link.href} variant="text">
+                  {indicators.link.label}
+                </ButtonLink>
+              }
+            />
+          }
+        >
+          <InfoCards items={indicators.items} columns={2} />
+        </SplitGrid>
       </Section>
 
       {/* Momento-assinatura: o quadro se organiza com a rolagem e aceita arrastar os cartões */}
@@ -198,38 +193,31 @@ export default function HomePage() {
       <Section labelledBy="confianca-title">
         <div className="container">
           <SectionHeader id="confianca-title" eyebrow={trust.eyebrow} title={trust.title} lead={trust.lead} />
-          <ul className={styles.trustGrid}>
-            {trust.items.map((item) => (
-              <li key={item.title} className={styles.infoCard}>
-                <span className={styles.iconWrap}>
-                  <Icon name={item.icon} />
-                </span>
-                <h3>{item.title}</h3>
-                <p>{item.text}</p>
-                <ButtonLink href={item.link.href} variant="text" className={styles.cardLink}>
-                  {item.link.label}
-                </ButtonLink>
-              </li>
-            ))}
-          </ul>
+          <div className={styles.after}>
+            <InfoCards items={trust.items} columns={4} />
+          </div>
         </div>
       </Section>
 
       {/* Perguntas: as principais aqui, todas na página própria */}
       <Section labelledBy="faq-title" tone="tint">
-        <div className={`container ${styles.faqGrid}`}>
-          <SectionHeader
-            id="faq-title"
-            eyebrow={faqSection.eyebrow}
-            title={faqSection.title}
-            action={
-              <ButtonLink href={faqSection.link.href} variant="text">
-                {faqSection.link.label}
-              </ButtonLink>
-            }
-          />
+        <SplitGrid
+          variant="wide"
+          aside={
+            <SectionHeader
+              id="faq-title"
+              eyebrow={faqSection.eyebrow}
+              title={faqSection.title}
+              action={
+                <ButtonLink href={faqSection.link.href} variant="text">
+                  {faqSection.link.label}
+                </ButtonLink>
+              }
+            />
+          }
+        >
           <FaqList items={featuredFaq} />
-        </div>
+        </SplitGrid>
       </Section>
 
       <CtaBand title={closing.title} text={closing.text} secondary={closing.secondary} />

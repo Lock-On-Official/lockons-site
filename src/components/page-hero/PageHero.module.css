@@ -1,0 +1,45 @@
+.hero {
+  padding-block: 1.5rem clamp(2.5rem, 6vw, 4rem);
+  /* a entrada da mira (cantos com zoom) passa da borda no celular por um instante */
+  overflow-x: clip;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 2rem;
+  margin-top: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.copy {
+  display: grid;
+  gap: 1.2rem;
+  min-width: 0;
+}
+
+.title {
+  font-size: clamp(2rem, 4.2vw, 3.2rem);
+  font-weight: 600;
+  line-height: 1.06;
+  letter-spacing: -0.03em;
+}
+
+.sub {
+  max-width: 33rem;
+  font-size: 1.06rem;
+  color: var(--muted);
+}
+
+.ctas {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 1.4rem;
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

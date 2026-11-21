@@ -294,6 +294,149 @@
     center / 12px no-repeat;
 }
 
+/* indicadores */
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+
+.tile {
+  display: grid;
+  gap: 0.15rem;
+  padding: 0.6rem 0.7rem;
+  border-radius: 10px;
+  background: var(--bg);
+  color: var(--muted);
+  font-size: 0.72rem;
+}
+
+.tile b {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--navy);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.split {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: 0.5rem;
+}
+
+.panel {
+  display: grid;
+  align-content: start;
+  gap: 0.45rem;
+  padding: 0.7rem;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+
+.panelTitle {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.barRow {
+  display: grid;
+  grid-template-columns: 5.2rem minmax(0, 1fr) 1.4rem;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+
+.barRow b,
+.lossRow b {
+  color: var(--ink);
+  font-weight: 600;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.barTrack {
+  height: 8px;
+  border-radius: 999px;
+  background: var(--bg);
+}
+
+.barTrack i {
+  display: block;
+  width: var(--w);
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--royal), var(--sky));
+}
+
+.lossRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding-block: 0.15rem;
+  border-bottom: 1px dashed var(--line);
+  font-size: 0.74rem;
+  color: var(--muted);
+}
+
+.lossRow:last-child {
+  border-bottom: 0;
+}
+
+/* lojas */
+.scopePill {
+  padding: 0.12rem 0.55rem;
+  border-radius: var(--radius-pill);
+  background: var(--tint);
+  color: var(--navy-2);
+  font-weight: 600;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+
+.table th,
+.table td {
+  padding: 0.55rem 0.5rem;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+}
+
+.table th {
+  color: var(--muted);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.table td:first-child {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.table th:last-child,
+.table td:last-child {
+  text-align: right;
+}
+
+.table tfoot td {
+  border-bottom: 0;
+  font-weight: 600;
+  color: var(--navy);
+}
+
+@media (max-width: 480px) {
+  .split {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .caret {
     animation: none;

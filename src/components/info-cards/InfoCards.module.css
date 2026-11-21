@@ -1,0 +1,84 @@
+.grid {
+  display: grid;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cols2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.cols3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.cols4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  padding: 1.25rem;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+  box-shadow: 0 1px 2px rgba(18, 60, 157, 0.05);
+}
+
+.card h3 {
+  font-size: 1.02rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.card p {
+  font-size: 0.92rem;
+  color: var(--muted);
+}
+
+.iconWrap {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  margin-bottom: 0.2rem;
+  border-radius: 11px;
+  background: var(--tint);
+  color: var(--navy-2);
+}
+
+.iconWrap svg {
+  width: 22px;
+  height: 22px;
+}
+
+/* o link fica no pé do cartão, alinhado entre cartões de alturas diferentes */
+.link {
+  align-self: flex-start;
+  margin-top: auto;
+  padding-top: 0.4rem;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 1000px) {
+  .cols4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .cols3 {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .cols2,
+  .cols4 {
+    grid-template-columns: 1fr;
+  }
+}
