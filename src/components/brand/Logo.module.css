@@ -1,0 +1,38 @@
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+  text-decoration: none;
+}
+
+.mark {
+  width: 28px;
+  height: 28px;
+}
+
+.wordmark {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: 0.04em;
+  color: var(--navy);
+}
+
+.wordmark span {
+  background: linear-gradient(90deg, var(--royal-2), var(--sky));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@media (max-width: 480px) {
+  .mark {
+    width: 24px;
+    height: 24px;
+  }
+
+  .wordmark {
+    font-size: 0.95rem;
+  }
+}

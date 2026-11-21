@@ -1,0 +1,71 @@
+.footer {
+  background: var(--surface);
+  border-top: 1px solid var(--line);
+}
+
+.top {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 3fr);
+  gap: 2.5rem;
+  padding-block: 3.5rem 2.5rem;
+}
+
+.brand p {
+  margin-top: 0.8rem;
+  max-width: 16rem;
+  font-size: 0.92rem;
+  color: var(--muted);
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.columns h2 {
+  margin-bottom: 0.8rem;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.columns ul {
+  display: grid;
+  gap: 0.55rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.columns a {
+  font-size: 0.9rem;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.columns a:hover {
+  color: var(--royal);
+  text-decoration: underline;
+}
+
+.bottom {
+  padding-block: 1.2rem 2rem;
+  border-top: 1px solid var(--line);
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+@media (max-width: 900px) {
+  .top {
+    grid-template-columns: 1fr;
+  }
+
+  .columns {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem 1.5rem;
+  }
+}

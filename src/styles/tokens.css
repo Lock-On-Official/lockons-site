@@ -1,0 +1,37 @@
+/* Tokens do protótipo da home aprovado. Mudar um valor aqui muda o site inteiro. */
+:root {
+  /* paleta do projeto */
+  --bg: #f4f6fa;
+  --surface: #ffffff;
+  --ink: #1e293b;
+  --muted: #64748b;
+  --line: #e2e8f0;
+  --royal: #1e56d9; /* reservado ao que é clicável */
+  --royal-2: #286be6;
+  --navy: #123c9d;
+  --navy-2: #163b8c;
+  --navy-deep: #0e2e73; /* profundidade da mira 3D */
+  --sky: #48a9f4;
+  --tint: #dce8fc;
+  --alert: #f59e0b;
+
+  /* superfícies e sombras */
+  --dot: rgba(18, 60, 157, 0.09);
+  --header-bg: rgba(255, 255, 255, 0.85);
+  --shadow-card: 0 14px 34px rgba(18, 60, 157, 0.16);
+  --shadow-cta: 0 6px 18px rgba(30, 86, 217, 0.28);
+  --shadow-panel: 0 18px 40px rgba(18, 60, 157, 0.12);
+
+  /* tipografia: as variáveis --font-sora e --font-inter vêm do next/font */
+  --font-display: var(--font-sora), "Segoe UI", system-ui, sans-serif;
+  --font-body: var(--font-inter), system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  /* forma e medidas */
+  --radius-card: 12px;
+  --radius-pill: 999px;
+  --container: 72rem;
+  --gutter: clamp(16px, 3vw, 40px);
+  --header-h: 4.25rem;
+
+  color-scheme: light;
+}

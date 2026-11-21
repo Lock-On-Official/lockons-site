@@ -1,0 +1,100 @@
+.toggle {
+  display: none;
+}
+
+.panel {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+  box-shadow: var(--shadow-panel);
+}
+
+.panel ul {
+  margin: 0;
+  padding-block: 0.4rem 1rem;
+  list-style: none;
+}
+
+.panel li + li {
+  border-top: 1px solid var(--line);
+}
+
+.panel a {
+  display: block;
+  padding-block: 0.85rem;
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.panel a:hover {
+  color: var(--royal);
+}
+
+@media (max-width: 900px) {
+  .toggle {
+    display: inline-grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--surface);
+    color: var(--navy-2);
+    cursor: pointer;
+  }
+}
+
+@media (min-width: 901px) {
+  /* menu aberto no celular e tela alargada depois: o painel não sobra no desktop */
+  .panel {
+    display: none;
+  }
+}
+
+.icon {
+  position: relative;
+  width: 18px;
+  height: 14px;
+}
+
+.icon i {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+  transition: transform 0.2s, opacity 0.2s, top 0.2s;
+}
+
+.icon i:nth-child(1) {
+  top: 0;
+}
+
+.icon i:nth-child(2) {
+  top: 6px;
+}
+
+.icon i:nth-child(3) {
+  top: 12px;
+}
+
+.icon[data-open="true"] i:nth-child(1) {
+  top: 6px;
+  transform: rotate(45deg);
+}
+
+.icon[data-open="true"] i:nth-child(2) {
+  opacity: 0;
+}
+
+.icon[data-open="true"] i:nth-child(3) {
+  top: 6px;
+  transform: rotate(-45deg);
+}

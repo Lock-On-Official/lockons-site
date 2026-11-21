@@ -1,0 +1,16 @@
+# dependências
+/node_modules
+
+# build do Next
+/.next/
+/out/
+next-env.d.ts
+*.tsbuildinfo
+
+# variáveis de ambiente locais (o modelo fica em .env.example)
+.env
+.env*.local
+
+# sistema e logs
+.DS_Store
+npm-debug.log*
