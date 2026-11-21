@@ -31,8 +31,9 @@ As duas são lidas no build: mudar o valor exige um build novo.
 
 ```text
 src/
-├── app/                  rotas do Next (App Router), robots.ts, sitemap.ts, ícone
+├── app/                  rotas do Next (App Router), robots.ts, sitemap.ts, ícones e as imagens de compartilhamento (og/)
 ├── assets/photos/        fotos (ver "Fotos" no fim)
+├── assets/fonts/         Sora e Inter em TTF, só para gerar as imagens de compartilhamento
 ├── components/
 │   ├── brand/            logo e a mira em SVG
 │   ├── site-header/      header fixo e menu do celular
@@ -52,9 +53,10 @@ src/
 │   ├── cta-band/         faixa azul-marinho de fechamento
 │   ├── breadcrumbs/      trilha de navegação com BreadcrumbList
 │   └── seo/              JsonLd, para dados estruturados
-├── content/              textos das páginas (home, produto e funcionalidades, papéis, segurança, implantação, perguntas, fotos) e o mapa único das páginas (routes.ts)
+├── content/              textos das páginas (home, produto e funcionalidades, papéis, segurança, implantação, perguntas, fotos, imagens de compartilhamento) e o mapa único das páginas (routes.ts)
 ├── lib/                  configuração (site.ts), metadados (seo.ts), dados estruturados e formatação
 └── styles/tokens.css     cores, fontes e medidas do protótipo aprovado
+public/logo.png           logo quadrado (512 × 512) dos dados estruturados
 ```
 
 ## Convenções
@@ -63,7 +65,8 @@ src/
 - **Página nova:**
   1. crie a rota em `src/app`;
   2. exporte `metadata` com `pageMetadata({ title, description, path })`, que define o canonical da própria página;
-  3. marque `published: true` em `src/content/routes.ts`, para ela entrar no sitemap.
+  3. marque `published: true` em `src/content/routes.ts`, para ela entrar no sitemap;
+  4. acrescente o selo e o título dela em `src/content/og.ts`, para gerar a imagem de compartilhamento (sem isso, o link da imagem dá 404).
 - **Visual:** use os tokens de `src/styles/tokens.css`. O azul-royal (`--royal`) é só para o que é clicável.
 - **Funcionalidade nova:** acrescente em `src/content/features.ts` (o tipo `FeatureSlug` obriga a dar a ilustração do hero e a da seção "como funciona" em `src/app/produto/[slug]/page.tsx`) e a rota em `routes.ts`. Endereços fora da lista dão 404.
 - **Seções:** use `<Section tone decor>`. As páginas alternam `plain` (fundo pontilhado) e `tint` (azul-claro), com `navy` para o momento de destaque e a `CtaBand` azul-marinho no fim.
@@ -77,7 +80,25 @@ src/
 - **Textos:** ficam em `src/content/` e só descrevem o que o produto entrega (ver `docs/escopo-mvp.md` do `crm-lockon`). Ao mudar o escopo, revise principalmente `faq.ts`.
 - **Formulário de demonstração:** fica desativado, com aviso (`available: false` em `src/content/demo.ts`), por decisão do time. Para ligar: criar o envio no servidor para o e-mail da LOCKONS, trocar `available` para `true` e tratar o envio no formulário (`src/components/demo-form/`).
 - **Páginas legais:** Privacidade e Termos mostram só a estrutura e ficam com `noindex` e fora do sitemap enquanto `draft: true` em `src/content/legal.ts`. Quando o jurídico entregar o texto: preencher as seções, trocar `draft` para `false` e marcar a rota como publicada em `routes.ts`.
-- **Dados estruturados:** Organization e WebSite em todas as páginas (layout); SoftwareApplication na home e em /produto; BreadcrumbList nas internas; FAQPage só em /perguntas-frequentes, que reúne todas as perguntas do site sem repetir (`src/content/resources.ts`). Sem preço nem avaliação enquanto não existirem.
+- **Dados estruturados:** Organization e WebSite em todas as páginas (layout); SoftwareApplication na home e em /produto; BreadcrumbList nas internas; FAQPage só em /perguntas-frequentes, que reúne todas as perguntas do site sem repetir (`src/content/resources.ts`). Sem preço nem avaliação enquanto não existirem. O logo vai como PNG (`public/logo.png`), o formato mais aceito pelo Google.
+- **Imagens de compartilhamento** (WhatsApp, LinkedIn etc.): cada página tem a sua em `/og/<chave>` (1200 × 630, ex.: `/og/produto-funil-de-vendas`), gerada no build por `src/app/og/[key]/route.tsx` com o selo e o título de `src/content/og.ts`. O gerador só lê fontes TTF, por isso as cópias em `src/assets/fonts/` (licença SIL Open Font License, como as do `next/font`). Para ver como fica: `npm run build && npm start` e abrir `http://localhost:3000/og/inicio`.
+- **Ícones:** `src/app/icon.svg` (navegador) e `src/app/apple-icon.png` (180 × 180, tela inicial do iPhone). O `public/logo.png` e o `apple-icon.png` saem do `icon.svg`: ao trocar o logo, gere os dois de novo.
+
+## Verificação
+
+Antes de publicar uma mudança grande, rode `npm run build` e confira com o Lighthouse (Chrome, aba Lighthouse, modo celular) e com o [teste de pesquisa aprimorada](https://search.google.com/test/rich-results) do Google, que valida os dados estruturados.
+
+Última medição (21/11/2026, `npm start` local, Lighthouse 13 no modo celular; no servidor real o tempo de rede soma):
+
+| Página | Desempenho | Acessibilidade | Boas práticas | SEO | LCP | CLS |
+|---|---|---|---|---|---|---|
+| `/` | 99 | 100 | 100 | 100 | 1,1 s | 0 |
+| `/produto` | 99 | 100 | 100 | 100 | 0,9 s | 0 |
+| `/produto/funil-de-vendas` | 99 | 100 | 100 | 100 | 1,1 s | 0 |
+| `/para-quem/vendedores` | 100 | 100 | 100 | 100 | 1,1 s | 0 |
+| `/seguranca` | 99 | 100 | 100 | 100 | 1,1 s | 0 |
+| `/perguntas-frequentes` | 99 | 100 | 100 | 100 | 1,1 s | 0 |
+| `/agendar-demonstracao` | 100 | 100 | 100 | 100 | 0,9 s | 0 |
 
 ## Fotos
 

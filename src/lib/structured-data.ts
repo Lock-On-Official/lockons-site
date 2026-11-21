@@ -13,7 +13,8 @@ export function siteGraph() {
         "@id": organizationId,
         name: site.name,
         url: absoluteUrl("/"),
-        logo: absoluteUrl("/icon.svg"),
+        // PNG quadrado: o formato mais seguro para o Google mostrar o logo (public/logo.png)
+        logo: { "@type": "ImageObject", url: absoluteUrl("/logo.png"), width: 512, height: 512 },
         slogan: site.slogan,
       },
       {
