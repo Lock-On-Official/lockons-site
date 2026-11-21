@@ -60,6 +60,7 @@ src/
   2. exporte `metadata` com `pageMetadata({ title, description, path })`, que define o canonical da própria página;
   3. marque `published: true` em `src/content/routes.ts`, para ela entrar no sitemap.
 - **Visual:** use os tokens de `src/styles/tokens.css`. O azul-royal (`--royal`) é só para o que é clicável.
+- **Seções:** use `<Section tone>`. As páginas alternam `plain` (fundo pontilhado) e `tint` (azul-claro), com `navy` para o momento de destaque e a `CtaBand` azul-marinho no fim.
 - **Fontes:** Sora (títulos) e Inter (texto), servidas pelo `next/font` do próprio domínio.
 - **Cena 3D:** é só CSS, sem biblioteca. Os itens são posicionados num palco de 440 × 440 px (`x`, `y`) e em profundidade (`z`). A cena se ajusta à largura disponível e inclina com o mouse dentro do elemento marcado com `data-scene-tilt`. Com "reduzir movimento" ligado no sistema, fica parada.
 - **Dados de exemplo** nos cartões e nas ilustrações (empresas, pessoas, valores) são fictícios.

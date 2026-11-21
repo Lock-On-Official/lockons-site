@@ -16,6 +16,12 @@
   --alert: #f59e0b;
   --on-navy: #f1f5fd; /* texto sobre a faixa azul-marinho */
   --on-navy-muted: #bcd0f7;
+  --on-navy-accent: #a9cdfb; /* selo e destaques sobre o azul-marinho, com contraste para texto pequeno */
+
+  /* faixa azul-clara que alterna com o fundo pontilhado entre as seções */
+  --band-tint-start: #e6eefc;
+  --band-tint-end: #f1f5fd;
+  --band-tint-line: #d3e1f8;
 
   /* superfícies e sombras */
   --dot: rgba(18, 60, 157, 0.09);

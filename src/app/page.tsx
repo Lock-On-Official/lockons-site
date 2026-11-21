@@ -12,6 +12,7 @@ import { ContactsMock } from "@/components/mockups/ContactsMock";
 import { PipelineMock } from "@/components/mockups/PipelineMock";
 import { HeroScene } from "@/components/scene-3d/HeroScene";
 import { FeatureSplit } from "@/components/section/FeatureSplit";
+import { Section } from "@/components/section/Section";
 import { SectionHeader } from "@/components/section/SectionHeader";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ButtonLink } from "@/components/ui/ButtonLink";
@@ -59,6 +60,7 @@ const audienceVisuals: Record<Audience["id"], ReactNode> = {
   diretores: <KpiCard label="Valor ganho · todas as lojas" value="R$ 182.400" bars={[46, 58, 50, 72, 90]} />,
 };
 
+/* Ritmo das seções: pontilhado → azul-claro → azul-marinho (destaque) → pontilhado → azul-claro... */
 export default function HomePage() {
   return (
     <>
@@ -90,7 +92,7 @@ export default function HomePage() {
       </section>
 
       {/* Prova: o que o painel mede hoje (sem número inventado) */}
-      <section className={`${styles.section} ${styles.band}`} aria-labelledby="indicadores-title">
+      <Section labelledBy="indicadores-title" tone="tint">
         <div className={`container ${styles.indicatorsGrid}`}>
           <SectionHeader
             id="indicadores-title"
@@ -115,10 +117,10 @@ export default function HomePage() {
             ))}
           </ul>
         </div>
-      </section>
+      </Section>
 
-      {/* Momento-assinatura: o quadro se organiza com a rolagem */}
-      <section id={chaosToFocus.id} className={styles.section} aria-labelledby="caos-title">
+      {/* Momento-assinatura: o quadro se organiza com a rolagem e aceita arrastar os cartões */}
+      <Section id={chaosToFocus.id} labelledBy="caos-title" tone="navy">
         <div className={`container ${styles.chaosGrid}`}>
           <div className={styles.chaosCopy}>
             <SectionHeader
@@ -126,19 +128,24 @@ export default function HomePage() {
               eyebrow={chaosToFocus.eyebrow}
               title={chaosToFocus.title}
               lead={chaosToFocus.lead}
+              onDark
             />
             <ol className={styles.steps}>
               {chaosToFocus.steps.map((step) => (
                 <li key={step}>{step}</li>
               ))}
             </ol>
+            <p className={styles.hint}>
+              <Icon name="move" className={styles.hintIcon} />
+              {chaosToFocus.hint}
+            </p>
           </div>
-          <ChaosBoard columns={chaosToFocus.columns} />
+          <ChaosBoard columns={chaosToFocus.columns} tone="dark" />
         </div>
-      </section>
+      </Section>
 
       {/* Três pilares, um por bloco, alternando o lado da tela */}
-      <section className={`${styles.section} ${styles.band}`} aria-labelledby="produto-title">
+      <Section labelledBy="produto-title">
         <div className="container">
           <SectionHeader
             id="produto-title"
@@ -163,10 +170,10 @@ export default function HomePage() {
             ))}
           </div>
         </div>
-      </section>
+      </Section>
 
       {/* Para quem: alvo do link "Para quem" do header */}
-      <section id={audiencesSection.id} className={styles.section} aria-labelledby="para-quem-title">
+      <Section id={audiencesSection.id} labelledBy="para-quem-title" tone="tint">
         <div className="container">
           <SectionHeader
             id="para-quem-title"
@@ -185,10 +192,10 @@ export default function HomePage() {
             />
           </div>
         </div>
-      </section>
+      </Section>
 
       {/* Confiança e implantação: responde "e se der errado?" perto da decisão */}
-      <section className={`${styles.section} ${styles.band}`} aria-labelledby="confianca-title">
+      <Section labelledBy="confianca-title">
         <div className="container">
           <SectionHeader id="confianca-title" eyebrow={trust.eyebrow} title={trust.title} lead={trust.lead} />
           <ul className={styles.trustGrid}>
@@ -206,10 +213,10 @@ export default function HomePage() {
             ))}
           </ul>
         </div>
-      </section>
+      </Section>
 
       {/* Perguntas: as principais aqui, todas na página própria */}
-      <section className={styles.section} aria-labelledby="faq-title">
+      <Section labelledBy="faq-title" tone="tint">
         <div className={`container ${styles.faqGrid}`}>
           <SectionHeader
             id="faq-title"
@@ -223,7 +230,7 @@ export default function HomePage() {
           />
           <FaqList items={featuredFaq} />
         </div>
-      </section>
+      </Section>
 
       <CtaBand title={closing.title} text={closing.text} secondary={closing.secondary} />
     </>

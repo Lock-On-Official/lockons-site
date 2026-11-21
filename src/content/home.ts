@@ -58,6 +58,7 @@ export const chaosToFocus = {
   eyebrow: "Como funciona",
   title: "Do caos ao foco",
   lead: "Planilha, caderno e conversa no celular viram um funil só. Cada oportunidade ganha etapa, valor, dono e próximo passo.",
+  hint: "Experimente: arraste um cartão para outra etapa. No celular, toque e segure.",
   // Sequência real de uso: a numeração da lista é informação.
   steps: [
     "Cadastre os contatos ou importe a planilha que você já tem.",

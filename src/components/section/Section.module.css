@@ -1,0 +1,28 @@
+.section {
+  position: relative;
+  padding-block: clamp(3.5rem, 8vw, 6rem);
+  /* cartões que entram de lado (quadro do funil) não criam rolagem horizontal */
+  overflow-x: clip;
+}
+
+.tint {
+  background: linear-gradient(180deg, var(--band-tint-start) 0%, var(--band-tint-end) 100%);
+  border-block: 1px solid var(--band-tint-line);
+}
+
+.navy {
+  isolation: isolate;
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-2) 60%, var(--navy-deep) 100%);
+  color: var(--on-navy);
+}
+
+/* a grade de pontos do fundo do site, em branco */
+.navy::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1.4px);
+  background-size: 22px 22px;
+  pointer-events: none;
+}

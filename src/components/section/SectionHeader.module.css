@@ -34,3 +34,15 @@
 .action {
   margin-top: 0.3rem;
 }
+
+.dark .eyebrow {
+  color: var(--on-navy-accent);
+}
+
+.dark .title {
+  color: var(--on-navy);
+}
+
+.dark .lead {
+  color: var(--on-navy-muted);
+}

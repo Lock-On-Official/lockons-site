@@ -11,11 +11,15 @@ interface SectionHeaderProps {
   align?: "start" | "center";
   /** Link ou botão abaixo do texto. */
   action?: ReactNode;
+  /** Sobre a seção azul-marinho. */
+  onDark?: boolean;
 }
 
-export function SectionHeader({ id, eyebrow, title, lead, align = "start", action }: SectionHeaderProps) {
+export function SectionHeader({ id, eyebrow, title, lead, align = "start", action, onDark = false }: SectionHeaderProps) {
+  const classes = [styles.header, align === "center" && styles.center, onDark && styles.dark].filter(Boolean).join(" ");
+
   return (
-    <div className={align === "center" ? `${styles.header} ${styles.center}` : styles.header}>
+    <div className={classes}>
       {eyebrow && <p className={styles.eyebrow}>{eyebrow}</p>}
       <h2 id={id} className={styles.title}>
         {title}
