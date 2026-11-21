@@ -22,9 +22,9 @@ export const routes: readonly SiteRoute[] = [
   { path: "/produto/indicadores-de-vendas", label: "Indicadores de vendas", group: "product", published: true },
   { path: "/produto/multiplas-lojas", label: "Múltiplas lojas", group: "product", published: true },
 
-  { path: "/para-quem/vendedores", label: "Vendedores", group: "audience", published: false },
-  { path: "/para-quem/gestores-comerciais", label: "Gestores comerciais", group: "audience", published: false },
-  { path: "/para-quem/diretores", label: "Diretores", group: "audience", published: false },
+  { path: "/para-quem/vendedores", label: "Vendedores", group: "audience", published: true },
+  { path: "/para-quem/gestores-comerciais", label: "Gestores comerciais", group: "audience", published: true },
+  { path: "/para-quem/diretores", label: "Diretores", group: "audience", published: true },
 
   { path: "/seguranca", label: "Segurança", group: "resources", published: false },
   { path: "/implantacao", label: "Implantação", group: "resources", published: false },
@@ -42,12 +42,14 @@ export function routesIn(group: RouteGroup): SiteRoute[] {
 export interface NavItem {
   href: string;
   label: string;
+  /** Prefixo de caminho que marca o item como atual, quando o href não serve (ex.: âncora). */
+  match?: string;
 }
 
 /** Itens do header. "Para quem" aponta para a seção da home que liga às três páginas de papel. */
 export const mainNav: readonly NavItem[] = [
   { href: "/produto", label: "Produto" },
-  { href: "/#para-quem", label: "Para quem" },
+  { href: "/#para-quem", label: "Para quem", match: "/para-quem" },
   { href: "/perguntas-frequentes", label: "Perguntas" },
 ];
 

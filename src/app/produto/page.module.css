@@ -96,6 +96,8 @@
   border-radius: 16px;
   background: var(--surface);
   box-shadow: 0 18px 40px rgba(4, 16, 60, 0.3);
+  /* cartão branco dentro da seção azul-marinho: volta à cor normal do texto */
+  color: var(--ink);
 }
 
 .role h3 {
