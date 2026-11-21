@@ -1,0 +1,88 @@
+.fit {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  aspect-ratio: 1;
+  justify-self: center;
+  container-type: inline-size;
+}
+
+.scene {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 440px;
+  height: 440px;
+  perspective: 1100px;
+  transform-origin: 0 0;
+  transform: scale(var(--k, 1));
+}
+
+/* Escala aproximada antes do JavaScript carregar, para a cena não vazar no celular. O JS depois acerta. */
+@container (max-width: 430px) {
+  .scene {
+    --k: 0.88;
+  }
+}
+
+@container (max-width: 390px) {
+  .scene {
+    --k: 0.79;
+  }
+}
+
+@container (max-width: 350px) {
+  .scene {
+    --k: 0.7;
+  }
+}
+
+@container (max-width: 310px) {
+  .scene {
+    --k: 0.6;
+  }
+}
+
+.stage {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  transform: rotateX(var(--rx, 10deg)) rotateY(var(--ry, -16deg));
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.stage > * {
+  position: absolute;
+}
+
+.item {
+  left: var(--x);
+  top: var(--y);
+  width: var(--w);
+  transform: translateZ(var(--z));
+}
+
+.float {
+  animation: float 7s ease-in-out infinite;
+  animation-delay: var(--float-delay, 0s);
+}
+
+@keyframes float {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -8px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stage {
+    transition: none;
+  }
+
+  .float {
+    animation: none;
+  }
+}

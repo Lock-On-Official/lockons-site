@@ -109,6 +109,8 @@ a {
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
+    /* sem zerar o atraso, o elemento fica no estado inicial (ex.: invisível) durante o delay */
+    animation-delay: 0s !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;

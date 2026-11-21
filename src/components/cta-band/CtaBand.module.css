@@ -1,0 +1,90 @@
+.band {
+  position: relative;
+  overflow: hidden;
+  padding-block: clamp(3.5rem, 8vw, 6rem);
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-2) 60%, var(--navy-deep) 100%);
+  color: var(--on-navy);
+}
+
+/* a mesma grade de pontos do fundo do site, em branco */
+.band::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1.4px);
+  background-size: 22px 22px;
+  pointer-events: none;
+}
+
+.backdrop {
+  position: absolute;
+  top: 50%;
+  right: -8%;
+  width: min(620px, 80vw);
+  aspect-ratio: 1;
+  translate: 0 -50%;
+  opacity: 0.28;
+  filter: blur(1.5px);
+  pointer-events: none;
+}
+
+.backdrop svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.spin {
+  transform-box: view-box;
+  transform-origin: 50% 50%;
+  animation: spin 120s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    rotate: 360deg;
+  }
+}
+
+.copy {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 1.1rem;
+  max-width: 36rem;
+}
+
+.copy h2 {
+  color: var(--on-navy);
+  font-size: clamp(1.8rem, 3.6vw, 2.6rem);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.copy p {
+  max-width: 34rem;
+  font-size: 1.06rem;
+  color: var(--on-navy-muted);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 1.4rem;
+  margin-top: 0.4rem;
+}
+
+@media (max-width: 700px) {
+  .backdrop {
+    right: -30%;
+    opacity: 0.18;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spin {
+    animation: none;
+  }
+}

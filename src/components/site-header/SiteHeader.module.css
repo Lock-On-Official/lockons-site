@@ -61,24 +61,6 @@
   color: var(--royal);
 }
 
-.cta {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.48rem 0.95rem;
-  border-radius: var(--radius-pill);
-  background: var(--royal);
-  color: #fff;
-  font-size: 0.85rem;
-  font-weight: 600;
-  text-decoration: none;
-  white-space: nowrap;
-  transition: background-color 0.15s;
-}
-
-.cta:hover {
-  background: var(--royal-2);
-}
-
 /* Ganha fundo branco e sombra ao rolar, sem JavaScript; navegador sem suporte mantém o visual fixo. */
 @supports (animation-timeline: scroll()) {
   .header {
@@ -111,7 +93,8 @@
     gap: 0.75rem;
   }
 
-  .cta {
+  /* duas classes: vence o tamanho "sm" do botão sem depender da ordem dos arquivos CSS */
+  .bar .cta {
     padding: 0.45rem 0.75rem;
     font-size: 0.78rem;
   }

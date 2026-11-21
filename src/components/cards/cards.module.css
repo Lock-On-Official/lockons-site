@@ -1,0 +1,133 @@
+.card {
+  position: relative;
+  display: grid;
+  gap: 0.28rem;
+  padding: 0.75rem 0.85rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  background: var(--surface);
+  box-shadow: var(--shadow-card);
+  font-size: 0.74rem;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+.name {
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.value {
+  font-family: var(--font-display);
+  font-size: 0.98rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--navy);
+}
+
+.due {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.due::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--alert);
+}
+
+.locked {
+  border: 1.5px solid var(--royal);
+  box-shadow: var(--shadow-card-locked);
+}
+
+/* cantos da mira em volta do cartão travado: entram uma vez, depois que o anel trava */
+.brackets {
+  position: absolute;
+  inset: -11px;
+  pointer-events: none;
+  animation: bracket-in 0.9s cubic-bezier(0.2, 0.9, 0.25, 1.2) 1.35s both;
+}
+
+.brackets i {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 3px solid var(--sky);
+  border-radius: 3px;
+}
+
+.brackets i:nth-child(1) {
+  left: 0;
+  top: 0;
+  border-right: 0;
+  border-bottom: 0;
+}
+
+.brackets i:nth-child(2) {
+  right: 0;
+  top: 0;
+  border-left: 0;
+  border-bottom: 0;
+}
+
+.brackets i:nth-child(3) {
+  left: 0;
+  bottom: 0;
+  border-right: 0;
+  border-top: 0;
+}
+
+.brackets i:nth-child(4) {
+  right: 0;
+  bottom: 0;
+  border-left: 0;
+  border-top: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brackets {
+    animation: none;
+  }
+}
+
+@keyframes bracket-in {
+  from {
+    opacity: 0;
+    scale: 1.35;
+  }
+  to {
+    opacity: 1;
+    scale: 1;
+  }
+}
+
+.kpiValue {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--navy);
+}
+
+.bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  height: 28px;
+}
+
+.bars i {
+  flex: 1;
+  height: var(--h);
+  border-radius: 3px 3px 1px 1px;
+  background: var(--tint);
+}
+
+.bars i:last-child {
+  background: var(--royal);
+}

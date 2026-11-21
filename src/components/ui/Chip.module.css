@@ -1,0 +1,18 @@
+.chip {
+  display: inline-block;
+  justify-self: start;
+  padding: 0.18rem 0.5rem;
+  border-radius: var(--radius-pill);
+  background: var(--tint);
+  color: var(--navy-2);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.hot {
+  background: var(--royal);
+  color: #fff;
+}

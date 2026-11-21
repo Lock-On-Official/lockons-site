@@ -14,12 +14,15 @@
   --sky: #48a9f4;
   --tint: #dce8fc;
   --alert: #f59e0b;
+  --on-navy: #f1f5fd; /* texto sobre a faixa azul-marinho */
+  --on-navy-muted: #bcd0f7;
 
   /* superfícies e sombras */
   --dot: rgba(18, 60, 157, 0.09);
   --header-bg: rgba(255, 255, 255, 0.85);
   --shadow-card: 0 14px 34px rgba(18, 60, 157, 0.16);
   --shadow-cta: 0 6px 18px rgba(30, 86, 217, 0.28);
+  --shadow-card-locked: 0 22px 48px rgba(30, 86, 217, 0.28);
   --shadow-panel: 0 18px 40px rgba(18, 60, 157, 0.12);
 
   /* tipografia: as variáveis --font-sora e --font-inter vêm do next/font */

@@ -1,6 +1,5 @@
-import Link from "next/link";
-
 import { Logo } from "@/components/brand/Logo";
+import { ButtonLink } from "@/components/ui/ButtonLink";
 import { demoPath, mainNav } from "@/content/routes";
 import { site } from "@/lib/site";
 
@@ -20,9 +19,9 @@ export function SiteHeader() {
               Entrar
             </a>
           )}
-          <Link href={demoPath} className={styles.cta}>
+          <ButtonLink href={demoPath} size="sm" className={styles.cta}>
             Agendar demonstração
-          </Link>
+          </ButtonLink>
           <MobileMenu items={mainNav} appUrl={site.appUrl} />
         </div>
       </div>

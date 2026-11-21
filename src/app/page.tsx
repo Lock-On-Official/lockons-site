@@ -1,5 +1,4 @@
-import Link from "next/link";
-
+import { ButtonLink } from "@/components/ui/ButtonLink";
 import { demoPath } from "@/content/routes";
 import { pageMetadata } from "@/lib/seo";
 import { site } from "@/lib/site";
@@ -23,9 +22,7 @@ export default function HomePage() {
             acompanhar.
           </p>
           <div>
-            <Link href={demoPath} className={styles.cta}>
-              Agendar demonstração
-            </Link>
+            <ButtonLink href={demoPath}>Agendar demonstração</ButtonLink>
           </div>
         </div>
       </div>

@@ -32,9 +32,18 @@ As duas são lidas no build: mudar o valor exige um build novo.
 ```text
 src/
 ├── app/                  rotas do Next (App Router), robots.ts, sitemap.ts, ícone
-├── components/           header, rodapé, logo e, nas próximas subtarefas, os blocos de página
+├── components/
+│   ├── brand/            logo e a mira em SVG
+│   ├── site-header/      header fixo e menu do celular
+│   ├── site-footer/      rodapé com links para todas as páginas
+│   ├── ui/               botão (ButtonLink), selo do hero (Eyebrow) e etiqueta de etapa (Chip)
+│   ├── cards/            cartão de oportunidade e cartão de indicador
+│   ├── scene-3d/         cena 3D em CSS: palco (Scene3D), itens (SceneItem), mira (Reticle3D) e a cena do hero
+│   ├── cta-band/         faixa azul-marinho de fechamento
+│   ├── breadcrumbs/      trilha de navegação com BreadcrumbList
+│   └── seo/              JsonLd, para dados estruturados
 ├── content/routes.ts     mapa único das páginas: rodapé e sitemap saem daqui
-├── lib/                  configuração do site (site.ts) e metadados por página (seo.ts)
+├── lib/                  configuração do site (site.ts), metadados por página (seo.ts) e formatação (format.ts)
 └── styles/tokens.css     cores, fontes e medidas do protótipo aprovado
 ```
 
@@ -47,3 +56,5 @@ src/
   3. marque `published: true` em `src/content/routes.ts`, para ela entrar no sitemap.
 - **Visual:** use os tokens de `src/styles/tokens.css`. O azul-royal (`--royal`) é só para o que é clicável.
 - **Fontes:** Sora (títulos) e Inter (texto), servidas pelo `next/font` do próprio domínio.
+- **Cena 3D:** é só CSS, sem biblioteca. Os itens são posicionados num palco de 440 × 440 px (`x`, `y`) e em profundidade (`z`). A cena se ajusta à largura disponível e inclina com o mouse dentro do elemento marcado com `data-scene-tilt`. Com "reduzir movimento" ligado no sistema, fica parada.
+- **Dados de exemplo** nos cartões (empresas e valores) são fictícios.
