@@ -49,7 +49,7 @@ export default function ProductPage() {
         scene={<ProductScene />}
       />
 
-      <Section id={productPage.features.id} labelledBy="funcionalidades-title" tone="tint">
+      <Section id={productPage.features.id} labelledBy="funcionalidades-title" tone="tint" decor="reticle">
         <div className="container">
           <SectionHeader
             id="funcionalidades-title"
@@ -64,7 +64,7 @@ export default function ProductPage() {
       </Section>
 
       {/* azul-marinho entre duas seções claras: não encosta na faixa de fechamento, também azul-marinho */}
-      <Section labelledBy="papeis-title" tone="navy" decorSide="left">
+      <Section labelledBy="papeis-title" tone="navy" decorSide="left" decor="network">
         <div className="container">
           <SectionHeader
             id="papeis-title"
@@ -88,7 +88,7 @@ export default function ProductPage() {
         </div>
       </Section>
 
-      <Section labelledBy="fluxo-title">
+      <Section labelledBy="fluxo-title" decor="route">
         <div className="container">
           <SectionHeader id="fluxo-title" eyebrow={flow.eyebrow} title={flow.title} lead={flow.lead} align="center" />
           <ol className={styles.flow}>

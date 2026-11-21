@@ -84,7 +84,7 @@ export default async function AudiencePage({ params }: AudiencePageProps) {
         scene={scenes[audience.id]}
       />
 
-      <Section id="rotina" labelledBy="rotina-title" tone="tint">
+      <Section id="rotina" labelledBy="rotina-title" tone="tint" decor="reticle">
         <div className="container">
           <SectionHeader id="rotina-title" eyebrow="Rotina" title={page.day.title} lead={page.day.lead} />
           <ol className={styles.day}>
@@ -98,7 +98,7 @@ export default async function AudiencePage({ params }: AudiencePageProps) {
         </div>
       </Section>
 
-      <Section labelledBy="ve-title">
+      <Section labelledBy="ve-title" decor="chart">
         <div className="container">
           <FeatureSplit
             id="ve-title"
@@ -113,7 +113,7 @@ export default async function AudiencePage({ params }: AudiencePageProps) {
         </div>
       </Section>
 
-      <Section id="permissoes" labelledBy="permissoes-title" tone="navy" decorSide="left">
+      <Section id="permissoes" labelledBy="permissoes-title" tone="navy" decorSide="left" decor="lanes">
         <SplitGrid
           aside={
             <SectionHeader
@@ -152,7 +152,7 @@ export default async function AudiencePage({ params }: AudiencePageProps) {
         </SplitGrid>
       </Section>
 
-      <Section labelledBy="funcionalidades-title" tone="tint">
+      <Section labelledBy="funcionalidades-title" tone="tint" decor="network">
         <div className="container">
           <SectionHeader
             id="funcionalidades-title"
@@ -165,7 +165,7 @@ export default async function AudiencePage({ params }: AudiencePageProps) {
         </div>
       </Section>
 
-      <Section labelledBy="perguntas-title" decorSide="left">
+      <Section labelledBy="perguntas-title" decorSide="left" decor="route">
         <SplitGrid
           variant="wide"
           aside={

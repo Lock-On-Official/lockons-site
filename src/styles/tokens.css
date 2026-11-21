@@ -4,7 +4,8 @@
   --bg: #f4f6fa;
   --surface: #ffffff;
   --ink: #1e293b;
-  --muted: #64748b;
+  /* #64748B da paleta escurecido: contraste 4,5 ou mais em todos os fundos claros (WCAG AA) */
+  --muted: #56667c;
   --line: #e2e8f0;
   --royal: #1e56d9; /* reservado ao que é clicável */
   --royal-2: #286be6;
@@ -38,8 +39,8 @@
   /* forma e medidas */
   --radius-card: 12px;
   --radius-pill: 999px;
-  --container: 72rem;
-  --gutter: clamp(16px, 3vw, 40px);
+  /* conteúdo ocupa 90% da tela: 5% de margem de cada lado (16 px ou mais a partir de 320 px) */
+  --gutter: 5vw;
   --header-h: 4.25rem;
 
   color-scheme: light;

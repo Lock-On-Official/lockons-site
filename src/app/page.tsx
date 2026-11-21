@@ -94,7 +94,7 @@ export default function HomePage() {
       </section>
 
       {/* Prova: o que o painel mede hoje (sem número inventado) */}
-      <Section labelledBy="indicadores-title" tone="tint">
+      <Section labelledBy="indicadores-title" tone="tint" decor="reticle">
         <SplitGrid
           aside={
             <SectionHeader
@@ -115,7 +115,7 @@ export default function HomePage() {
       </Section>
 
       {/* Momento-assinatura: o quadro se organiza com a rolagem e aceita arrastar os cartões */}
-      <Section id={chaosToFocus.id} labelledBy="caos-title" tone="navy" decorSide="left">
+      <Section id={chaosToFocus.id} labelledBy="caos-title" tone="navy" decorSide="left" decor="lanes">
         <div className={`container ${styles.chaosGrid}`}>
           <div className={styles.chaosCopy}>
             <SectionHeader
@@ -140,7 +140,7 @@ export default function HomePage() {
       </Section>
 
       {/* Três pilares, um por bloco, alternando o lado da tela */}
-      <Section labelledBy="produto-title">
+      <Section labelledBy="produto-title" decor="network">
         <div className="container">
           <SectionHeader
             id="produto-title"
@@ -168,7 +168,7 @@ export default function HomePage() {
       </Section>
 
       {/* Para quem: alvo do link "Para quem" do header */}
-      <Section id={audiencesSection.id} labelledBy="para-quem-title" tone="tint" decorSide="left">
+      <Section id={audiencesSection.id} labelledBy="para-quem-title" tone="tint" decorSide="left" decor="route">
         <div className="container">
           <SectionHeader
             id="para-quem-title"
@@ -190,7 +190,7 @@ export default function HomePage() {
       </Section>
 
       {/* Confiança e implantação: responde "e se der errado?" perto da decisão */}
-      <Section labelledBy="confianca-title" decorSide="left">
+      <Section labelledBy="confianca-title" decorSide="left" decor="chart">
         <div className="container">
           <SectionHeader id="confianca-title" eyebrow={trust.eyebrow} title={trust.title} lead={trust.lead} />
           <div className={styles.after}>
@@ -200,7 +200,7 @@ export default function HomePage() {
       </Section>
 
       {/* Perguntas: as principais aqui, todas na página própria */}
-      <Section labelledBy="faq-title" tone="tint">
+      <Section labelledBy="faq-title" tone="tint" decor="network" decorSide="left">
         <SplitGrid
           variant="wide"
           aside={

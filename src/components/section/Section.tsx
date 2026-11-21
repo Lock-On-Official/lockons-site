@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 
-import { SectionDecor } from "./SectionDecor";
+import { SectionDecor, type DecorKind } from "./SectionDecor";
 import styles from "./Section.module.css";
 
 /**
@@ -14,8 +14,11 @@ interface SectionProps {
   labelledBy: string;
   id?: string;
   tone?: SectionTone;
-  /** Elementos de fundo da mira (ver SectionDecor). Alterne o lado entre seções seguidas. */
-  decor?: "auto" | "none";
+  /**
+   * Desenho de fundo (ver SectionDecor). Regra do site: "reticle" só na primeira seção depois do hero;
+   * nas outras, varie entre network, lanes, chart e route.
+   */
+  decor?: DecorKind;
   decorSide?: "left" | "right";
   className?: string;
   children: ReactNode;
@@ -25,7 +28,7 @@ export function Section({
   labelledBy,
   id,
   tone = "plain",
-  decor = "auto",
+  decor = "none",
   decorSide = "right",
   className,
   children,
@@ -36,7 +39,7 @@ export function Section({
       aria-labelledby={labelledBy}
       className={[styles.section, styles[tone], className].filter(Boolean).join(" ")}
     >
-      {decor === "auto" && <SectionDecor tone={tone} side={decorSide} />}
+      {decor !== "none" && <SectionDecor kind={decor} side={decorSide} onNavy={tone === "navy"} />}
       {children}
     </section>
   );

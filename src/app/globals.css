@@ -59,9 +59,9 @@ a {
   border-radius: 4px;
 }
 
+/* 90% da largura da tela, sem teto; a margem cresce se o aparelho tiver recorte na lateral */
 .container {
   width: 100%;
-  max-width: var(--container);
   margin-inline: auto;
   padding-left: max(var(--gutter), env(safe-area-inset-left, 0px));
   padding-right: max(var(--gutter), env(safe-area-inset-right, 0px));
