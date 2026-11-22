@@ -1,18 +1,37 @@
 .page {
-  padding-block: clamp(3rem, 8vw, 6rem);
-  overflow-x: clip;
+  --pad: clamp(1.5rem, 4vw, 3rem);
+  padding-block: var(--pad);
 }
 
-.grid {
+/* painel do "radar": ocupa quase toda a tela visível; o texto fica por cima */
+.stage {
+  position: relative;
+  isolation: isolate;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  align-items: center;
-  gap: 2rem;
+  align-content: center;
+  min-height: clamp(34rem, calc(100svh - var(--header-h) - 2 * var(--pad)), 56rem);
+  padding: clamp(2rem, 6vw, 5rem) clamp(1.5rem, 5vw, 4.5rem);
+}
+
+.radar {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  /* as unidades cqw/cqh da trajetória se referem a esta área */
+  container-type: size;
+  border: 1px solid var(--band-tint-line);
+  border-radius: 32px;
+  background:
+    radial-gradient(circle at 76% 62%, rgba(72, 169, 244, 0.18), transparent 45%),
+    radial-gradient(rgba(18, 60, 157, 0.14) 1.2px, transparent 1.6px) 0 0 / 20px 20px,
+    linear-gradient(180deg, var(--band-tint-start), var(--band-tint-end));
+  overflow: hidden;
 }
 
 .copy {
   display: grid;
   gap: 1.2rem;
+  max-width: 38rem;
   min-width: 0;
 }
 
@@ -55,26 +74,12 @@
   height: 18px;
 }
 
-/* área "radar" onde a mira procura o alvo */
-.radar {
-  position: relative;
-  justify-self: center;
-  width: min(100%, 440px);
-  aspect-ratio: 1;
-  border: 1px solid var(--band-tint-line);
-  border-radius: 32px;
-  background:
-    radial-gradient(circle at 50% 50%, rgba(72, 169, 244, 0.16), transparent 60%),
-    radial-gradient(rgba(18, 60, 157, 0.14) 1.2px, transparent 1.6px) 0 0 / 20px 20px,
-    linear-gradient(180deg, var(--band-tint-start), var(--band-tint-end));
-  overflow: hidden;
-}
-
-/* o "alvo" que a mira não encontra, num canto */
+/* o "alvo" que a mira não encontra */
 .target {
   position: absolute;
-  right: 16%;
-  bottom: 18%;
+  left: 84%;
+  top: 74%;
+  translate: -50% -50%;
   display: grid;
   place-items: center;
   width: 54px;
@@ -88,45 +93,97 @@
   opacity: 0.7;
 }
 
+/* Fica atrás do texto e translúcida, para não atrapalhar a leitura. */
 .scope {
   position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 46%;
+  left: 70%;
+  top: 40%;
+  width: clamp(104px, 11vw, 160px);
   translate: -50% -50%;
-  color: var(--royal);
-  animation: search 9s ease-in-out infinite;
+  color: var(--navy-2);
+  opacity: 0.42;
 }
 
-/* a mira percorre a área, passa perto do alvo e não trava */
-@keyframes search {
-  0%,
+@supports (width: 1cqw) {
+  .scope {
+    left: 0;
+    top: 0;
+    translate: calc(70cqw - 50%) calc(40cqh - 50%);
+    animation: roam 14.4s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+  }
+}
+
+/*
+ * Seis paradas: 1,5 s de deslocamento e 0,9 s de giro de 360° em cada uma (14,4 s no total).
+ * O giro acumula (360°, 720°...) para não voltar ao contrário; 2160° no fim equivale ao 0° do início.
+ * A quinta parada fica perto do alvo, mas a mira gira e vai embora sem travar.
+ */
+@keyframes roam {
+  0% {
+    translate: calc(70cqw - 50%) calc(40cqh - 50%);
+    rotate: 0deg;
+  }
+  10.42% {
+    translate: calc(20cqw - 50%) calc(22cqh - 50%);
+    rotate: 0deg;
+  }
+  16.67% {
+    translate: calc(20cqw - 50%) calc(22cqh - 50%);
+    rotate: 360deg;
+  }
+  27.08% {
+    translate: calc(48cqw - 50%) calc(78cqh - 50%);
+    rotate: 360deg;
+  }
+  33.33% {
+    translate: calc(48cqw - 50%) calc(78cqh - 50%);
+    rotate: 720deg;
+  }
+  43.75% {
+    translate: calc(88cqw - 50%) calc(18cqh - 50%);
+    rotate: 720deg;
+  }
+  50% {
+    translate: calc(88cqw - 50%) calc(18cqh - 50%);
+    rotate: 1080deg;
+  }
+  60.42% {
+    translate: calc(28cqw - 50%) calc(62cqh - 50%);
+    rotate: 1080deg;
+  }
+  66.67% {
+    translate: calc(28cqw - 50%) calc(62cqh - 50%);
+    rotate: 1440deg;
+  }
+  77.08% {
+    translate: calc(76cqw - 50%) calc(66cqh - 50%);
+    rotate: 1440deg;
+  }
+  83.33% {
+    translate: calc(76cqw - 50%) calc(66cqh - 50%);
+    rotate: 1800deg;
+  }
+  93.75% {
+    translate: calc(70cqw - 50%) calc(40cqh - 50%);
+    rotate: 1800deg;
+  }
   100% {
-    translate: -50% -50%;
-  }
-  20% {
-    translate: -95% -85%;
-  }
-  40% {
-    translate: -10% -95%;
-  }
-  60% {
-    translate: -20% -20%;
-    rotate: 25deg;
-  }
-  80% {
-    translate: -90% -15%;
-    rotate: -10deg;
+    translate: calc(70cqw - 50%) calc(40cqh - 50%);
+    rotate: 2160deg;
   }
 }
 
 @media (max-width: 860px) {
-  .grid {
-    grid-template-columns: 1fr;
+  /* espaço livre embaixo do texto para o alvo */
+  .stage {
+    padding-bottom: 7rem;
   }
 
-  .radar {
-    width: min(100%, 360px);
+  .target {
+    left: 80%;
+    top: auto;
+    bottom: 1.6rem;
+    translate: -50% 0;
   }
 }
 

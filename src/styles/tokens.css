@@ -39,8 +39,8 @@
   /* forma e medidas */
   --radius-card: 12px;
   --radius-pill: 999px;
-  /* conteúdo ocupa 90% da tela: 5% de margem de cada lado (16 px ou mais a partir de 320 px) */
-  --gutter: 5vw;
+  /* conteúdo ocupa 85% da tela: 7,5% de margem de cada lado (24 px ou mais a partir de 320 px) */
+  --gutter: 7.5vw;
   --header-h: 4.25rem;
 
   color-scheme: light;

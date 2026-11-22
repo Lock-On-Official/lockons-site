@@ -59,7 +59,7 @@ a {
   border-radius: 4px;
 }
 
-/* 90% da largura da tela, sem teto; a margem cresce se o aparelho tiver recorte na lateral */
+/* 85% da largura da tela, sem teto (também em monitor grande); a margem cresce se o aparelho tiver recorte na lateral */
 .container {
   width: 100%;
   margin-inline: auto;

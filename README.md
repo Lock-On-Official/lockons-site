@@ -71,7 +71,7 @@ public/logo.png           logo quadrado (512 × 512) dos dados estruturados
 - **Funcionalidade nova:** acrescente em `src/content/features.ts` (o tipo `FeatureSlug` obriga a dar a ilustração do hero e a da seção "como funciona" em `src/app/produto/[slug]/page.tsx`) e a rota em `routes.ts`. Endereços fora da lista dão 404.
 - **Seções:** use `<Section tone decor>`. As páginas alternam `plain` (fundo pontilhado) e `tint` (azul-claro), com `navy` para o momento de destaque e a `CtaBand` azul-marinho no fim.
 - **Fundos (`decor`):** a mira grande (`reticle`) só na primeira seção depois do hero; nas outras, varie entre `network` (rede de contatos), `lanes` (raias do funil), `chart` (gráfico) e `route` (trilha de follow-up), alternando o lado com `decorSide`.
-- **Largura:** o conteúdo ocupa 90% da tela (5% de margem de cada lado, `--gutter`).
+- **Largura:** o conteúdo ocupa 85% da tela em qualquer tamanho, sem teto em px (7,5% de margem de cada lado, `--gutter`).
 - **Fontes:** Sora (títulos) e Inter (texto), servidas pelo `next/font` do próprio domínio.
 - **Mira 3D:** exclusiva do hero da home. É só CSS, sem biblioteca: itens num palco de 440 × 440 px (`x`, `y`) e em profundidade (`z`); a cena se ajusta à largura e inclina com o mouse dentro do elemento com `data-scene-tilt`.
 - **Heros das páginas internas:** cada página tem ilustração e animação próprias em `src/components/hero-visuals/` (painel modular, rede de contatos, funil, agenda, painel de indicadores, mapa de lojas, foto com cartões, camadas de acesso, importação da planilha, conversa de perguntas). São desenhadas em 560 × 500 px e escaladas pelo `ScaleBox`.
