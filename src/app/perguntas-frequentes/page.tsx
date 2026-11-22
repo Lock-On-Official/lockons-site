@@ -61,6 +61,8 @@ export default function FaqPage() {
           id={category.id}
           labelledBy={`${category.id}-title`}
           tone={index % 2 === 0 ? "tint" : "plain"}
+          // mira só na primeira categoria, como a primeira seção das outras páginas
+          decor={index === 0 ? "reticle" : "none"}
         >
           <SplitGrid
             variant="wide"
