@@ -88,17 +88,20 @@ public/logo.png           logo quadrado (512 × 512) dos dados estruturados
 
 Antes de publicar uma mudança grande, rode `npm run build` e confira com o Lighthouse (Chrome, aba Lighthouse, modo celular) e com o [teste de pesquisa aprimorada](https://search.google.com/test/rich-results) do Google, que valida os dados estruturados.
 
-Última medição (21/11/2026, `npm start` local, Lighthouse 13 no modo celular; no servidor real o tempo de rede soma):
+Última medição (22/11/2026, `npm start` local, Lighthouse 13 no modo celular, mediana de até três rodadas por página; uma rodada isolada pode variar alguns pontos conforme a carga da máquina, e no servidor real o tempo de rede soma):
 
 | Página | Desempenho | Acessibilidade | Boas práticas | SEO | LCP | CLS |
 |---|---|---|---|---|---|---|
-| `/` | 99 | 100 | 100 | 100 | 1,1 s | 0 |
+| `/` | 100 | 100 | 100 | 100 | 1,1 s | 0 |
 | `/produto` | 99 | 100 | 100 | 100 | 0,9 s | 0 |
-| `/produto/funil-de-vendas` | 99 | 100 | 100 | 100 | 1,1 s | 0 |
+| `/produto/funil-de-vendas` | 98 | 100 | 100 | 100 | 1,1 s | 0 |
 | `/para-quem/vendedores` | 100 | 100 | 100 | 100 | 1,1 s | 0 |
 | `/seguranca` | 99 | 100 | 100 | 100 | 1,1 s | 0 |
+| `/implantacao` | 100 | 100 | 100 | 100 | 1,1 s | 0 |
 | `/perguntas-frequentes` | 99 | 100 | 100 | 100 | 1,1 s | 0 |
-| `/agendar-demonstracao` | 100 | 100 | 100 | 100 | 0,9 s | 0 |
+| `/agendar-demonstracao` | 99 | 100 | 100 | 100 | 0,9 s | 0 |
+
+Animação de texto nas ilustrações não usa transparência (`opacity`) no próprio texto: o Lighthouse captura a página no meio do efeito e acusa contraste baixo. Para fazer aparecer ou sumir, use recorte (`clip-path`) ou movimento, como em `ImportVisual`.
 
 ## Fotos
 

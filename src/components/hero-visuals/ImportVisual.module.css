@@ -114,7 +114,7 @@
   border-radius: 10px;
   font-size: 10.5px;
   color: var(--muted);
-  opacity: 0;
+  clip-path: inset(0 100% 0 0);
   animation: row-in var(--cycle) ease-out calc(var(--i) * var(--step) + 0.9s) infinite;
 }
 
@@ -209,19 +209,23 @@
   }
 }
 
+/*
+ * O contato é revelado da esquerda para a direita (vindo da seta) e sai no mesmo sentido.
+ * Recorte em vez de transparência: o texto nunca fica meio apagado, e o contraste vale em qualquer instante.
+ */
 @keyframes row-in {
   0% {
-    opacity: 0;
+    clip-path: inset(0 100% 0 0);
     translate: -12px 0;
   }
   5%,
   85% {
-    opacity: 1;
+    clip-path: inset(0 0 0 0);
     translate: 0 0;
   }
   95%,
   100% {
-    opacity: 0;
+    clip-path: inset(0 0 0 100%);
     translate: 0 0;
   }
 }
@@ -248,6 +252,6 @@
 
   .contact {
     animation: none;
-    opacity: 1;
+    clip-path: none;
   }
 }
