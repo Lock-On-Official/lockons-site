@@ -99,7 +99,7 @@ export default async function FeaturePage({ params }: FeaturePageProps) {
         </div>
       </Section>
 
-      <Section labelledBy="beneficios-title" decor="chart">
+      <Section labelledBy="beneficios-title">
         <SplitGrid
           aside={
             <SectionHeader
@@ -114,7 +114,7 @@ export default async function FeaturePage({ params }: FeaturePageProps) {
         </SplitGrid>
       </Section>
 
-      <Section id="perguntas" labelledBy="perguntas-title" tone="tint" decor="route">
+      <Section id="perguntas" labelledBy="perguntas-title" tone="tint">
         <SplitGrid
           variant="wide"
           aside={
@@ -134,7 +134,7 @@ export default async function FeaturePage({ params }: FeaturePageProps) {
         </SplitGrid>
       </Section>
 
-      <Section labelledBy="relacionadas-title" decorSide="left" decor="network">
+      <Section labelledBy="relacionadas-title">
         <div className="container">
           <SectionHeader
             id="relacionadas-title"

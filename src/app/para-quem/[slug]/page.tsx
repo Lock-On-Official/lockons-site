@@ -99,7 +99,7 @@ export default async function AudiencePage({ params }: AudiencePageProps) {
         </div>
       </Section>
 
-      <Section labelledBy="ve-title" decor="chart">
+      <Section labelledBy="ve-title">
         <div className="container">
           <FeatureSplit
             id="ve-title"
@@ -153,7 +153,7 @@ export default async function AudiencePage({ params }: AudiencePageProps) {
         </SplitGrid>
       </Section>
 
-      <Section labelledBy="funcionalidades-title" tone="tint" decor="network">
+      <Section labelledBy="funcionalidades-title" tone="tint">
         <div className="container">
           <SectionHeader
             id="funcionalidades-title"
@@ -166,7 +166,7 @@ export default async function AudiencePage({ params }: AudiencePageProps) {
         </div>
       </Section>
 
-      <Section labelledBy="perguntas-title" decorSide="left" decor="route">
+      <Section labelledBy="perguntas-title">
         <SplitGrid
           variant="wide"
           aside={

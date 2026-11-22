@@ -3,7 +3,6 @@ import { FaqList } from "@/components/faq/FaqList";
 import { QAChatVisual } from "@/components/hero-visuals/QAChatVisual";
 import { PageHero } from "@/components/page-hero/PageHero";
 import { Section } from "@/components/section/Section";
-import type { DecorKind } from "@/components/section/SectionDecor";
 import { SectionHeader } from "@/components/section/SectionHeader";
 import { SplitGrid } from "@/components/section/SplitGrid";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -14,9 +13,6 @@ import { pageMetadata } from "@/lib/seo";
 import styles from "./page.module.css";
 
 export const metadata = pageMetadata({ ...faqPage.seo, path: "/perguntas-frequentes" });
-
-// Mira só na primeira categoria; nas outras, os demais desenhos em rodízio.
-const decorByIndex: DecorKind[] = ["reticle", "network", "chart", "route", "lanes", "network", "chart", "route"];
 
 export default function FaqPage() {
   // Única página com FAQPage: as perguntas das outras páginas também estão aqui.
@@ -65,8 +61,6 @@ export default function FaqPage() {
           id={category.id}
           labelledBy={`${category.id}-title`}
           tone={index % 2 === 0 ? "tint" : "plain"}
-          decor={decorByIndex[index % decorByIndex.length]}
-          decorSide={index % 2 === 0 ? "right" : "left"}
         >
           <SplitGrid
             variant="wide"

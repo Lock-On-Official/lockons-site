@@ -81,7 +81,7 @@ export default function SecurityPage() {
         </div>
       </Section>
 
-      <Section labelledBy="historico-title" decor="network">
+      <Section labelledBy="historico-title">
         <div className="container">
           <FeatureSplit
             id="historico-title"
@@ -104,7 +104,7 @@ export default function SecurityPage() {
         </div>
       </Section>
 
-      <Section id="perguntas" labelledBy="perguntas-title" tone="tint" decor="route">
+      <Section id="perguntas" labelledBy="perguntas-title" tone="tint">
         <SplitGrid
           variant="wide"
           aside={

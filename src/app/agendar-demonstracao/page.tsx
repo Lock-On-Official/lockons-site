@@ -56,7 +56,7 @@ export default function DemoPage() {
         </div>
       </Section>
 
-      <Section labelledBy="topicos-title" decor="network" decorSide="left">
+      <Section labelledBy="topicos-title">
         <div className="container">
           <SectionHeader id="topicos-title" eyebrow={topicsSection.eyebrow} title={topicsSection.title} />
           <div className={styles.after}>

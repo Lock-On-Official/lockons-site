@@ -151,7 +151,7 @@ export default function HomePage() {
       </Section>
 
       {/* Três pilares, um por bloco, alternando o lado da tela */}
-      <Section labelledBy="produto-title" decor="network">
+      <Section labelledBy="produto-title">
         <div className="container">
           <SectionHeader
             id="produto-title"
@@ -201,7 +201,7 @@ export default function HomePage() {
       </Section>
 
       {/* Confiança e implantação: responde "e se der errado?" perto da decisão */}
-      <Section labelledBy="confianca-title" decorSide="left" decor="chart">
+      <Section labelledBy="confianca-title">
         <div className="container">
           <SectionHeader id="confianca-title" eyebrow={trust.eyebrow} title={trust.title} lead={trust.lead} />
           <div className={styles.after}>
@@ -211,7 +211,7 @@ export default function HomePage() {
       </Section>
 
       {/* Perguntas: as principais aqui, todas na página própria */}
-      <Section labelledBy="faq-title" tone="tint" decor="network" decorSide="left">
+      <Section labelledBy="faq-title" tone="tint">
         <SplitGrid
           variant="wide"
           aside={

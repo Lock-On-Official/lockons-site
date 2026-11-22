@@ -52,7 +52,7 @@ export default function OnboardingPage() {
         </div>
       </Section>
 
-      <Section labelledBy="importacao-title" decor="network">
+      <Section labelledBy="importacao-title">
         <div className="container">
           <FeatureSplit
             id="importacao-title"
@@ -83,7 +83,7 @@ export default function OnboardingPage() {
         </SplitGrid>
       </Section>
 
-      <Section id="perguntas" labelledBy="perguntas-title" tone="tint" decor="route">
+      <Section id="perguntas" labelledBy="perguntas-title" tone="tint">
         <SplitGrid
           variant="wide"
           aside={

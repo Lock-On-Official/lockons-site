@@ -64,7 +64,7 @@ export default function ProductPage() {
       </Section>
 
       {/* azul-marinho entre duas seções claras: não encosta na faixa de fechamento, também azul-marinho */}
-      <Section labelledBy="papeis-title" tone="navy" decorSide="left" decor="network">
+      <Section labelledBy="papeis-title" tone="navy">
         <div className="container">
           <SectionHeader
             id="papeis-title"
