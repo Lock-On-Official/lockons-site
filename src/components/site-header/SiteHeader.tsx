@@ -20,7 +20,10 @@ export function SiteHeader() {
             </a>
           )}
           <ButtonLink href={demoPath} size="sm" className={styles.cta}>
-            Agendar demonstração
+            {/* um único item do botão (flex): sem isso o espaçamento entre itens alarga o texto */}
+            <span>
+              Agendar<span className={styles.ctaRest}> demonstração</span>
+            </span>
           </ButtonLink>
           <MobileMenu items={mainNav} appUrl={site.appUrl} />
         </div>

@@ -36,6 +36,7 @@
   top: 198px;
   width: 262px;
   height: 162px;
+  gap: 0.4rem;
 }
 
 .d {
@@ -49,7 +50,7 @@
   left: 10px;
   top: 378px;
   width: 542px;
-  height: 104px;
+  height: 112px;
 }
 
 .head {
@@ -135,11 +136,13 @@
 }
 
 /* atividades */
+/* entrelinha e espaçamento menores: as três tarefas cabem no bloco com a mesma margem interna dos outros */
 .task {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 6px 8px;
+  padding: 5px 8px;
+  line-height: 1.35;
   border: 1px solid var(--line);
   border-radius: 8px;
   color: var(--ink);
@@ -200,6 +203,7 @@
   display: grid;
   gap: 2px;
   padding: 6px 10px;
+  line-height: 1.3;
   border-radius: 8px;
   background: var(--bg);
 }
