@@ -276,12 +276,19 @@
 }
 
 /* atividades */
-.alertPill {
+.alertPill,
+.okPill {
   padding: 0.12rem 0.55rem;
   border-radius: var(--radius-pill);
   background: #fff4e0;
   color: #9a5b00;
   font-weight: 600;
+}
+
+/* quando a vencida é marcada como feita */
+.okPill {
+  background: var(--tint);
+  color: var(--navy-2);
 }
 
 .tasks {
@@ -300,13 +307,56 @@
   padding: 0.6rem 0.65rem;
   border: 1px solid var(--line);
   border-radius: 10px;
+  transition:
+    border-color 0.25s ease,
+    background-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+/* a linha que o vendedor está marcando ou desmarcando na animação */
+.taskActive {
+  border-color: var(--sky);
+  box-shadow: 0 0 0 3px rgba(72, 169, 244, 0.25);
 }
 
 .checkbox {
+  display: grid;
+  place-items: center;
   width: 16px;
   height: 16px;
   border: 1.5px solid var(--muted);
   border-radius: 5px;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.checkbox svg {
+  width: 12px;
+  height: 12px;
+  stroke: #fff;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* o visto é desenhado ao marcar e recolhido ao desmarcar */
+.checkbox path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 0.28s ease 0.06s;
+}
+
+.task .rowText b {
+  transition: color 0.3s ease;
+}
+
+/* risco desenhado da esquerda para a direita (text-decoration não anima) */
+.rowText .taskTitle {
+  color: inherit;
+  font-size: inherit;
+  background: linear-gradient(currentColor, currentColor) no-repeat 0 55% / 0% 1.5px;
+  transition: background-size 0.35s ease;
 }
 
 .when {
@@ -314,6 +364,7 @@
   font-weight: 500;
   color: var(--navy-2);
   white-space: nowrap;
+  transition: color 0.3s ease;
 }
 
 .taskOverdue {
@@ -327,14 +378,33 @@
 
 .taskDone .rowText b {
   color: var(--muted);
-  text-decoration: line-through;
+}
+
+.taskDone .taskTitle {
+  background-size: 100% 1.5px;
 }
 
 .taskDone .checkbox {
   border-color: var(--royal);
-  background: var(--royal)
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m5 12.5 4.5 4.5L19 7.5'/%3E%3C/svg%3E")
-    center / 12px no-repeat;
+  background-color: var(--royal);
+  animation: check-pop 0.32s ease-out;
+}
+
+.taskDone .checkbox path {
+  stroke-dashoffset: 0;
+}
+
+/* o "clique" na caixa */
+@keyframes check-pop {
+  0% {
+    scale: 0.75;
+  }
+  60% {
+    scale: 1.15;
+  }
+  100% {
+    scale: 1;
+  }
 }
 
 /* indicadores */
