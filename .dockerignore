@@ -1,0 +1,13 @@
+# Fora da imagem: dependências e build locais (são refeitos dentro do Docker),
+# segredos e arquivos que não servem ao site.
+.git
+node_modules
+.next
+out
+.env
+.env*.local
+deploy/.env
+docs
+*.md
+npm-debug.log*
+.DS_Store

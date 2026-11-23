@@ -27,6 +27,11 @@ Copie `.env.example` para `.env.local`. Seguem o prefixo `LOCKON_` do projeto.
 
 As duas são lidas no build: mudar o valor exige um build novo.
 
+## Hospedagem
+
+- **Testes:** Vercel, a cada push.
+- **`lockons.com.br` (provisório, até a VPS):** servidor da equipe, em Docker, publicado por um túnel da Cloudflare (`Dockerfile` e `deploy/`). Passo a passo e explicações em [`docs/hospedagem-servidor-proprio.md`](docs/hospedagem-servidor-proprio.md).
+
 ## Estrutura
 
 ```text

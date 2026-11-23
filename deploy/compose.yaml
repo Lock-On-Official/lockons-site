@@ -1,0 +1,41 @@
+# Site + túnel da Cloudflare no servidor próprio.
+# Uso (de dentro da pasta deploy/):
+#   cp .env.example .env    # e cole o token do túnel
+#   docker compose up -d --build
+# Passo a passo completo em docs/hospedagem-servidor-proprio.md.
+
+services:
+  site:
+    build:
+      context: ..
+      args:
+        LOCKON_SITE_URL: ${LOCKON_SITE_URL:-https://lockons.com.br}
+        LOCKON_APP_URL: ${LOCKON_APP_URL:-}
+    image: lockons-site:latest
+    restart: unless-stopped
+    # Sem "ports": o site não abre porta no servidor nem na rede de casa.
+    # Só o cloudflared, na mesma rede interna do Docker, fala com ele.
+    networks: [site]
+    read_only: true
+    tmpfs:
+      - /tmp
+      - /app/.next/cache # cache das imagens otimizadas pelo next/image
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    mem_limit: 512m
+
+  tunnel:
+    # Fixe uma versão (ex.: cloudflare/cloudflared:2026.11.0) depois de testar,
+    # para uma atualização não mudar o comportamento sem aviso.
+    image: cloudflare/cloudflared:latest
+    command: tunnel --no-autoupdate run
+    environment:
+      TUNNEL_TOKEN: ${CLOUDFLARE_TUNNEL_TOKEN:?defina CLOUDFLARE_TUNNEL_TOKEN em deploy/.env}
+    restart: unless-stopped
+    networks: [site]
+    depends_on:
+      site:
+        condition: service_healthy
+
+networks:
+  site: {}
