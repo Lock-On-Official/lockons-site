@@ -41,19 +41,7 @@ export function routesIn(group: RouteGroup): SiteRoute[] {
   return routes.filter((route) => route.group === group);
 }
 
-export interface NavItem {
-  href: string;
-  label: string;
-  /** Prefixo de caminho que marca o item como atual, quando o href não serve (ex.: âncora). */
-  match?: string;
-}
-
-/** Itens do header. "Para quem" aponta para a seção da home que liga às três páginas de papel. */
-export const mainNav: readonly NavItem[] = [
-  { href: "/produto", label: "Produto" },
-  { href: "/#para-quem", label: "Para quem", match: "/para-quem" },
-  { href: "/perguntas-frequentes", label: "Perguntas" },
-];
+/* O menu do header (mega menu e menu do celular) fica em src/content/navigation.ts. */
 
 export const footerColumns: readonly { title: string; group: RouteGroup }[] = [
   { title: "Produto", group: "product" },

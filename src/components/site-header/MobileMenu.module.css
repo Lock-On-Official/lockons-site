@@ -7,32 +7,116 @@
   top: 100%;
   left: 0;
   right: 0;
-  background: var(--surface);
+  /* menu alto (grupos abertos): rola dentro do painel, não a página */
+  max-height: calc(100dvh - var(--header-h));
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
+  background: var(--surface);
   box-shadow: var(--shadow-panel);
 }
 
-.panel ul {
+.list {
   margin: 0;
-  padding-block: 0.4rem 1rem;
+  padding-block: 0.4rem 1.2rem;
   list-style: none;
 }
 
-.panel li + li {
+.list > li + li {
   border-top: 1px solid var(--line);
 }
 
-.panel a {
-  display: block;
-  padding-block: 0.85rem;
+.topLink,
+.summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: 0.95rem;
   font-size: 1.05rem;
-  font-weight: 500;
+  font-weight: 600;
   color: var(--ink);
+  text-decoration: none;
+  cursor: pointer;
+  list-style: none;
+}
+
+.summary::-webkit-details-marker {
+  display: none;
+}
+
+.topLink:hover,
+.summary:hover {
+  color: var(--royal);
+}
+
+.chevron {
+  width: 20px;
+  height: 20px;
+  color: var(--muted);
+  transition: rotate var(--dur-base) var(--ease-standard);
+}
+
+.group[open] .chevron {
+  rotate: 180deg;
+}
+
+.section {
+  padding-bottom: 0.9rem;
+}
+
+.sectionTitle {
+  margin-bottom: 0.35rem;
+  font-size: var(--overline-size);
+  font-weight: 600;
+  letter-spacing: var(--overline-tracking);
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.links {
+  display: grid;
+  gap: 0.15rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 0.4rem;
+  border-radius: 10px;
+  color: var(--ink);
+  font-size: 0.98rem;
+  font-weight: 500;
   text-decoration: none;
 }
 
-.panel a:hover {
+.link:hover {
+  background: var(--bg);
+}
+
+.link:active {
+  background: var(--surface-sunken);
+}
+
+.linkIcon {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(30, 86, 217, 0.14);
+  border-radius: 50%;
+  background: var(--tint);
   color: var(--royal);
+}
+
+.linkIcon svg {
+  width: 18px;
+  height: 18px;
 }
 
 @media (max-width: 900px) {
@@ -45,7 +129,7 @@
     border: 1px solid var(--line);
     border-radius: 10px;
     background: var(--surface);
-    color: var(--navy-2);
+    color: var(--ink);
     cursor: pointer;
   }
 }

@@ -1,10 +1,11 @@
 import { Logo } from "@/components/brand/Logo";
 import { ButtonLink } from "@/components/ui/ButtonLink";
-import { demoPath, mainNav } from "@/content/routes";
+import { headerMenu } from "@/content/navigation";
+import { demoPath } from "@/content/routes";
 import { site } from "@/lib/site";
 
+import { MegaMenu } from "./MegaMenu";
 import { MobileMenu } from "./MobileMenu";
-import { PrimaryNav } from "./PrimaryNav";
 import styles from "./SiteHeader.module.css";
 
 export function SiteHeader() {
@@ -12,7 +13,7 @@ export function SiteHeader() {
     <header className={styles.header}>
       <div className={`container ${styles.bar}`}>
         <Logo idPrefix="logo-header" />
-        <PrimaryNav items={mainNav} />
+        <MegaMenu items={headerMenu} />
         <div className={styles.actions}>
           {site.appUrl && (
             <a href={site.appUrl} className={styles.signIn}>
@@ -25,7 +26,7 @@ export function SiteHeader() {
               Agendar<span className={styles.ctaRest}> demonstração</span>
             </span>
           </ButtonLink>
-          <MobileMenu items={mainNav} appUrl={site.appUrl} />
+          <MobileMenu items={headerMenu} appUrl={site.appUrl} />
         </div>
       </div>
     </header>

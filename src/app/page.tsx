@@ -88,7 +88,7 @@ export default function HomePage() {
               {hero.titleStart} <em className="text-gradient">{hero.titleHighlight}</em>
             </h1>
             <p className={styles.heroSub}>{hero.sub}</p>
-            <div className={styles.heroCtas}>
+            <div className={styles.heroCtas} data-hero-cta>
               <ButtonLink href={demoPath}>Agendar demonstração</ButtonLink>
               <ButtonLink href={hero.secondaryCta.href} variant="secondary">
                 {hero.secondaryCta.label}

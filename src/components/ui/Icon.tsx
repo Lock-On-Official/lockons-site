@@ -113,6 +113,22 @@ const paths = {
       <path d="M7 16v-5M12 16V6M17 16v-8" />
     </>
   ),
+  help: (
+    <>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M9.6 9.3a2.5 2.5 0 0 1 4.8.9c0 1.7-2.4 2.2-2.4 3.8" />
+      <path d="M12 17.3h.01" />
+    </>
+  ),
+  grid: (
+    <>
+      <rect x="3.5" y="3.5" width="7" height="7" rx="1.6" />
+      <rect x="13.5" y="3.5" width="7" height="7" rx="1.6" />
+      <rect x="3.5" y="13.5" width="7" height="7" rx="1.6" />
+      <rect x="13.5" y="13.5" width="7" height="7" rx="1.6" />
+    </>
+  ),
+  chevronDown: <path d="m6.5 9.5 5.5 5.5 5.5-5.5" />,
 } as const;
 
 export type IconName = keyof typeof paths;

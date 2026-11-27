@@ -48,7 +48,7 @@ export default function NotFound() {
             <p className={styles.text}>
               O endereço pode ter mudado ou não existir mais. Volte ao início ou siga por um dos atalhos.
             </p>
-            <div className={styles.actions}>
+            <div className={styles.actions} data-hero-cta>
               <ButtonLink href="/">Voltar ao início</ButtonLink>
             </div>
             <ul className={styles.shortcuts}>

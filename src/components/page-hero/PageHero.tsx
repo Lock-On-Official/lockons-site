@@ -51,7 +51,7 @@ export function PageHero({
             </h1>
             <p className={styles.sub}>{sub}</p>
             {(showDemoCta || secondary) && (
-              <div className={styles.ctas}>
+              <div className={styles.ctas} data-hero-cta={showDemoCta || undefined}>
                 {showDemoCta && <ButtonLink href={demoPath}>Agendar demonstração</ButtonLink>}
                 {secondary && (
                   <ButtonLink href={secondary.href} variant="text">

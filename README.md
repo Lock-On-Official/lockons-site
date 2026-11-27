@@ -37,7 +37,7 @@ src/
 ├── assets/fonts/         Sora e Inter em TTF, só para gerar as imagens de compartilhamento
 ├── components/
 │   ├── brand/            logo e a mira em SVG
-│   ├── site-header/      header fixo e menu do celular
+│   ├── site-header/      header fixo com mega menu (Produto, Para quem, Recursos) e menu do celular em sanfona
 │   ├── site-footer/      rodapé com links para todas as páginas
 │   ├── ui/               botão (ButtonLink), selo do hero (Eyebrow), etiqueta (Chip), ícones e lista com visto
 │   ├── cards/            cartão de oportunidade e cartão de indicador
@@ -81,6 +81,7 @@ public/logo.png           logo quadrado (512 × 512) dos dados estruturados
 - **Textos:** ficam em `src/content/` e só descrevem o que o produto entrega (ver `docs/escopo-mvp.md` do `crm-lockon`). Ao mudar o escopo, revise principalmente `faq.ts`.
 - **Formulário de demonstração:** fica desativado, com aviso (`available: false` em `src/content/demo.ts`), por decisão do time. Para ligar: criar o envio no servidor para o e-mail da LOCKONS, trocar `available` para `true` e tratar o envio no formulário (`src/components/demo-form/`).
 - **Páginas legais:** Privacidade e Termos mostram só a estrutura e ficam com `noindex` e fora do sitemap enquanto `draft: true` em `src/content/legal.ts`. Quando o jurídico entregar o texto: preencher as seções, trocar `draft` para `false` e marcar a rota como publicada em `routes.ts`.
+- **Menu do topo:** os itens e os destaques dos painéis ficam em `src/content/navigation.ts` (o menu do celular usa a mesma lista). O botão "Agendar demonstração" do topo fica azul-marinho enquanto o botão laranja do hero está na tela (marcado com `data-hero-cta`) e passa a laranja com a rolagem; em página sem esse botão, já começa laranja.
 - **Blog:** artigo novo entra só em `src/content/blog.ts`; a rota `/blog/<slug>`, o sitemap e a imagem de compartilhamento saem dessa lista. Quando o artigo citar o LOCKONS (bloco "Na prática"), descreva só o que o produto entrega. Os testes de `tests/blog.test.ts` conferem slugs, datas e campos obrigatórios.
 - **Dados estruturados:** Organization e WebSite em todas as páginas (layout); SoftwareApplication na home e em /produto; BreadcrumbList nas internas; FAQPage só em /perguntas-frequentes, que reúne todas as perguntas do site sem repetir (`src/content/resources.ts`). Sem preço nem avaliação enquanto não existirem. O logo vai como PNG (`public/logo.png`), o formato mais aceito pelo Google.
 - **Imagens de compartilhamento** (WhatsApp, LinkedIn etc.): cada página tem a sua em `/og/<chave>` (1200 × 630, ex.: `/og/produto-funil-de-vendas`), gerada no build por `src/app/og/[key]/route.tsx` com o selo e o título de `src/content/og.ts`. O gerador só lê fontes TTF, por isso as cópias em `src/assets/fonts/` (licença SIL Open Font License, como as do `next/font`). Para ver como fica: `npm run build && npm start` e abrir `http://localhost:3000/og/inicio`.
