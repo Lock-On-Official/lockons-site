@@ -94,6 +94,12 @@ const paths = {
     </>
   ),
   x: <path d="M7 7l10 10M17 7 7 17" />,
+  clock: (
+    <>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 7.5V12l3 2" />
+    </>
+  ),
 } as const;
 
 export type IconName = keyof typeof paths;

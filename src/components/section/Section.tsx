@@ -37,6 +37,7 @@ export function Section({
     <section
       id={id}
       aria-labelledby={labelledBy}
+      data-tone={tone}
       className={[styles.section, styles[tone], className].filter(Boolean).join(" ")}
     >
       {decor !== "none" && <SectionDecor kind={decor} side={decorSide} onNavy={tone === "navy"} />}

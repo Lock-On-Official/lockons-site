@@ -35,6 +35,7 @@ export default function DemoPage() {
         title={hero.title}
         sub={hero.sub}
         showDemoCta={false}
+        showDemoTerms
         secondary={{ label: "Como é a demonstração", href: "#como-funciona" }}
         visual={<DemoForm />}
       />

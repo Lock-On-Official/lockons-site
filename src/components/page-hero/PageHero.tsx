@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 
 import { Breadcrumbs, type Crumb } from "@/components/breadcrumbs/Breadcrumbs";
+import { DemoTerms } from "@/components/demo-form/DemoTerms";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { demoPath } from "@/content/routes";
@@ -22,6 +23,8 @@ interface PageHeroProps {
   visual?: ReactNode;
   /** Botão "Agendar demonstração". Desligue na própria página de demonstração e nas páginas legais. */
   showDemoCta?: boolean;
+  /** Condições da demonstração ("30 minutos, gratuita..."). Por padrão, junto com o botão. */
+  showDemoTerms?: boolean;
 }
 
 /** Hero das páginas internas: título e ações à esquerda, a ilustração da página à direita, com a trilha. */
@@ -34,6 +37,7 @@ export function PageHero({
   secondary,
   visual,
   showDemoCta = true,
+  showDemoTerms = showDemoCta,
 }: PageHeroProps) {
   return (
     <section className={styles.hero} aria-labelledby="page-title">
@@ -56,6 +60,7 @@ export function PageHero({
                 )}
               </div>
             )}
+            {showDemoTerms && <DemoTerms />}
           </div>
           {visual}
         </div>

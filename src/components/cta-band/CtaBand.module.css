@@ -1,16 +1,31 @@
+/* a faixa em si é transparente: o peso visual vem do painel azul-marinho dentro da largura do conteúdo */
 .band {
+  /* a seção anterior já traz o respiro de cima */
+  padding-block: clamp(1.5rem, 3vw, 2.5rem) clamp(4rem, 8vw, 6.5rem);
+}
+
+/* depois de uma seção azul-marinho, mais respiro: dois blocos escuros nunca ficam colados */
+:global([data-tone="navy"]) + .band {
+  padding-top: clamp(3rem, 6vw, 5rem);
+}
+
+.panel {
   position: relative;
+  isolation: isolate;
   overflow: hidden;
-  padding-block: clamp(3.5rem, 8vw, 6rem);
+  padding: clamp(2.5rem, 6vw, 4.75rem) clamp(1.5rem, 6vw, 4.75rem);
+  border-radius: 24px;
   background: linear-gradient(135deg, var(--navy) 0%, var(--navy-2) 60%, var(--navy-deep) 100%);
+  box-shadow: 0 1px 2px rgba(15, 31, 87, 0.1), 0 30px 60px -24px rgba(14, 46, 115, 0.55);
   color: var(--on-navy);
 }
 
 /* a mesma grade de pontos do fundo do site, em branco */
-.band::before {
+.panel::before {
   content: "";
   position: absolute;
   inset: 0;
+  z-index: -1;
   background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1.4px);
   background-size: 22px 22px;
   pointer-events: none;
@@ -18,9 +33,10 @@
 
 .backdrop {
   position: absolute;
+  z-index: -1;
   top: 50%;
-  right: -8%;
-  width: min(620px, 80vw);
+  right: -6%;
+  width: min(520px, 70vw);
   aspect-ratio: 1;
   translate: 0 -50%;
   opacity: 0.28;
@@ -34,6 +50,7 @@
   height: 100%;
 }
 
+/* giro contínuo e lento: a mira está sempre procurando */
 .spin {
   transform-box: view-box;
   transform-origin: 50% 50%;
@@ -48,7 +65,6 @@
 
 .copy {
   position: relative;
-  z-index: 1;
   display: grid;
   gap: 1.1rem;
   max-width: 36rem;
@@ -65,6 +81,7 @@
 .copy p {
   max-width: 34rem;
   font-size: 1.06rem;
+  line-height: 1.65;
   color: var(--on-navy-muted);
 }
 
@@ -72,14 +89,24 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 1rem 1.4rem;
-  margin-top: 0.4rem;
+  gap: 0.75rem;
+  margin-top: 0.6rem;
 }
 
 @media (max-width: 700px) {
+  .panel {
+    border-radius: 18px;
+  }
+
   .backdrop {
-    right: -30%;
+    right: -35%;
     opacity: 0.18;
+  }
+}
+
+@media (max-width: 480px) {
+  .actions > * {
+    flex: 1 1 100%;
   }
 }
 

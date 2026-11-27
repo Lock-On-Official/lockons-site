@@ -6,6 +6,12 @@
  */
 import type { IconName } from "@/components/ui/Icon";
 
+/**
+ * Condições da demonstração, confirmadas pelo time. Aparecem ao lado do botão "Agendar demonstração"
+ * nos heros das páginas internas e no painel de fechamento.
+ */
+export const demoTerms = "Conversa de 30 minutos, gratuita e sem compromisso.";
+
 export const demoPage = {
   available: false,
   seo: {
