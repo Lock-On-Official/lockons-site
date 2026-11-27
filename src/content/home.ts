@@ -2,6 +2,7 @@
  * Textos da home. Tudo aqui descreve o que o MVP entrega (docs/escopo-mvp.md do crm-lockon):
  * nada de integração ou número que ainda não existe.
  */
+import type { ChipTone } from "@/components/ui/Chip";
 import type { IconName } from "@/components/ui/Icon";
 
 export const homeSeo = {
@@ -50,6 +51,8 @@ export interface BoardCard {
 
 export interface BoardColumn {
   stage: string;
+  /** Cor da etapa (ponto da coluna e etiqueta dos cartões): âmbar em Negociação, verde em Ganho. */
+  tone: ChipTone;
   cards: BoardCard[];
 }
 
@@ -58,7 +61,7 @@ export const chaosToFocus = {
   eyebrow: "Como funciona",
   title: "Do caos ao foco",
   lead: "Planilha, caderno e conversa no celular viram um funil só. Cada oportunidade ganha etapa, valor, dono e próximo passo.",
-  hint: "Experimente: arraste um cartão para outra etapa. No celular, toque e segure.",
+  hint: "Experimente: arraste um cartão até Ganho. No celular, toque e segure.",
   // Sequência real de uso: a numeração da lista é informação.
   steps: [
     "Cadastre os contatos ou importe a planilha que você já tem.",
@@ -68,6 +71,7 @@ export const chaosToFocus = {
   columns: [
     {
       stage: "Qualificação",
+      tone: "default",
       cards: [
         { name: "Padaria Trigo Bom", value: 2300, chaos: "translate(60px, 90px) rotate(-9deg)", chaosMobile: "translate(20px, 40px) rotate(-7deg)" },
         { name: "Auto Peças Rota", value: 5100, chaos: "translate(140px, -40px) rotate(7deg)", chaosMobile: "translate(-30px, 30px) rotate(6deg)" },
@@ -75,6 +79,7 @@ export const chaosToFocus = {
     },
     {
       stage: "Proposta",
+      tone: "default",
       cards: [
         { name: "Mercado São Jorge", value: 4950, due: "Enviar revisão amanhã", chaos: "translate(-120px, 70px) rotate(8deg)", chaosMobile: "translate(30px, -20px) rotate(-5deg)" },
         { name: "Escola Nova Era", value: 9800, chaos: "translate(90px, 40px) rotate(-6deg)", chaosMobile: "translate(-20px, 50px) rotate(8deg)" },
@@ -82,11 +87,14 @@ export const chaosToFocus = {
     },
     {
       stage: "Negociação",
+      tone: "warning",
       cards: [
         { name: "Construtora Horizonte", value: 18400, due: "Retornar hoje, 15h", hot: true, locked: true, chaos: "translate(-150px, 110px) rotate(-10deg)", chaosMobile: "translate(25px, 35px) rotate(-6deg)" },
         { name: "Clínica Bem Viver", value: 7200, chaos: "translate(-60px, -60px) rotate(9deg)", chaosMobile: "translate(-25px, -30px) rotate(7deg)" },
       ],
     },
+    // Começa vazia: é o alvo do visitante. Ao soltar um cartão aqui, a mira trava nele.
+    { stage: "Ganho", tone: "success", cards: [] },
   ] satisfies BoardColumn[],
 };
 

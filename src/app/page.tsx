@@ -141,10 +141,25 @@ export default function HomePage() {
                 <li key={step}>{step}</li>
               ))}
             </ol>
-            <p className={styles.hint}>
+            <div className={styles.hint}>
               <Icon name="move" className={styles.hintIcon} />
-              {chaosToFocus.hint}
-            </p>
+              <span className={styles.hintText}>
+                {chaosToFocus.hint}
+                {/* o quadro aceita as setas (ChaosBoard.onKeyDown): o atalho aparece como tecla */}
+                <span className={styles.keys}>
+                  No teclado: <kbd>Tab</kbd> até o cartão e{" "}
+                  <kbd>
+                    <span aria-hidden="true">←</span>
+                    <span className="visually-hidden">seta para a esquerda</span>
+                  </kbd>{" "}
+                  <kbd>
+                    <span aria-hidden="true">→</span>
+                    <span className="visually-hidden">seta para a direita</span>
+                  </kbd>{" "}
+                  para mudar de etapa.
+                </span>
+              </span>
+            </div>
           </div>
           <ChaosBoard columns={chaosToFocus.columns} tone="dark" />
         </div>

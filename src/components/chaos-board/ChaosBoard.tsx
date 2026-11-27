@@ -13,14 +13,11 @@ import {
 } from "react";
 
 import { OpportunityCard } from "@/components/cards/OpportunityCard";
-import type { ChipTone } from "@/components/ui/Chip";
 import type { BoardCard, BoardColumn } from "@/content/home";
+import { moveAnnouncement, nextLockedCard, showsHighPriority } from "@/lib/board-lock";
 import { formatBRL } from "@/lib/format";
 
 import styles from "./ChaosBoard.module.css";
-
-/** Cor da etiqueta pela etapa: negociação em âmbar, ganho em verde; as outras na etiqueta azul. */
-const stageTone: Record<string, ChipTone> = { Negociação: "warning", Ganho: "success" };
 
 /** No toque, segurar antes de arrastar: um toque rápido continua rolando a página. */
 const LONG_PRESS_MS = 220;
@@ -72,6 +69,10 @@ export function ChaosBoard({ columns, tone = "light" }: ChaosBoardProps) {
   const [overColumn, setOverColumn] = useState<number | null>(null);
   const [touched, setTouched] = useState(false);
   const [announcement, setAnnouncement] = useState("");
+  // Um cartão travado por vez: começa no de alta prioridade e passa para o que cair em "Ganho".
+  const [lockedName, setLockedName] = useState<string | null>(
+    () => columns.flatMap((column) => column.cards).find((card) => card.locked)?.name ?? null,
+  );
 
   const boardRef = useRef<HTMLDivElement>(null);
   const columnRefs = useRef<(HTMLElement | null)[]>([]);
@@ -96,7 +97,8 @@ export function ChaosBoard({ columns, tone = "light" }: ChaosBoardProps) {
       next[to] = [...next[to], name];
       return next;
     });
-    setAnnouncement(`${name} movida para ${columns[to].stage}.`);
+    setLockedName((current) => nextLockedCard(current, name, columns[to].tone));
+    setAnnouncement(moveAnnouncement(name, columns[to].stage, columns[to].tone));
   }
 
   // FLIP: o cartão sai de onde foi solto (ou de onde estava) e desliza até o novo lugar.
@@ -271,86 +273,100 @@ export function ChaosBoard({ columns, tone = "light" }: ChaosBoardProps) {
   }
 
   return (
-    <div
-      ref={boardRef}
-      className={[styles.board, tone === "dark" && styles.dark].filter(Boolean).join(" ")}
-      data-touched={touched || undefined}
-    >
-      <p id={instructionsId} className="visually-hidden">
-        Use as setas do teclado para mover o cartão entre as etapas.
-      </p>
-      <p className="visually-hidden" aria-live="polite">
-        {announcement}
-      </p>
-      {columns.map((column, columnIndex) => {
-        const names = placement[columnIndex];
-        const total = names.reduce((sum, name) => sum + (cardsByName.get(name)?.value ?? 0), 0);
-        const headingId = `${instructionsId}-col-${columnIndex}`;
-        return (
-          <section
-            key={column.stage}
-            ref={(element) => {
-              columnRefs.current[columnIndex] = element;
-            }}
-            className={[styles.column, overColumn === columnIndex && styles.columnOver].filter(Boolean).join(" ")}
-            aria-labelledby={headingId}
-          >
-            <div className={styles.columnHead}>
-              <h3 id={headingId} className={styles.stage}>
-                {column.stage}
-              </h3>
-              <span className={styles.count}>
-                {names.length}
-                <span className="visually-hidden"> oportunidades,</span>
-              </span>
-              <span className={styles.total}>{formatBRL(total)}</span>
-            </div>
-            <ul className={styles.cards}>
-              {names.map((name) => {
-                const card = cardsByName.get(name);
-                if (!card) return null;
-                return (
-                  <li
-                    key={name}
-                    className={styles.slot}
-                    style={{ "--chaos": card.chaos, "--chaos-m": card.chaosMobile } as CSSProperties}
-                  >
-                    <div
-                      ref={(element) => {
-                        if (element) cardRefs.current.set(name, element);
-                        else cardRefs.current.delete(name);
-                      }}
-                      role="button"
-                      tabIndex={0}
-                      aria-roledescription="cartão arrastável"
-                      aria-describedby={instructionsId}
-                      className={[styles.card, dragging === name && styles.dragging].filter(Boolean).join(" ")}
-                      onPointerDown={(event) => onPointerDown(event, name)}
-                      onKeyDown={(event) => onKeyDown(event, name)}
-                      onContextMenu={(event) => event.preventDefault()}
+    <div className={[styles.frame, tone === "dark" && styles.dark].filter(Boolean).join(" ")}>
+      {/* barra de janela do sistema: decorativa */}
+      <div className={styles.bar} aria-hidden="true">
+        <span className={styles.dots}>
+          <i />
+          <i />
+          <i />
+        </span>
+        <span className={styles.barTitle}>Funil de vendas</span>
+        <span className={styles.barAside}>Loja Centro</span>
+      </div>
+      <div
+        ref={boardRef}
+        className={styles.board}
+        data-touched={touched || undefined}
+        style={{ "--columns": columns.length } as CSSProperties}
+      >
+        <p id={instructionsId} className="visually-hidden">
+          Use as setas do teclado para mover o cartão entre as etapas.
+        </p>
+        <p className="visually-hidden" aria-live="polite">
+          {announcement}
+        </p>
+        {columns.map((column, columnIndex) => {
+          const names = placement[columnIndex];
+          const total = names.reduce((sum, name) => sum + (cardsByName.get(name)?.value ?? 0), 0);
+          const headingId = `${instructionsId}-col-${columnIndex}`;
+          return (
+            <section
+              key={column.stage}
+              ref={(element) => {
+                columnRefs.current[columnIndex] = element;
+              }}
+              className={[styles.column, overColumn === columnIndex && styles.columnOver].filter(Boolean).join(" ")}
+              aria-labelledby={headingId}
+            >
+              <div className={styles.columnHead}>
+                <span className={`${styles.stageDot} ${styles[column.tone === "default" ? "neutral" : column.tone]}`} aria-hidden="true" />
+                <h3 id={headingId} className={styles.stage}>
+                  {column.stage}
+                </h3>
+                <span className={styles.count}>
+                  {names.length}
+                  <span className="visually-hidden"> oportunidades,</span>
+                </span>
+                <span className={styles.total}>{formatBRL(total)}</span>
+              </div>
+              <ul className={styles.cards}>
+                {names.map((name) => {
+                  const card = cardsByName.get(name);
+                  if (!card) return null;
+                  return (
+                    <li
+                      key={name}
+                      className={styles.slot}
+                      style={{ "--chaos": card.chaos, "--chaos-m": card.chaosMobile } as CSSProperties}
                     >
-                      <OpportunityCard
-                        stage={card.hot ? "Alta prioridade" : column.stage}
-                        tone={stageTone[column.stage]}
-                        name={card.name}
-                        value={card.value}
-                        due={card.due}
-                        hot={card.hot}
-                        locked={card.locked}
-                      />
-                    </div>
+                      <div
+                        ref={(element) => {
+                          if (element) cardRefs.current.set(name, element);
+                          else cardRefs.current.delete(name);
+                        }}
+                        role="button"
+                        tabIndex={0}
+                        aria-roledescription="cartão arrastável"
+                        aria-describedby={instructionsId}
+                        className={[styles.card, dragging === name && styles.dragging].filter(Boolean).join(" ")}
+                        onPointerDown={(event) => onPointerDown(event, name)}
+                        onKeyDown={(event) => onKeyDown(event, name)}
+                        onContextMenu={(event) => event.preventDefault()}
+                      >
+                        <OpportunityCard
+                          stage={showsHighPriority(card.hot, column.tone) ? "Alta prioridade" : column.stage}
+                          tone={column.tone}
+                          name={card.name}
+                          value={card.value}
+                          due={card.due}
+                          hot={showsHighPriority(card.hot, column.tone)}
+                          locked={card.name === lockedName}
+                        />
+                      </div>
+                    </li>
+                  );
+                })}
+                {names.length === 0 && (
+                  <li className={styles.empty} aria-hidden="true">
+                    Solte um cartão aqui
                   </li>
-                );
-              })}
-              {names.length === 0 && (
-                <li className={styles.empty} aria-hidden="true">
-                  Solte um cartão aqui
-                </li>
-              )}
-            </ul>
-          </section>
-        );
-      })}
+                )}
+              </ul>
+            </section>
+          );
+        })}
+      </div>
     </div>
   );
 }

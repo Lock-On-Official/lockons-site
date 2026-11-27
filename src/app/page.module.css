@@ -122,7 +122,7 @@
 
 .hint {
   display: inline-flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 0.55rem;
   justify-self: start;
   padding: 0.5rem 0.85rem;
@@ -136,6 +136,34 @@
   flex-shrink: 0;
   width: 18px;
   height: 18px;
+  margin-top: 0.1rem;
+}
+
+.hintText {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.keys {
+  color: var(--on-navy-muted);
+  font-size: 0.82rem;
+}
+
+/* tecla: borda mais grossa embaixo, como uma tecla de verdade (versão clara sobre o azul-marinho) */
+.keys kbd {
+  display: inline-grid;
+  place-items: center;
+  min-width: 1.6rem;
+  padding: 0.05rem 0.4rem;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-bottom-width: 2px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--on-navy);
+  font-family: var(--font-body);
+  font-size: 0.76rem;
+  font-weight: 600;
+  line-height: 1.5;
 }
 
 .pillars {
