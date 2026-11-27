@@ -18,8 +18,8 @@ interface SegmentCarouselProps {
   label: string;
 }
 
-/** Segundos de faixa por cartão: com 6 cartões, uma volta leva 48 s (devagar, para dar tempo de ler). */
-const SECONDS_PER_SLIDE = 8;
+/** Segundos de faixa por cartão: com 6 cartões, uma volta leva 33 s (cerca de 60 px por segundo no computador). */
+const SECONDS_PER_SLIDE = 5.5;
 
 /**
  * Faixa de segmentos de ponta a ponta da tela, em movimento contínuo (os cartões vêm duplicados para o laço

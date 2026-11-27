@@ -1,4 +1,7 @@
 .carousel {
+  /* largura do cartão numa variável: largura e altura (3:4) saem dela, sem depender de aspect-ratio */
+  --card-w: clamp(230px, 21vw, 300px);
+  --card-gap: 1.5rem;
   display: grid;
   gap: 1.5rem;
 }
@@ -20,7 +23,9 @@
 .track {
   display: flex;
   width: max-content;
-  animation: marquee var(--loop, 48s) linear infinite;
+  /* camada própria na GPU: o deslize fica liso mesmo com as fotos */
+  will-change: transform;
+  animation: marquee var(--loop, 33s) linear infinite;
 }
 
 .track[data-paused],
@@ -29,25 +34,31 @@
 }
 
 @keyframes marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
   to {
-    transform: translateX(-50%);
+    transform: translate3d(-50%, 0, 0);
   }
 }
 
+/* o espaço entre os cartões é margem (não gap): cada cópia mede exatamente o mesmo e o laço fecha sem emenda */
 .group {
   display: flex;
-  gap: 1.5rem;
+  flex: none;
   margin: 0;
-  padding: 0.25rem 1.5rem 0.5rem 0;
+  padding: 0.25rem 0 0.5rem;
   list-style: none;
 }
 
 /* cartão alto: a foto ocupa tudo e o nome fica por cima, embaixo */
 .slide {
   position: relative;
-  flex: 0 0 clamp(230px, 21vw, 300px);
+  flex: none;
+  width: var(--card-w);
+  height: calc(var(--card-w) * 4 / 3);
+  margin-right: var(--card-gap);
   overflow: hidden;
-  aspect-ratio: 3 / 4;
   border-radius: 28px;
   background: var(--surface-sunken);
   box-shadow: var(--shadow-card);
@@ -55,7 +66,10 @@
 
 .slideInner {
   position: absolute;
-  inset: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }
 
 .img {
@@ -72,7 +86,10 @@
 .slide::after {
   content: "";
   position: absolute;
-  inset: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   background: linear-gradient(180deg, transparent 45%, rgba(14, 46, 115, 0.35) 65%, rgba(14, 46, 115, 0.88) 100%);
   pointer-events: none;
 }
@@ -138,8 +155,12 @@
     mask-image: linear-gradient(90deg, transparent 0, #000 4%, #000 96%, transparent 100%);
   }
 
+  .carousel {
+    --card-w: 72vw;
+    --card-gap: 1rem;
+  }
+
   .slide {
-    flex-basis: 72vw;
     border-radius: 22px;
   }
 }
