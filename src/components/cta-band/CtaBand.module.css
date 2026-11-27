@@ -93,6 +93,10 @@
   margin-top: 0.6rem;
 }
 
+.contact {
+  margin-top: 0.4rem;
+}
+
 @media (max-width: 700px) {
   .panel {
     border-radius: 18px;

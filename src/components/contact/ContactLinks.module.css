@@ -1,0 +1,51 @@
+.contact {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.lead {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--royal);
+  text-decoration: none;
+}
+
+.link:hover {
+  color: var(--royal-ink);
+  text-decoration: underline;
+}
+
+.icon {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+}
+
+.onDark .lead {
+  color: var(--on-navy-muted);
+}
+
+.onDark .link {
+  color: var(--on-navy);
+}
+
+.onDark .link:hover {
+  color: #fff;
+}

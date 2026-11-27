@@ -25,8 +25,10 @@ Copie `.env.example` para `.env.local`. Seguem o prefixo `LOCKON_` do projeto.
 |---|---|---|
 | `LOCKON_SITE_URL` | Endereço público. Entra no canonical, no `sitemap.xml` e no `robots.txt`. | `https://lockons.com.br` |
 | `LOCKON_APP_URL` | Destino do link "Entrar". Vazio: o link não aparece. | vazio |
+| `LOCKON_WHATSAPP` | Número do WhatsApp da equipe, com DDD (ex.: `(11) 99999-0000`). Liga o botão flutuante e o link de WhatsApp no rodapé, no painel final e no aviso do formulário. Vazio: o botão aparece como prévia ("WhatsApp em breve") e os links somem. | vazio |
+| `LOCKON_CONTACT_EMAIL` | E-mail de contato da equipe, mostrado no rodapé, no painel final e no aviso do formulário. Vazio: não aparece. | vazio |
 
-As duas são lidas no build: mudar o valor exige um build novo.
+Todas são lidas no build: mudar o valor exige um build novo. Valor inválido conta como vazio (regras em `src/lib/contact.ts`).
 
 ## Estrutura
 

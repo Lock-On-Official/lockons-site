@@ -129,6 +129,12 @@ const paths = {
     </>
   ),
   chevronDown: <path d="m6.5 9.5 5.5 5.5 5.5-5.5" />,
+  mail: (
+    <>
+      <rect x="3" y="5" width="18" height="14" rx="2.5" />
+      <path d="m4 7 8 6 8-6" />
+    </>
+  ),
 } as const;
 
 export type IconName = keyof typeof paths;

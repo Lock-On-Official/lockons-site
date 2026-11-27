@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 
+import { ContactLinks } from "@/components/contact/ContactLinks";
 import { DemoTerms } from "@/components/demo-form/DemoTerms";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { demoPath } from "@/content/routes";
@@ -84,6 +85,7 @@ export function CtaBand({
               )}
             </div>
             {ctaHref === demoPath && <DemoTerms onDark />}
+            <ContactLinks lead="Prefere conversar agora?" onDark className={styles.contact} />
           </div>
         </div>
       </div>

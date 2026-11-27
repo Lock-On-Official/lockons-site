@@ -11,6 +11,13 @@ export interface FaqItem {
 
 export const faq: readonly FaqItem[] = [
   {
+    // Ainda não foi confirmado o modelo de precificação, mas iremos manter este visual para possíveis consultas futuras.
+    question: "Como é o preço do LOCKONS?",
+    answer:
+      "O preço é por loja, por mês: o valor acompanha o número de lojas que usam o sistema. Para saber o valor para a sua empresa, agende uma demonstração.",
+    featured: true,
+  },
+  {
     question: "O LOCKONS funciona para uma empresa com várias lojas?",
     answer:
       "Sim. Cada pessoa é ligada a uma ou mais lojas. O vendedor vê os dados das lojas em que trabalha, o gestor vê as lojas liberadas para ele e o diretor vê todas.",

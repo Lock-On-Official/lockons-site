@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import { LogoMark } from "@/components/brand/LogoMark";
 import { LockBrackets } from "@/components/cards/LockBrackets";
+import { ContactLinks } from "@/components/contact/ContactLinks";
 import { buttonClassName } from "@/components/ui/ButtonLink";
 import { Icon } from "@/components/ui/Icon";
 import { demoPage } from "@/content/demo";
@@ -32,6 +33,7 @@ export function DemoForm() {
           <span>
             <b>{form.unavailableTitle}</b>
             <span>{form.unavailableText}</span>
+            <ContactLinks lead="Para conversar agora:" className={styles.noticeContact} />
           </span>
         </div>
       )}

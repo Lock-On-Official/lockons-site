@@ -1,0 +1,145 @@
+/*
+ * Botão fixo do WhatsApp: círculo verde (o logo branco fica com 3,1:1, acima do mínimo de 3:1 para ícones),
+ * acima do conteúdo e abaixo do header.
+ */
+.button {
+  position: fixed;
+  right: max(20px, env(safe-area-inset-right, 0px) + 12px);
+  bottom: max(20px, env(safe-area-inset-bottom, 0px) + 12px);
+  z-index: 45;
+  display: grid;
+  place-items: center;
+  width: 62px;
+  height: 62px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: #1da851;
+  box-shadow: 0 1px 2px rgba(15, 31, 87, 0.2), 0 12px 28px -8px rgba(15, 31, 87, 0.45);
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background-color var(--dur-quick) var(--ease-standard),
+    scale var(--dur-instant) var(--ease-standard);
+}
+
+.button:hover {
+  background: #179746;
+}
+
+.button:active {
+  scale: 0.94;
+}
+
+/* prévia sem número: não é clicável, então não "afunda" nem muda o cursor */
+.preview {
+  cursor: default;
+}
+
+.preview:active {
+  scale: 1;
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 4px;
+  border-radius: 50%;
+}
+
+.icon {
+  width: 30px;
+  height: 30px;
+}
+
+/*
+ * A mira: em repouso fica invisível, maior e girada ("buscando"); no hover e no foco converge e crava
+ * em volta do botão, no laranja da trava. Ao sair, solta na hora.
+ */
+.reticle {
+  position: absolute;
+  inset: -12px;
+  width: calc(100% + 24px);
+  height: calc(100% + 24px);
+  stroke: var(--accent);
+  opacity: 0;
+  scale: 1.45;
+  rotate: -70deg;
+  pointer-events: none;
+  transition:
+    opacity var(--dur-instant) var(--ease-exit),
+    scale var(--dur-instant) var(--ease-exit),
+    rotate var(--dur-instant) var(--ease-exit);
+}
+
+.button:hover .reticle,
+.button:focus-visible .reticle {
+  opacity: 1;
+  scale: 1;
+  rotate: 0deg;
+  transition:
+    opacity var(--dur-quick) var(--ease-enter),
+    scale var(--dur-lock) var(--ease-enter),
+    rotate var(--dur-lock) var(--ease-enter);
+}
+
+/* etiqueta à esquerda do botão, no hover e no foco (o nome acessível está no aria-label) */
+.tooltip {
+  position: absolute;
+  right: calc(100% + 18px);
+  top: 50%;
+  padding: 0.4rem 0.75rem;
+  border-radius: var(--radius-pill);
+  background: var(--navy-deep);
+  box-shadow: var(--shadow-sm);
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
+  opacity: 0;
+  translate: 6px -50%;
+  pointer-events: none;
+  transition:
+    opacity var(--dur-instant) var(--ease-exit),
+    translate var(--dur-instant) var(--ease-exit);
+}
+
+.button:hover .tooltip,
+.button:focus-visible .tooltip {
+  opacity: 1;
+  translate: 0 -50%;
+  transition:
+    opacity var(--dur-quick) var(--ease-enter) 0.12s,
+    translate var(--dur-quick) var(--ease-enter) 0.12s;
+}
+
+@media (max-width: 700px) {
+  .button {
+    width: 56px;
+    height: 56px;
+  }
+
+  .icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  /* no toque não existe hover: a etiqueta só atrapalharia */
+  .tooltip {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reticle {
+    scale: 1;
+    rotate: 0deg;
+  }
+}
+
+@media print {
+  .button {
+    display: none;
+  }
+}

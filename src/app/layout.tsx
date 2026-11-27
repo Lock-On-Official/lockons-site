@@ -3,6 +3,7 @@ import { Inter, Sora } from "next/font/google";
 import type { ReactNode } from "react";
 
 import { JsonLd } from "@/components/seo/JsonLd";
+import { FloatingContact } from "@/components/contact/FloatingContact";
 import { SiteFooter } from "@/components/site-footer/SiteFooter";
 import { SiteHeader } from "@/components/site-header/SiteHeader";
 import { site } from "@/lib/site";
@@ -58,6 +59,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <SiteHeader />
         <main id="conteudo">{children}</main>
         <SiteFooter />
+        <FloatingContact />
         <JsonLd data={siteGraph()} />
       </body>
     </html>

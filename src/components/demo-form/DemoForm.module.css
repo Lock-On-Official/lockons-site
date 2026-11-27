@@ -54,6 +54,10 @@
   gap: 0.15rem;
 }
 
+.noticeContact {
+  margin-top: 0.4rem;
+}
+
 .notice b {
   font-weight: 600;
   color: var(--warning-text);

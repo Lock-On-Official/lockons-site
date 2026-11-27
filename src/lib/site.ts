@@ -1,3 +1,5 @@
+import { normalizeEmail, normalizeWhatsapp } from "./contact";
+
 const DEFAULT_SITE_URL = "https://lockons.com.br";
 
 function readSiteUrl(): string {
@@ -15,6 +17,14 @@ export const site = {
   locale: "pt_BR",
   url: readSiteUrl(),
   appUrl: process.env.LOCKON_APP_URL?.trim() || null,
+  /**
+   * Canais de contato humano. Lidos no build (só no servidor): vazios ou inválidos, não aparecem.
+   * Use só em componentes de servidor; no cliente as variáveis não existem.
+   */
+  contact: {
+    whatsapp: normalizeWhatsapp(process.env.LOCKON_WHATSAPP),
+    email: normalizeEmail(process.env.LOCKON_CONTACT_EMAIL),
+  },
 } as const;
 
 export function absoluteUrl(path: string): string {
