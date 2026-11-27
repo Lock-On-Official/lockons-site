@@ -1,6 +1,6 @@
 "use client";
 
-import { useId, useRef, useState, type KeyboardEvent, type ReactNode } from "react";
+import { useId, useRef, useState, type CSSProperties, type KeyboardEvent, type ReactNode } from "react";
 
 import styles from "./AudienceTabs.module.css";
 
@@ -17,7 +17,8 @@ interface AudienceTabsProps {
 
 /**
  * Abas acessíveis (padrão WAI-ARIA). Todos os painéis vêm no HTML do servidor, então o Google lê todos;
- * o cliente só alterna qual aparece.
+ * o cliente só alterna qual aparece. As abas têm a mesma largura, e o indicador da aba ativa desliza
+ * entre elas só com CSS (posição = índice ativo × largura de uma aba).
  */
 export function AudienceTabs({ tabs, label }: AudienceTabsProps) {
   const [active, setActive] = useState(0);
@@ -45,7 +46,13 @@ export function AudienceTabs({ tabs, label }: AudienceTabsProps) {
 
   return (
     <div className={styles.tabs}>
-      <div role="tablist" aria-label={label} className={styles.list}>
+      <div
+        role="tablist"
+        aria-label={label}
+        className={styles.list}
+        style={{ "--count": tabs.length, "--active": active } as CSSProperties}
+      >
+        <span className={styles.indicator} aria-hidden="true" />
         {tabs.map((tab, index) => (
           <button
             key={tab.id}

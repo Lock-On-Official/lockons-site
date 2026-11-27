@@ -1,20 +1,40 @@
 .tabs {
   display: grid;
-  gap: 1.6rem;
+  gap: 1.75rem;
 }
 
+/* controle segmentado: abas de mesma largura e o indicador que desliza até a ativa */
 .list {
-  display: inline-flex;
+  --pad: 4px;
+  position: relative;
+  display: inline-grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
   justify-self: start;
-  gap: 0.25rem;
-  padding: 0.3rem;
+  padding: var(--pad);
   border: 1px solid var(--line);
   border-radius: var(--radius-pill);
   background: var(--surface);
+  box-shadow: var(--shadow-xs);
+}
+
+.indicator {
+  position: absolute;
+  top: var(--pad);
+  bottom: var(--pad);
+  left: var(--pad);
+  width: calc((100% - 2 * var(--pad)) / var(--count, 3));
+  border-radius: var(--radius-pill);
+  background: var(--royal);
+  box-shadow: 0 4px 12px -2px rgba(30, 86, 217, 0.35);
+  transform: translateX(calc(var(--active, 0) * 100%));
+  transition: transform var(--dur-base) var(--ease-standard);
 }
 
 .tab {
-  padding: 0.5rem 1.1rem;
+  position: relative;
+  z-index: 1;
+  padding: 0.55rem 1.35rem;
   border: 0;
   border-radius: var(--radius-pill);
   background: transparent;
@@ -22,21 +42,35 @@
   font: inherit;
   font-size: 0.92rem;
   font-weight: 600;
+  white-space: nowrap;
   cursor: pointer;
-  transition: background-color 0.15s, color 0.15s;
+  transition:
+    color var(--dur-base) var(--ease-standard),
+    scale var(--dur-instant) var(--ease-standard);
+}
+
+/* clique: a aba afunda um pouco */
+.tab:active {
+  scale: 0.97;
 }
 
 .tab:hover {
-  color: var(--navy-2);
+  color: var(--ink);
 }
 
+/* texto branco sobre o indicador azul: 6,2:1 */
 .tab[aria-selected="true"] {
-  background: var(--royal);
   color: #fff;
 }
 
+.tab:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+  border-radius: var(--radius-pill);
+}
+
 .panel {
-  animation: panel-in 0.25s ease-out;
+  animation: panel-in var(--dur-base) var(--ease-standard);
 }
 
 .panel:focus-visible {
@@ -46,18 +80,22 @@
 @keyframes panel-in {
   from {
     opacity: 0;
-    translate: 0 6px;
+    translate: 0 8px;
   }
 }
 
 @media (max-width: 480px) {
   .list {
-    display: flex;
     justify-self: stretch;
   }
 
   .tab {
-    flex: 1;
     padding-inline: 0.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .indicator {
+    transition: none;
   }
 }
