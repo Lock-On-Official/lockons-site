@@ -63,7 +63,8 @@
 /*
  * Botão do header: azul-marinho com texto branco enquanto o botão laranja do hero ainda está na tela,
  * para a primeira dobra não ter dois laranjas disputando. Quando o hero sai, o laranja aparece por cima
- * e o texto passa ao azul-marinho escuro, os dois puxados pela rolagem. Sem suporte, fica laranja.
+ * e o texto passa ao azul-marinho escuro, os dois puxados pela rolagem. A troca é num ponto só (540 px):
+ * uma passagem gradual misturaria o laranja com o azul e daria um marrom no meio. Sem suporte, fica laranja.
  */
 .bar .cta {
   position: relative;
@@ -100,13 +101,13 @@
     color: var(--on-navy);
     animation: cta-ink linear both;
     animation-timeline: scroll(root);
-    animation-range: 460px 600px;
+    animation-range: 540px 541px;
   }
 
   .bar .cta::before {
     animation: cta-arm linear both;
     animation-timeline: scroll(root);
-    animation-range: 460px 600px;
+    animation-range: 540px 541px;
   }
 
   @keyframes cta-arm {

@@ -5,6 +5,7 @@ import { AudienceTabs } from "@/components/audience-tabs/AudienceTabs";
 import { KpiCard } from "@/components/cards/KpiCard";
 import { OpportunityCard } from "@/components/cards/OpportunityCard";
 import { ChaosBoard } from "@/components/chaos-board/ChaosBoard";
+import { DemoTerms } from "@/components/demo-form/DemoTerms";
 import { CtaBand } from "@/components/cta-band/CtaBand";
 import { FaqList } from "@/components/faq/FaqList";
 import { InfoCards } from "@/components/info-cards/InfoCards";
@@ -83,17 +84,22 @@ export default function HomePage() {
       <section className={styles.hero} data-scene-tilt aria-labelledby="hero-title">
         <div className={`container ${styles.heroGrid}`}>
           <div className={styles.heroCopy}>
-            <Eyebrow idPrefix="hero-eyebrow">{hero.eyebrow}</Eyebrow>
+            <Eyebrow idPrefix="hero-eyebrow" onDark>
+              {hero.eyebrow}
+            </Eyebrow>
             <h1 id="hero-title" className={styles.heroTitle}>
               {hero.titleStart} <em className="text-gradient">{hero.titleHighlight}</em>
             </h1>
             <p className={styles.heroSub}>{hero.sub}</p>
             <div className={styles.heroCtas} data-hero-cta>
-              <ButtonLink href={demoPath}>Agendar demonstração</ButtonLink>
-              <ButtonLink href={hero.secondaryCta.href} variant="secondary">
+              <ButtonLink href={demoPath} onDark>
+                Agendar demonstração
+              </ButtonLink>
+              <ButtonLink href={hero.secondaryCta.href} variant="secondary" onDark>
                 {hero.secondaryCta.label}
               </ButtonLink>
             </div>
+            <DemoTerms onDark />
             <ul className={styles.proof}>
               {hero.proof.map((item) => (
                 <li key={item}>{item}</li>

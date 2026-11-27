@@ -1,5 +1,21 @@
 /* Medidas no palco de 440 px: anel de 300 px centrado, núcleo de 170 px. */
 
+/* o conjunto inteiro se move e escala junto, mantendo a profundidade das camadas */
+.group {
+  left: 0;
+  top: 0;
+  width: 440px;
+  height: 440px;
+  transform-style: preserve-3d;
+  transform-origin: 220px 220px;
+  transform: translate3d(var(--dx, 0px), var(--dy, 0px), var(--z, 0px)) scale(var(--s, 1));
+  pointer-events: none;
+}
+
+.group > * {
+  position: absolute;
+}
+
 .glow {
   left: 40px;
   top: 40px;

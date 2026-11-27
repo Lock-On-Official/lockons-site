@@ -17,3 +17,15 @@
   height: 20px;
   flex-shrink: 0;
 }
+
+/* sobre o escuro: selo translúcido e texto azul-claro; o logo ganha um disco branco para não sumir */
+.onDark {
+  border-color: rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--on-navy-accent);
+}
+
+.onDark .mark {
+  border-radius: 50%;
+  background: #fff;
+}
