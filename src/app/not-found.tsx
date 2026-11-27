@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { LockBrackets } from "@/components/cards/LockBrackets";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Icon, type IconName } from "@/components/ui/Icon";
 
@@ -17,13 +18,16 @@ const shortcuts: { icon: IconName; label: string; href: string }[] = [
   { icon: "search", label: "Perguntas frequentes", href: "/perguntas-frequentes" },
 ];
 
-/** 404: a mira procura o alvo e não acha. Atalhos para as páginas principais. */
+/**
+ * 404: a mira procura o alvo e não acha; quando para, trava no botão de volta (o único caminho certo).
+ * Atalhos para as páginas principais.
+ */
 export default function NotFound() {
   return (
     <section className={styles.page} aria-labelledby="nao-encontrada-title">
       <div className="container">
         <div className={styles.stage}>
-          {/* Camada de fundo: a mira percorre quase toda a página atrás do texto, gira em cada parada e não trava no alvo. */}
+          {/* Camada de fundo: a mira percorre a página atrás do texto, gira em cada parada e não trava no "?"; depois, as cantoneiras travam no botão de volta. */}
           <div className={styles.radar} aria-hidden="true">
             <span className={styles.target}>?</span>
             <svg className={styles.scope} viewBox="0 0 200 200" fill="none" stroke="currentColor">
@@ -43,13 +47,17 @@ export default function NotFound() {
           <div className={styles.copy}>
             <p className={styles.code}>Erro 404</p>
             <h1 id="nao-encontrada-title" className={styles.title}>
-              Esta página saiu da <em className="text-gradient">mira.</em>
+              Esta página saiu da <em className={styles.titleHighlight}>mira.</em>
             </h1>
             <p className={styles.text}>
               O endereço pode ter mudado ou não existir mais. Volte ao início ou siga por um dos atalhos.
             </p>
+            {/* o botão de volta é o laranja desta tela: o do header fica escuro até a página rolar */}
             <div className={styles.actions} data-hero-cta>
-              <ButtonLink href="/">Voltar ao início</ButtonLink>
+              <span className={styles.lockTarget}>
+                <ButtonLink href="/">Voltar ao início</ButtonLink>
+                <LockBrackets />
+              </span>
             </div>
             <ul className={styles.shortcuts}>
               {shortcuts.map((item) => (
