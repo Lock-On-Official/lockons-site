@@ -14,6 +14,7 @@ import { ContactsMock } from "@/components/mockups/ContactsMock";
 import { PipelineMock } from "@/components/mockups/PipelineMock";
 import { PhotoCard } from "@/components/photo-card/PhotoCard";
 import { HeroScene } from "@/components/scene-3d/HeroScene";
+import { SegmentCarousel } from "@/components/segments/SegmentCarousel";
 import { FeatureSplit } from "@/components/section/FeatureSplit";
 import { Section } from "@/components/section/Section";
 import { SectionHeader } from "@/components/section/SectionHeader";
@@ -37,6 +38,7 @@ import {
 } from "@/content/home";
 import { photos } from "@/content/photos";
 import { demoPath } from "@/content/routes";
+import { segments, segmentsSection } from "@/content/segments";
 import { pageMetadata } from "@/lib/seo";
 import { softwareApplication } from "@/lib/structured-data";
 
@@ -221,8 +223,29 @@ export default function HomePage() {
         </div>
       </Section>
 
+      {/* Segmentos: onde o LOCKONS entra, numa faixa de fotos em movimento contínuo */}
+      <Section id={segmentsSection.id} labelledBy="segmentos-title">
+        <div className="container">
+          <SectionHeader
+            id="segmentos-title"
+            eyebrow={segmentsSection.eyebrow}
+            title={segmentsSection.title}
+            lead={segmentsSection.lead}
+            align="center"
+            action={<ButtonLink href={demoPath}>Agendar demonstração</ButtonLink>}
+          />
+        </div>
+        {/* a faixa ocupa a largura da tela, com as bordas se apagando */}
+        <div className={styles.segments}>
+          <SegmentCarousel
+            label="Segmentos"
+            slides={segments.map((segment) => ({ id: segment.id, name: segment.name, photo: photos[segment.photo] }))}
+          />
+        </div>
+      </Section>
+
       {/* Confiança e implantação: responde "e se der errado?" perto da decisão */}
-      <Section labelledBy="confianca-title">
+      <Section labelledBy="confianca-title" tone="tint">
         <div className="container">
           <SectionHeader id="confianca-title" eyebrow={trust.eyebrow} title={trust.title} lead={trust.lead} />
           <div className={styles.after}>
@@ -232,7 +255,7 @@ export default function HomePage() {
       </Section>
 
       {/* Perguntas: as principais aqui, todas na página própria */}
-      <Section labelledBy="faq-title" tone="tint">
+      <Section labelledBy="faq-title">
         <SplitGrid
           variant="wide"
           aside={

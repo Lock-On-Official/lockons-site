@@ -129,6 +129,8 @@ const paths = {
     </>
   ),
   chevronDown: <path d="m6.5 9.5 5.5 5.5 5.5-5.5" />,
+  pause: <path d="M9 6v12M15 6v12" />,
+  play: <path d="M8 5.5v13l10.5-6.5z" />,
   mail: (
     <>
       <rect x="3" y="5" width="18" height="14" rx="2.5" />
