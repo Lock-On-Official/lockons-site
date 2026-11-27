@@ -53,6 +53,11 @@
   box-shadow: var(--shadow-card);
 }
 
+.slideInner {
+  position: absolute;
+  inset: 0;
+}
+
 .img {
   object-fit: cover;
   transition: scale var(--dur-base) var(--ease-standard);

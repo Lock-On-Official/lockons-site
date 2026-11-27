@@ -50,22 +50,23 @@ export function SegmentCarousel({ slides, label }: SegmentCarouselProps) {
 
   const cards = (copy: boolean) =>
     slides.map((slide, index) => (
-      <li
-        key={slide.id}
-        className={styles.slide}
-        onPointerEnter={onCardEnter}
-        {...(copy ? {} : { role: "group", "aria-roledescription": "slide", "aria-label": `${index + 1} de ${slides.length}: ${slide.name}` })}
-      >
-        <Image
-          src={slide.photo.src}
-          alt={copy ? "" : slide.photo.alt}
-          fill
-          sizes="(max-width: 700px) 72vw, 300px"
-          placeholder="blur"
-          className={styles.img}
-          style={{ objectPosition: slide.photo.position }}
-        />
-        <span className={styles.name}>{slide.name}</span>
+      <li key={slide.id} className={styles.slide} onPointerEnter={onCardEnter}>
+        {/* o papel de slide fica num elemento interno: o <li> continua item de lista */}
+        <div
+          className={styles.slideInner}
+          {...(copy ? {} : { role: "group", "aria-roledescription": "slide", "aria-label": `${index + 1} de ${slides.length}: ${slide.name}` })}
+        >
+          <Image
+            src={slide.photo.src}
+            alt={copy ? "" : slide.photo.alt}
+            fill
+            sizes="(max-width: 700px) 72vw, 300px"
+            placeholder="blur"
+            className={styles.img}
+            style={{ objectPosition: slide.photo.position }}
+          />
+          <span className={styles.name}>{slide.name}</span>
+        </div>
       </li>
     ));
 
