@@ -6,6 +6,77 @@
   gap: 1.5rem;
 }
 
+/* faixa e setas: as setas ficam por cima das pontas, fora da máscara que apaga as bordas */
+.stage {
+  position: relative;
+  /* item de grade: sem isto ele cresce até a largura da faixa duplicada e a seta da direita sai da tela */
+  min-width: 0;
+}
+
+/* setas nas pontas, só com a faixa parada: aparecem num instante, centradas na altura dos cartões */
+.arrow {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--surface);
+  box-shadow: inset 0 0 0 1px var(--line-strong), var(--shadow-card);
+  color: var(--ink);
+  cursor: pointer;
+  translate: 0 -50%;
+  animation: arrow-in var(--dur-base) var(--ease-standard) both;
+  transition:
+    background-color var(--dur-quick) var(--ease-standard),
+    scale var(--dur-instant) var(--ease-standard);
+}
+
+.arrow:hover {
+  background: var(--bg);
+}
+
+.arrow:active {
+  scale: 0.94;
+}
+
+.arrow:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 3px;
+}
+
+.prev {
+  left: max(1rem, calc(var(--gutter) - 24px));
+}
+
+.next {
+  right: max(1rem, calc(var(--gutter) - 24px));
+}
+
+.arrowIcon {
+  width: 22px;
+  height: 22px;
+}
+
+.prev .arrowIcon {
+  rotate: 90deg;
+}
+
+.next .arrowIcon {
+  rotate: -90deg;
+}
+
+@keyframes arrow-in {
+  from {
+    opacity: 0;
+    scale: 0.85;
+  }
+}
+
 /* a faixa: largura da tela, com as duas bordas se apagando (a máscara faz os cartões sumirem aos poucos) */
 .viewport {
   overflow: hidden;
@@ -163,6 +234,11 @@
   .slide {
     border-radius: 22px;
   }
+
+  .arrow {
+    width: 42px;
+    height: 42px;
+  }
 }
 
 /* parada: sem a cópia, rolando à mão com encaixe em cada cartão; o botão de pausa não tem o que pausar */
@@ -190,5 +266,9 @@
 
   .img {
     transition: none;
+  }
+
+  .arrow {
+    animation: none;
   }
 }
