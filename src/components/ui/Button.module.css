@@ -88,9 +88,12 @@
 }
 
 /* link de exploração, ex.: "Ver como funciona →" */
+/* link de texto pode quebrar a linha: os longos ("Conheça o funil de vendas do LOCKONS →") não cabem em 320 px */
 .text {
   padding: 0;
   background: none;
+  white-space: normal;
+  text-align: left;
   color: var(--royal);
   font-size: 0.95rem;
 }

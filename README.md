@@ -42,7 +42,11 @@ src/
 │   ├── site-header/      header fixo com mega menu (Produto, Para quem, Recursos) e menu do celular em sanfona
 │   ├── site-footer/      rodapé com links para todas as páginas
 │   ├── ui/               botão (ButtonLink), selo do hero (Eyebrow), etiqueta (Chip), ícones e lista com visto
-│   ├── cards/            cartão de oportunidade e cartão de indicador
+│   ├── cards/            cartão de oportunidade, de indicador e as cantoneiras da trava (LockBrackets)
+│   ├── contact/          links de WhatsApp e e-mail (quando configurados) e o botão fixo do WhatsApp
+│   ├── segments/         faixa de fotos da seção Segmentos (movimento contínuo, pausa e setas)
+│   ├── blog/             cartão de artigo, capa ilustrada e corpo do artigo
+│   ├── demo-form/        formulário de demonstração (desligado) e as condições da demonstração
 │   ├── scene-3d/         cena 3D em CSS: palco (Scene3D), itens (SceneItem), mira (Reticle3D) e a cena do hero
 │   ├── hero-visuals/     ilustrações animadas dos heros internos e o ScaleBox que as escala
 │   ├── photo-card/       foto com o tratamento da marca e um cartão do sistema por cima
@@ -53,13 +57,14 @@ src/
 │   ├── chaos-board/      quadro "do caos ao foco", que se organiza com a rolagem
 │   ├── audience-tabs/    abas "Para quem" e o painel de cada papel
 │   ├── faq/              perguntas em acordeão
-│   ├── cta-band/         faixa azul-marinho de fechamento
+│   ├── cta-band/         painel azul-marinho de fechamento, dentro da largura do conteúdo
 │   ├── breadcrumbs/      trilha de navegação com BreadcrumbList
 │   └── seo/              JsonLd, para dados estruturados
-├── content/              textos das páginas (home, produto e funcionalidades, papéis, segurança, implantação, perguntas, fotos, imagens de compartilhamento) e o mapa único das páginas (routes.ts)
-├── lib/                  configuração (site.ts), metadados (seo.ts), dados estruturados e formatação
+├── content/              textos das páginas (home, produto e funcionalidades, papéis, segurança, implantação, perguntas, blog, segmentos, demonstração, fotos, imagens de compartilhamento), o menu (navigation.ts) e o mapa único das páginas (routes.ts)
+├── lib/                  configuração (site.ts), metadados (seo.ts), dados estruturados, formatação e regras testadas (contato, blog, trava do quadro, item atual do menu)
 └── styles/tokens.css     cores, fontes e medidas do protótipo aprovado
 public/logo.png           logo quadrado (512 × 512) dos dados estruturados
+tests/                    testes das regras de src/lib (npm test)
 ```
 
 ## Convenções
@@ -70,7 +75,11 @@ public/logo.png           logo quadrado (512 × 512) dos dados estruturados
   2. exporte `metadata` com `pageMetadata({ title, description, path })`, que define o canonical da própria página;
   3. marque `published: true` em `src/content/routes.ts`, para ela entrar no sitemap;
   4. acrescente o selo e o título dela em `src/content/og.ts`, para gerar a imagem de compartilhamento (sem isso, o link da imagem dá 404).
-- **Visual:** use os tokens de `src/styles/tokens.css`. O azul-royal (`--royal`) é só para o que é clicável.
+- **Visual:** use os tokens de `src/styles/tokens.css`; não escreva cor nem tamanho de título solto num componente. A base é a paleta azul da marca; o azul-royal (`--royal`) é só para o que é clicável.
+- **Laranja (`--accent`, `#FB8A3C`):** acento só no botão principal, no "na mira." do topo da home, na trava da mira (cantoneiras `LockBrackets` e cartão travado), no botão de volta da 404 e no anel do botão do WhatsApp. O texto sobre ele é azul-marinho escuro (`--on-accent`, 6,5:1): branco no laranja claro reprova no contraste (2,4:1), e laranjas escuros o bastante para o branco puxam para o marrom.
+- **Cores com significado** (`--success-*`, `--warning-*`, `--danger-*`): só nas telas do produto e nos avisos. Verde para ganho, âmbar para negociação, alta prioridade e avisos, vermelho para vencida e perdida. A etiqueta comum (`Chip` padrão) é azul.
+- **Títulos:** um tamanho por papel (`--text-display` na home, `--text-h1` a `--text-h4`, `--overline-size` nos selos). Controles usam os tempos `--dur-*` e as curvas `--ease-*`.
+- **Componentes:** botão principal (laranja), secundário (contorno; versão `onDark` sobre o azul-marinho) e link de texto com seta; lista com visto em círculo (`CheckList`, com `onDark`); selo da seção com traço à esquerda; pré-mira cinza (classe global `lock-frame`) nos cartões clicáveis; cantoneiras da trava aceitam `--bracket-delay`, `--bracket-timeline` e `--bracket-range`.
 - **Funcionalidade nova:** acrescente em `src/content/features.ts` (o tipo `FeatureSlug` obriga a dar a ilustração do hero e a da seção "como funciona" em `src/app/produto/[slug]/page.tsx`) e a rota em `routes.ts`. Endereços fora da lista dão 404.
 - **Seções:** use `<Section tone decor>`. As páginas alternam `plain` (fundo pontilhado) e `tint` (azul-claro), com `navy` para o momento de destaque e a `CtaBand` azul-marinho no fim.
 - **Fundos (`decor`):** por decisão do time, poucas seções têm fundo animado: a mira grande (`reticle`) na primeira seção depois do hero, `lanes` (raias do funil) nas seções azul-marinho de destaque ("Do caos ao foco" na home, permissões em Para quem, Segurança e Implantação) e `route` (trilha de follow-up) em "Para quem" da home e no fluxo de Produto. Perguntas, "Conheça também", benefícios, funcionalidades e as categorias de Perguntas frequentes depois da primeira ficam sem fundo. Seção nova nasce sem `decor`; acrescente só com aprovação do time. `network` (rede de contatos) e `chart` (gráfico) continuam disponíveis no `SectionDecor`, sem uso no momento.
@@ -78,7 +87,8 @@ public/logo.png           logo quadrado (512 × 512) dos dados estruturados
 - **Fontes:** Sora (títulos) e Inter (texto), servidas pelo `next/font` do próprio domínio.
 - **Mira 3D:** exclusiva do hero da home. É só CSS, sem biblioteca: itens num palco de 440 × 440 px (`x`, `y`) e em profundidade (`z`); a cena se ajusta à largura e inclina com o mouse dentro do elemento com `data-scene-tilt`. O topo da home tem fundo azul-marinho escuro com grade fina e anéis de mira; ao fundo da cena, a janela do funil (`HeroDashboard`, parada) e, na frente, a mira do logo (`Reticle3D`, que aceita `cx`, `cy`, `scale` e `z`) e o indicador do mês. O "na mira." do título é o único texto em laranja do site.
 - **Heros das páginas internas:** cada página tem ilustração e animação próprias em `src/components/hero-visuals/` (painel modular, rede de contatos, funil, agenda, painel de indicadores, mapa de lojas, foto com cartões, camadas de acesso, importação da planilha, conversa de perguntas). São desenhadas em 560 × 500 px e escaladas pelo `ScaleBox`.
-- **Movimento:** toda animação tem estado final legível e para com "reduzir movimento" ligado no sistema.
+- **Movimento:** toda animação tem estado final legível e para com "reduzir movimento" ligado no sistema. As ilustrações em loop (busca de contatos, lista de atividades, faixa de segmentos) são decisão do time; o que se move sem parar e ocupa espaço grande tem como pausar (a faixa de segmentos tem botão).
+- **404:** a mira faz uma varredura só pelo painel, passa perto do "?" e para; então as cantoneiras laranja travam no botão "Voltar ao início". O Lighthouse não avalia páginas com status 404: confira a acessibilidade dela com o axe.
 - **Dados de exemplo** nos cartões e nas ilustrações (empresas, pessoas, valores) são fictícios.
 - **Textos:** ficam em `src/content/` e só descrevem o que o produto entrega (ver `docs/escopo-mvp.md` do `crm-lockon`). Ao mudar o escopo, revise principalmente `faq.ts`.
 - **Formulário de demonstração:** fica desativado, com aviso (`available: false` em `src/content/demo.ts`), por decisão do time. Para ligar: criar o envio no servidor para o e-mail da LOCKONS, trocar `available` para `true` e tratar o envio no formulário (`src/components/demo-form/`).
@@ -94,20 +104,28 @@ public/logo.png           logo quadrado (512 × 512) dos dados estruturados
 
 Antes de publicar uma mudança grande, rode `npm run build` e confira com o Lighthouse (Chrome, aba Lighthouse, modo celular) e com o [teste de pesquisa aprimorada](https://search.google.com/test/rich-results) do Google, que valida os dados estruturados.
 
-Última medição (22/11/2026, `npm start` local, Lighthouse 13 no modo celular, mediana de até três rodadas por página; uma rodada isolada pode variar alguns pontos conforme a carga da máquina, e no servidor real o tempo de rede soma):
+Última medição (27/11/2026, depois da integração do redesign; `npm start` local, Lighthouse 13 no modo celular, mediana de até três rodadas por página; uma rodada isolada pode variar alguns pontos conforme a carga da máquina, e no servidor real o tempo de rede soma):
 
 | Página | Desempenho | Acessibilidade | Boas práticas | SEO | LCP | CLS |
 |---|---|---|---|---|---|---|
-| `/` | 100 | 100 | 100 | 100 | 1,1 s | 0 |
-| `/produto` | 99 | 100 | 100 | 100 | 0,9 s | 0 |
-| `/produto/funil-de-vendas` | 98 | 100 | 100 | 100 | 1,1 s | 0 |
-| `/para-quem/vendedores` | 100 | 100 | 100 | 100 | 1,1 s | 0 |
+| `/` | 99 | 100 | 100 | 100 | 1,2 s | 0 |
+| `/produto` | 100 | 100 | 100 | 100 | 1,1 s | 0 |
+| `/produto/funil-de-vendas` | 100 | 100 | 100 | 100 | 1,4 s | 0 |
+| `/para-quem/vendedores` | 100 | 100 | 100 | 100 | 1,4 s | 0 |
 | `/seguranca` | 99 | 100 | 100 | 100 | 1,1 s | 0 |
-| `/implantacao` | 100 | 100 | 100 | 100 | 1,1 s | 0 |
-| `/perguntas-frequentes` | 99 | 100 | 100 | 100 | 1,1 s | 0 |
-| `/agendar-demonstracao` | 99 | 100 | 100 | 100 | 0,9 s | 0 |
+| `/implantacao` | 100 | 100 | 100 | 100 | 1,2 s | 0 |
+| `/perguntas-frequentes` | 100 | 100 | 100 | 100 | 1,1 s | 0 |
+| `/agendar-demonstracao` | 100 | 100 | 100 | 100 | 1,1 s | 0 |
+| `/blog` | 100 | 100 | 100 | 100 | 1,1 s | 0 |
+| `/blog/follow-up-de-vendas` | 100 | 100 | 100 | 100 | 1,1 s | 0 |
+
+Na mesma data: 21 páginas ligadas pelo menu e pelo rodapé respondem, todas com canonical, imagem de compartilhamento e dados estruturados completos; o sitemap tem 19 endereços (as páginas legais ficam fora enquanto são rascunho); nenhuma página rola para o lado de 320 a 1920 px; a 404 passa no axe sem violações.
 
 Animação de texto nas ilustrações não usa transparência (`opacity`) no próprio texto: o Lighthouse captura a página no meio do efeito e acusa contraste baixo. Para fazer aparecer ou sumir, use recorte (`clip-path`) ou movimento, como em `ImportVisual`.
+
+## Integração do redesign (novembro de 2026)
+
+Um redesign feito em paralelo (12 commits, fora deste repositório) foi filtrado pelo time e trazido por partes, um commit por parte, com crédito aos autores. Entrou: laranja claro como acento, cores com significado, escala de títulos, botão secundário, pré-mira, moldura das telas, painel de fechamento, blog, mega menu, contatos configuráveis e botão do WhatsApp, abas com indicador, coluna Ganho no "Do caos ao foco", fundo escuro e janela do funil no topo da home, seção Segmentos e a 404. Ficou como era: a paleta azul (sem as seções escuras em cinza-chumbo), o logo, as animações em loop pedidas pelo time e o ritmo das seções das páginas internas. No topo da home, a mira do logo ficou no lugar do cartão travado do redesign.
 
 ## Fotos
 
