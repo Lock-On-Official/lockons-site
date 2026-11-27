@@ -205,6 +205,29 @@
   color: var(--ink);
 }
 
+.stageName {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-width: 0;
+}
+
+.stageDot {
+  flex-shrink: 0;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #94a3b8;
+}
+
+.dotWarning {
+  background: var(--warning-dot);
+}
+
+.dotSuccess {
+  background: var(--success-dot);
+}
+
 .columnTotal {
   font-size: 0.72rem;
   font-weight: 500;
@@ -243,8 +266,12 @@
 }
 
 .miniWon {
-  border-color: #bfe3cf;
-  background: #f1faf5;
+  border-color: var(--success-line);
+  background: var(--success-bg);
+}
+
+.miniWon span {
+  color: var(--success-text);
 }
 
 .lost {
@@ -267,8 +294,9 @@
 .lostTag {
   padding: 0.1rem 0.45rem;
   border-radius: var(--radius-pill);
-  background: #fde8e8;
-  color: #b42318;
+  border: 1px solid var(--danger-line);
+  background: var(--danger-bg);
+  color: var(--danger-text);
   font-size: 0.62rem;
   font-weight: 600;
   letter-spacing: 0.06em;
@@ -278,11 +306,28 @@
 /* atividades */
 .alertPill,
 .okPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
   padding: 0.12rem 0.55rem;
   border-radius: var(--radius-pill);
-  background: #fff4e0;
-  color: #9a5b00;
   font-weight: 600;
+}
+
+/* atividade vencida: o vermelho de status, com o ponto */
+.alertPill {
+  padding: calc(0.12rem - 1px) calc(0.55rem - 1px) calc(0.12rem - 1px) calc(0.45rem - 1px);
+  border: 1px solid var(--danger-line);
+  background: var(--danger-bg);
+  color: var(--danger-text);
+}
+
+.alertPill::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--danger-dot);
 }
 
 /* quando a vencida é marcada como feita */
@@ -368,12 +413,12 @@
 }
 
 .taskOverdue {
-  border-color: var(--alert);
-  background: #fffaf0;
+  border-color: var(--danger-line);
+  background: var(--danger-bg);
 }
 
 .taskOverdue .when {
-  color: #9a5b00;
+  color: var(--danger-text);
 }
 
 .taskDone .rowText b {
@@ -610,11 +655,11 @@
 }
 
 .tileOk b {
-  color: #127a43;
+  color: var(--success-text);
 }
 
 .tileError b {
-  color: #b42318;
+  color: var(--danger-text);
 }
 
 .lineNo {

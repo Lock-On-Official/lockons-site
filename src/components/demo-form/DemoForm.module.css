@@ -42,9 +42,9 @@
   display: flex;
   gap: 0.75rem;
   padding: 0.85rem 1rem;
-  border: 1px solid var(--alert);
+  border: 1px solid var(--warning-line);
   border-radius: 14px;
-  background: #fffaf0;
+  background: var(--warning-bg);
   font-size: 0.9rem;
   color: var(--ink);
 }
@@ -56,14 +56,14 @@
 
 .notice b {
   font-weight: 600;
-  color: #7a4800;
+  color: var(--warning-text);
 }
 
 .noticeIcon {
   flex-shrink: 0;
   width: 22px;
   height: 22px;
-  color: #9a5b00;
+  color: var(--warning-text);
 }
 
 .form {

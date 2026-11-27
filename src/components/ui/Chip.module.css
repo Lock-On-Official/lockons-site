@@ -1,5 +1,7 @@
 .chip {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.32rem;
   justify-self: start;
   padding: 0.18rem 0.5rem;
   border-radius: var(--radius-pill);
@@ -10,9 +12,49 @@
   letter-spacing: 0.07em;
   line-height: 1.5;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
-.hot {
-  background: var(--royal);
-  color: #fff;
+/* status: fundo claro, borda e um ponto na cor do significado */
+.status {
+  padding: calc(0.18rem - 1px) calc(0.5rem - 1px) calc(0.18rem - 1px) calc(0.42rem - 1px);
+  border: 1px solid;
+}
+
+.status::before {
+  content: "";
+  flex-shrink: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.warning {
+  border-color: var(--warning-line);
+  background: var(--warning-bg);
+  color: var(--warning-text);
+}
+
+.warning::before {
+  background: var(--warning-dot);
+}
+
+.success {
+  border-color: var(--success-line);
+  background: var(--success-bg);
+  color: var(--success-text);
+}
+
+.success::before {
+  background: var(--success-dot);
+}
+
+.danger {
+  border-color: var(--danger-line);
+  background: var(--danger-bg);
+  color: var(--danger-text);
+}
+
+.danger::before {
+  background: var(--danger-dot);
 }

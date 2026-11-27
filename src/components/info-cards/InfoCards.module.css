@@ -32,7 +32,8 @@
 }
 
 .card h3 {
-  font-size: 1.02rem;
+  font-size: var(--text-h4);
+  letter-spacing: var(--tracking-snug);
   font-weight: 600;
   line-height: 1.3;
 }

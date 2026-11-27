@@ -3,11 +3,21 @@ import { formatBRL } from "@/lib/format";
 import { MockFrame } from "./MockFrame";
 import styles from "./mockups.module.css";
 
+/** Ponto colorido da etapa: neutro, âmbar (negociação) ou verde (ganho). */
+const dotClass = { neutral: undefined, warning: styles.dotWarning, success: styles.dotSuccess } as const;
+
 const columns = [
-  { stage: "Proposta", cards: [{ name: "Mercado São Jorge", value: 4950 }, { name: "Escola Nova Era", value: 9800 }] },
-  { stage: "Negociação", cards: [{ name: "Construtora Horizonte", value: 18400, focus: true }] },
-  { stage: "Ganho", cards: [{ name: "Padaria Trigo Bom", value: 2300, won: true }] },
-];
+  {
+    stage: "Proposta",
+    tone: "neutral",
+    cards: [
+      { name: "Mercado São Jorge", value: 4950 },
+      { name: "Escola Nova Era", value: 9800 },
+    ],
+  },
+  { stage: "Negociação", tone: "warning", cards: [{ name: "Construtora Horizonte", value: 18400, focus: true }] },
+  { stage: "Ganho", tone: "success", cards: [{ name: "Padaria Trigo Bom", value: 2300, won: true }] },
+] as const;
 
 export function PipelineMock() {
   return (
@@ -22,7 +32,10 @@ export function PipelineMock() {
           return (
             <div key={column.stage} className={styles.column}>
               <div className={styles.columnHead}>
-                <span>{column.stage}</span>
+                <span className={styles.stageName}>
+                  <span className={[styles.stageDot, dotClass[column.tone]].filter(Boolean).join(" ")} />
+                  {column.stage}
+                </span>
                 <span className={styles.columnTotal}>{formatBRL(total)}</span>
               </div>
               {column.cards.map((card) => (

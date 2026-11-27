@@ -28,13 +28,66 @@
   --dot: rgba(18, 60, 157, 0.09);
   --header-bg: rgba(255, 255, 255, 0.85);
   --shadow-card: 0 14px 34px rgba(18, 60, 157, 0.16);
-  --shadow-cta: 0 6px 18px rgba(30, 86, 217, 0.28);
   --shadow-card-locked: 0 22px 48px rgba(30, 86, 217, 0.28);
   --shadow-panel: 0 18px 40px rgba(18, 60, 157, 0.12);
+
+  --line-strong: #cbd5e1; /* contorno de botão secundário e hover de cartão */
+  --surface-sunken: #f1f5f9; /* campos e trilhos dentro das ilustrações */
+  --royal-ink: #1846b8; /* hover de link */
+  --focus-ring: var(--royal);
+  --shadow-xs: 0 1px 2px rgba(15, 23, 42, 0.05);
+  --shadow-card-hover: 0 18px 40px rgba(18, 60, 157, 0.2);
+
+  /*
+   * Acento laranja: só no botão principal, no "na mira." e na trava da mira. Laranja claro com texto
+   * azul-marinho escuro: o branco reprova no laranja claro (2,4:1); o azul-marinho passa com folga.
+   */
+  --accent: #fb8a3c; /* texto --on-accent: 6,5:1 */
+  --accent-hover: #f97316; /* texto --on-accent: 5,5:1 */
+  --on-accent: #0f1f57;
+  --accent-on-dark: #fc9a55; /* "na mira." sobre o azul-marinho escuro (título grande) */
+  --accent-ring: rgba(251, 138, 60, 0.35);
+  --shadow-cta: 0 1px 2px rgba(15, 31, 87, 0.12), 0 6px 16px -4px rgba(251, 138, 60, 0.55);
+  --shadow-cta-hover: 0 1px 2px rgba(15, 31, 87, 0.14), 0 10px 22px -6px rgba(249, 115, 22, 0.55);
+
+  /* cores com significado nas telas do produto (texto em AA sobre o próprio fundo) */
+  --success-bg: #ecfdf3; /* ganho */
+  --success-line: #abefc6;
+  --success-text: #067647;
+  --success-dot: #17b26a;
+  --warning-bg: #fffbeb; /* negociação, alta prioridade e avisos */
+  --warning-line: #fde68a;
+  --warning-text: #92400e;
+  --warning-dot: #f59e0b;
+  --danger-bg: #fef3f2; /* vencida e perdida */
+  --danger-line: #fecdca;
+  --danger-text: #b42318;
+  --danger-dot: #f04438;
 
   /* tipografia: as variáveis --font-sora e --font-inter vêm do next/font */
   --font-display: var(--font-sora), "Segoe UI", system-ui, sans-serif;
   --font-body: var(--font-inter), system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  /* escala de títulos: um tamanho por papel; não crie tamanho de título fora daqui */
+  --text-display: clamp(2.4rem, 4.9vw, 3.9rem); /* h1 da home */
+  --text-h1: clamp(2rem, 4.3vw, 3.2rem); /* h1 das páginas internas */
+  --text-h2: clamp(1.85rem, 3.4vw, 2.6rem); /* título de seção */
+  --text-h3: clamp(1.35rem, 2.5vw, 1.8rem); /* bloco dentro da seção */
+  --text-h4: 1.05rem; /* título de cartão */
+  --text-lead: 1.1rem;
+  --tracking-tight: -0.025em; /* display, h1 e h2 */
+  --tracking-snug: -0.015em; /* h3 e h4 */
+  --overline-size: 0.78rem; /* selo em caixa alta */
+  --overline-tracking: 0.08em;
+
+  /* tempos de animação dos controles (hover, clique, abrir menu); as ilustrações têm os próprios ciclos */
+  --dur-instant: 100ms;
+  --dur-quick: 150ms;
+  --dur-base: 240ms;
+  --dur-lock: 400ms; /* a trava: cantoneiras fechando, mira alinhando */
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-enter: cubic-bezier(0.05, 0.7, 0.1, 1);
+  --ease-exit: cubic-bezier(0.3, 0, 1, 1);
 
   /* forma e medidas */
   --radius-card: 12px;

@@ -16,10 +16,10 @@
 }
 
 .title {
-  font-size: clamp(1.3rem, 2.4vw, 1.6rem);
+  font-size: var(--text-h3);
   font-weight: 600;
   line-height: 1.2;
-  letter-spacing: -0.015em;
+  letter-spacing: var(--tracking-snug);
 }
 
 .text {

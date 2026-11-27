@@ -135,12 +135,12 @@
 }
 
 .late {
-  border-color: var(--alert);
-  background: #fffaf0;
+  border-color: var(--danger-line);
+  background: var(--danger-bg);
 }
 
 .late .when {
-  color: #9a5b00;
+  color: var(--danger-text);
 }
 
 /* cada tarefa é marcada num momento do ciclo e todas voltam juntas no fim */
@@ -211,8 +211,8 @@
   height: 24px;
   border: 2px solid var(--surface);
   border-radius: 50%;
-  background: var(--alert);
-  color: #3b2300;
+  background: var(--danger-text);
+  color: #fff;
   font-size: 11px;
   font-weight: 700;
 }

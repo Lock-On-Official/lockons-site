@@ -13,10 +13,14 @@ import {
 } from "react";
 
 import { OpportunityCard } from "@/components/cards/OpportunityCard";
+import type { ChipTone } from "@/components/ui/Chip";
 import type { BoardCard, BoardColumn } from "@/content/home";
 import { formatBRL } from "@/lib/format";
 
 import styles from "./ChaosBoard.module.css";
+
+/** Cor da etiqueta pela etapa: negociação em âmbar, ganho em verde; as outras na etiqueta azul. */
+const stageTone: Record<string, ChipTone> = { Negociação: "warning", Ganho: "success" };
 
 /** No toque, segurar antes de arrastar: um toque rápido continua rolando a página. */
 const LONG_PRESS_MS = 220;
@@ -327,6 +331,7 @@ export function ChaosBoard({ columns, tone = "light" }: ChaosBoardProps) {
                     >
                       <OpportunityCard
                         stage={card.hot ? "Alta prioridade" : column.stage}
+                        tone={stageTone[column.stage]}
                         name={card.name}
                         value={card.value}
                         due={card.due}

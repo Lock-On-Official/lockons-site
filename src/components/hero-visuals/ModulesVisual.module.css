@@ -168,15 +168,15 @@
 }
 
 .late {
-  border-color: var(--alert);
-  background: #fffaf0;
+  border-color: var(--danger-line);
+  background: var(--danger-bg);
 }
 
 .late em {
   margin-left: auto;
   font-style: normal;
   font-weight: 600;
-  color: #9a5b00;
+  color: var(--danger-text);
 }
 
 /* indicadores */

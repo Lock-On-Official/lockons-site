@@ -12,7 +12,7 @@ interface ToastProps {
   left: number;
   top: number;
   width: number;
-  /** "alert": aviso de algo vencido (âmbar); "info": neutro. */
+  /** "alert": aviso de algo vencido (vermelho de status); "info": neutro. */
   tone?: "alert" | "info";
   /** Atraso do ciclo, para desencontrar avisos diferentes. */
   delay?: number;

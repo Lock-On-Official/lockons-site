@@ -35,12 +35,12 @@
 }
 
 .alert {
-  border-color: var(--alert);
+  border-color: var(--danger-line);
 }
 
 .alert .icon {
-  background: #fff4e0;
-  color: #9a5b00;
+  background: var(--danger-bg);
+  color: var(--danger-text);
   animation: ring 8s ease-in-out var(--delay) infinite;
 }
 

@@ -74,9 +74,9 @@
   display: flex;
   gap: 0.8rem;
   padding: 1rem 1.2rem;
-  border: 1px solid var(--alert);
+  border: 1px solid var(--warning-line);
   border-radius: 14px;
-  background: #fffaf0;
+  background: var(--warning-bg);
 }
 
 .draft > span {
@@ -85,14 +85,14 @@
 }
 
 .draft b {
-  color: #7a4800;
+  color: var(--warning-text);
 }
 
 .draftIcon {
   flex-shrink: 0;
   width: 22px;
   height: 22px;
-  color: #9a5b00;
+  color: var(--warning-text);
 }
 
 .block {
