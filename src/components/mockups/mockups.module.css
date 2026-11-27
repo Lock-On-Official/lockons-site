@@ -1,8 +1,8 @@
-/* moldura de tela */
+/* moldura de janela do sistema */
 .frame {
   overflow: hidden;
   border: 1px solid var(--line);
-  border-radius: 16px;
+  border-radius: var(--radius-frame);
   background: var(--surface);
   box-shadow: var(--shadow-card);
   font-size: 0.82rem;
@@ -12,7 +12,8 @@
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  padding: 0.6rem 0.9rem;
+  min-height: 2.6rem;
+  padding: 0.55rem 0.95rem;
   border-bottom: 1px solid var(--line);
   background: var(--bg);
 }
@@ -26,7 +27,7 @@
   width: 9px;
   height: 9px;
   border-radius: 50%;
-  background: var(--line);
+  background: var(--line-strong);
 }
 
 .barTitle {
@@ -34,10 +35,23 @@
   color: var(--ink);
 }
 
+/* informação da janela (ex.: a loja) como etiqueta */
 .barAside {
   margin-left: auto;
+  padding: 0.05rem 0.55rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  background: var(--surface);
   color: var(--muted);
-  font-size: 0.75rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+/* aviso que já tem fundo e borda próprios (ex.: "1 vencida") */
+.barAside:has(> span) {
+  padding: 0;
+  border: 0;
+  background: none;
 }
 
 .body {
@@ -193,9 +207,11 @@
   display: grid;
   align-content: start;
   gap: 0.45rem;
+  min-width: 0;
   padding: 0.55rem;
+  border: 1px solid var(--line);
   border-radius: 10px;
-  background: var(--bg);
+  background: var(--surface-sunken);
 }
 
 .columnHead {

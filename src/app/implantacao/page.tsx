@@ -72,7 +72,7 @@ export default function OnboardingPage() {
           aside={
             <div className={styles.readyCopy}>
               <SectionHeader id="pronto-title" eyebrow={ready.eyebrow} title={ready.title} lead={ready.text} onDark />
-              <CheckList items={ready.bullets} />
+              <CheckList items={ready.bullets} onDark />
             </div>
           }
         >

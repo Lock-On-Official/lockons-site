@@ -32,6 +32,7 @@
   --shadow-panel: 0 18px 40px rgba(18, 60, 157, 0.12);
 
   --line-strong: #cbd5e1; /* contorno de botão secundário e hover de cartão */
+  --lock-pre: #94a3b8; /* cantoneiras cinza da pré-mira (hover e foco); a trava cheia é azul */
   --surface-sunken: #f1f5f9; /* campos e trilhos dentro das ilustrações */
   --royal-ink: #1846b8; /* hover de link */
   --focus-ring: var(--royal);
@@ -91,6 +92,7 @@
 
   /* forma e medidas */
   --radius-card: 12px;
+  --radius-frame: 12px; /* moldura de janela das telas de exemplo */
   --radius-pill: 999px;
   /* conteúdo ocupa 85% da tela: 7,5% de margem de cada lado (24 px ou mais a partir de 320 px) */
   --gutter: 7.5vw;

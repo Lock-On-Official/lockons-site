@@ -21,7 +21,8 @@ export function InfoCards({ items, columns = 2 }: InfoCardsProps) {
   return (
     <ul className={`${styles.grid} ${styles[`cols${columns}`]}`}>
       {items.map((item) => (
-        <li key={item.title} className={styles.card}>
+        // só o cartão com link é clicável: só ele sobe e ganha a pré-mira no hover e no foco
+        <li key={item.title} className={item.link ? `${styles.card} lock-frame` : styles.card}>
           <span className={styles.iconWrap}>
             <Icon name={item.icon} />
           </span>

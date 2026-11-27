@@ -87,6 +87,49 @@ a {
   border: 0;
 }
 
+/*
+ * Pré-mira: quatro cantoneiras curtas e cinza que se fecham em volta do clicável no hover e no foco
+ * do teclado. Soma-se ao contorno de foco, não o substitui. Ajuste por uso: --lock-arm e --lock-gap.
+ */
+.lock-frame {
+  position: relative;
+}
+
+.lock-frame::after {
+  --lock-c: var(--lock-pre);
+  --lock-t: 2px;
+  content: "";
+  position: absolute;
+  inset: calc(-1 * var(--lock-gap, 6px));
+  pointer-events: none;
+  background:
+    linear-gradient(var(--lock-c), var(--lock-c)) 0 0 / var(--lock-arm, 18px) var(--lock-t),
+    linear-gradient(var(--lock-c), var(--lock-c)) 0 0 / var(--lock-t) var(--lock-arm, 18px),
+    linear-gradient(var(--lock-c), var(--lock-c)) 100% 0 / var(--lock-arm, 18px) var(--lock-t),
+    linear-gradient(var(--lock-c), var(--lock-c)) 100% 0 / var(--lock-t) var(--lock-arm, 18px),
+    linear-gradient(var(--lock-c), var(--lock-c)) 0 100% / var(--lock-arm, 18px) var(--lock-t),
+    linear-gradient(var(--lock-c), var(--lock-c)) 0 100% / var(--lock-t) var(--lock-arm, 18px),
+    linear-gradient(var(--lock-c), var(--lock-c)) 100% 100% / var(--lock-arm, 18px) var(--lock-t),
+    linear-gradient(var(--lock-c), var(--lock-c)) 100% 100% / var(--lock-t) var(--lock-arm, 18px);
+  background-repeat: no-repeat;
+  opacity: 0;
+  scale: 1.06;
+  /* soltar é instantâneo; fechar leva um instante */
+  transition:
+    opacity var(--dur-instant) var(--ease-exit),
+    scale var(--dur-instant) var(--ease-exit);
+}
+
+.lock-frame:hover::after,
+.lock-frame:focus-visible::after,
+.lock-frame:has(:focus-visible)::after {
+  opacity: 1;
+  scale: 1;
+  transition:
+    opacity var(--dur-quick) var(--ease-enter),
+    scale var(--dur-quick) var(--ease-enter);
+}
+
 .skip-link {
   position: absolute;
   left: 1rem;

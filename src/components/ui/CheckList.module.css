@@ -1,6 +1,6 @@
 .list {
   display: grid;
-  gap: 0.55rem;
+  gap: 0.6rem;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -9,14 +9,31 @@
 
 .list li {
   display: flex;
-  gap: 0.55rem;
+  gap: 0.6rem;
   align-items: flex-start;
 }
 
+/* visto dentro de um círculo azul-claro */
 .check {
   flex-shrink: 0;
-  width: 18px;
-  height: 18px;
-  margin-top: 0.15rem;
-  color: var(--sky);
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  margin-top: 0.12rem;
+  border-radius: 50%;
+  background: var(--tint);
+  color: var(--royal);
+}
+
+.check svg {
+  width: 12px;
+  height: 12px;
+  stroke-width: 3;
+}
+
+/* sobre o azul-marinho: círculo translúcido e visto azul-claro */
+.onDark .check {
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--on-navy-accent);
 }

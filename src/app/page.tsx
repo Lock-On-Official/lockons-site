@@ -90,7 +90,7 @@ export default function HomePage() {
             <p className={styles.heroSub}>{hero.sub}</p>
             <div className={styles.heroCtas}>
               <ButtonLink href={demoPath}>Agendar demonstração</ButtonLink>
-              <ButtonLink href={hero.secondaryCta.href} variant="text">
+              <ButtonLink href={hero.secondaryCta.href} variant="secondary">
                 {hero.secondaryCta.label}
               </ButtonLink>
             </div>

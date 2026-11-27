@@ -3,19 +3,20 @@ import type { ReactNode } from "react";
 
 import styles from "./Button.module.css";
 
-export type ButtonVariant = "primary" | "text";
+/** primary: o acento (uma ação principal por bloco); secondary: contorno neutro; text: link com seta. */
+export type ButtonVariant = "primary" | "secondary" | "text";
 export type ButtonSize = "md" | "sm";
 
 interface ButtonStyle {
   variant?: ButtonVariant;
   size?: ButtonSize;
-  /** Sobre a faixa azul-marinho: contorno claro no primário, texto claro no link. */
+  /** Sobre o azul-marinho: contorno claro no primário e no secundário, texto claro no link. */
   onDark?: boolean;
 }
 
 /** Classes do botão, reaproveitáveis num <button> de formulário. */
 export function buttonClassName({ variant = "primary", size = "md", onDark = false }: ButtonStyle = {}): string {
-  return [styles.button, styles[variant], variant === "primary" && styles[size], onDark && styles.onDark]
+  return [styles.button, styles[variant], variant !== "text" && styles[size], onDark && styles.onDark]
     .filter(Boolean)
     .join(" ");
 }
@@ -31,7 +32,7 @@ export function ButtonLink({ href, children, variant = "primary", size, onDark, 
   const content = (
     <>
       {children}
-      {variant === "text" && (
+      {variant !== "primary" && (
         <span className={styles.arrow} aria-hidden="true">
           →
         </span>

@@ -10,12 +10,30 @@
   justify-items: center;
 }
 
+/* selo da seção: traço curto à esquerda */
 .eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  justify-self: start;
   font-size: var(--overline-size);
   font-weight: 600;
   letter-spacing: var(--overline-tracking);
   text-transform: uppercase;
   color: var(--navy-2);
+}
+
+.eyebrow::before {
+  content: "";
+  flex-shrink: 0;
+  width: 18px;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+}
+
+.center .eyebrow {
+  justify-self: center;
 }
 
 .title {
