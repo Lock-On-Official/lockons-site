@@ -40,24 +40,31 @@
   background: var(--warning-dot);
 }
 
+/* cartão travado: borda e anel leves no laranja da trava, sob as cantoneiras */
 .locked {
-  border: 1.5px solid var(--royal);
-  box-shadow: var(--shadow-card-locked);
+  border: 1.5px solid rgba(251, 138, 60, 0.6);
+  box-shadow: 0 0 0 3px rgba(251, 138, 60, 0.12), var(--shadow-card-locked);
 }
 
 /* cantos da mira em volta do cartão travado: entram uma vez, depois que o anel trava */
+/*
+ * Trava da mira: no laranja claro do acento, como no redesign. Quem usa pode adiar a trava (--bracket-delay)
+ * ou ligá-la à rolagem (--bracket-timeline e --bracket-range), como o quadro "Do caos ao foco" e a 404.
+ */
 .brackets {
   position: absolute;
   inset: -11px;
   pointer-events: none;
-  animation: bracket-in 0.9s cubic-bezier(0.2, 0.9, 0.25, 1.2) 1.35s both;
+  animation: bracket-in 0.9s cubic-bezier(0.2, 0.9, 0.25, 1.2) var(--bracket-delay, 1.35s) both;
+  animation-timeline: var(--bracket-timeline, auto);
+  animation-range: var(--bracket-range, normal);
 }
 
 .brackets i {
   position: absolute;
   width: 20px;
   height: 20px;
-  border: 3px solid var(--sky);
+  border: 3px solid var(--accent);
   border-radius: 3px;
 }
 
