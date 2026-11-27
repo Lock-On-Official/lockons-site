@@ -1,0 +1,115 @@
+.cover {
+  position: relative;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-card);
+  background:
+    radial-gradient(55% 75% at 75% 25%, rgba(30, 86, 217, 0.16), transparent 70%),
+    radial-gradient(var(--dot) 1px, transparent 1.4px) 0 0 / 14px 14px,
+    var(--bg);
+}
+
+/* anéis de mira bem apagados no canto */
+.cover::after {
+  content: "";
+  position: absolute;
+  right: -18%;
+  bottom: -40%;
+  width: 70%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: repeating-radial-gradient(circle, transparent 0 22px, rgba(30, 86, 217, 0.1) 22px 23px);
+  pointer-events: none;
+}
+
+/* "cartão do sistema" no centro da capa */
+.window {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  width: min(78%, 280px);
+  padding: 0.8rem 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+  box-shadow: var(--shadow-card);
+}
+
+.iconBox {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--tint);
+  color: var(--royal);
+}
+
+.iconBox svg {
+  width: 24px;
+  height: 24px;
+}
+
+.lines {
+  display: grid;
+  flex: 1;
+  gap: 0.35rem;
+  min-width: 0;
+}
+
+.category {
+  overflow: hidden;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.lines i {
+  height: 6px;
+  border-radius: 6px;
+  background: var(--surface-sunken);
+}
+
+.lines i:last-child {
+  width: 62%;
+}
+
+.lg {
+  aspect-ratio: 21 / 8;
+  border-radius: 20px;
+}
+
+.lg .window {
+  width: min(60%, 360px);
+  padding: 1rem 1.1rem;
+}
+
+.lg .iconBox {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+}
+
+.lg .iconBox svg {
+  width: 30px;
+  height: 30px;
+}
+
+@media (max-width: 700px) {
+  .lg {
+    aspect-ratio: 16 / 9;
+  }
+
+  .lg .window {
+    width: min(80%, 300px);
+  }
+}

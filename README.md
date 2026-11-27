@@ -14,6 +14,7 @@ npm run dev          # desenvolvimento em http://localhost:3000
 npm run build        # build de produção; também confere os tipos
 npm run start        # serve o build
 npm run typecheck    # só a checagem de tipos
+npm test             # testes (node --test, precisa do Node 22.18 ou mais novo)
 ```
 
 ## Variáveis de ambiente
@@ -80,6 +81,7 @@ public/logo.png           logo quadrado (512 × 512) dos dados estruturados
 - **Textos:** ficam em `src/content/` e só descrevem o que o produto entrega (ver `docs/escopo-mvp.md` do `crm-lockon`). Ao mudar o escopo, revise principalmente `faq.ts`.
 - **Formulário de demonstração:** fica desativado, com aviso (`available: false` em `src/content/demo.ts`), por decisão do time. Para ligar: criar o envio no servidor para o e-mail da LOCKONS, trocar `available` para `true` e tratar o envio no formulário (`src/components/demo-form/`).
 - **Páginas legais:** Privacidade e Termos mostram só a estrutura e ficam com `noindex` e fora do sitemap enquanto `draft: true` em `src/content/legal.ts`. Quando o jurídico entregar o texto: preencher as seções, trocar `draft` para `false` e marcar a rota como publicada em `routes.ts`.
+- **Blog:** artigo novo entra só em `src/content/blog.ts`; a rota `/blog/<slug>`, o sitemap e a imagem de compartilhamento saem dessa lista. Quando o artigo citar o LOCKONS (bloco "Na prática"), descreva só o que o produto entrega. Os testes de `tests/blog.test.ts` conferem slugs, datas e campos obrigatórios.
 - **Dados estruturados:** Organization e WebSite em todas as páginas (layout); SoftwareApplication na home e em /produto; BreadcrumbList nas internas; FAQPage só em /perguntas-frequentes, que reúne todas as perguntas do site sem repetir (`src/content/resources.ts`). Sem preço nem avaliação enquanto não existirem. O logo vai como PNG (`public/logo.png`), o formato mais aceito pelo Google.
 - **Imagens de compartilhamento** (WhatsApp, LinkedIn etc.): cada página tem a sua em `/og/<chave>` (1200 × 630, ex.: `/og/produto-funil-de-vendas`), gerada no build por `src/app/og/[key]/route.tsx` com o selo e o título de `src/content/og.ts`. O gerador só lê fontes TTF, por isso as cópias em `src/assets/fonts/` (licença SIL Open Font License, como as do `next/font`). Para ver como fica: `npm run build && npm start` e abrir `http://localhost:3000/og/inicio`.
 - **Ícones:** `src/app/icon.svg` (navegador) e `src/app/apple-icon.png` (180 × 180, tela inicial do iPhone). O `public/logo.png` e o `apple-icon.png` saem do `icon.svg`: ao trocar o logo, gere os dois de novo.

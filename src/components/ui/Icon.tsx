@@ -100,6 +100,19 @@ const paths = {
       <path d="M12 7.5V12l3 2" />
     </>
   ),
+  book: (
+    <>
+      <path d="M4 19.5V6a3 3 0 0 1 3-3h13v14H7a3 3 0 0 0-3 3" />
+      <path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5" />
+      <path d="M9 7.5h7M9 11h5" />
+    </>
+  ),
+  chart: (
+    <>
+      <path d="M4 20h16" />
+      <path d="M7 16v-5M12 16V6M17 16v-8" />
+    </>
+  ),
 } as const;
 
 export type IconName = keyof typeof paths;

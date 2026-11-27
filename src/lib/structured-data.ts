@@ -1,3 +1,7 @@
+import type { BlogPost } from "@/content/blog";
+
+import { blogPostPath } from "./blog";
+import { ogImagePath } from "./og";
 import { absoluteUrl, site } from "./site";
 
 const organizationId = `${site.url}/#organization`;
@@ -53,5 +57,52 @@ export function softwareApplication(description: string) {
       "Múltiplas lojas",
       "Permissões por papel",
     ],
+  };
+}
+
+/** A listagem /blog: o Blog e os artigos dele. */
+export function blogJsonLd(description: string, list: readonly BlogPost[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "@id": `${absoluteUrl("/blog")}#blog`,
+    name: `Blog ${site.name}`,
+    url: absoluteUrl("/blog"),
+    description,
+    inLanguage: "pt-BR",
+    publisher: { "@id": organizationId },
+    blogPost: list.map((post) => ({
+      "@type": "BlogPosting",
+      headline: post.title,
+      url: absoluteUrl(blogPostPath(post.slug)),
+      datePublished: post.publishedAt,
+    })),
+  };
+}
+
+/** Um artigo. Autor e editora são a própria empresa: os textos são assinados pela equipe. */
+export function blogPostingJsonLd(post: BlogPost) {
+  const url = absoluteUrl(blogPostPath(post.slug));
+  return {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: post.description,
+    url,
+    mainEntityOfPage: url,
+    image: absoluteUrl(ogImagePath(blogPostPath(post.slug))),
+    datePublished: post.publishedAt,
+    dateModified: post.publishedAt,
+    articleSection: post.category,
+    inLanguage: "pt-BR",
+    // autor e editora por extenso: o Google pede tipo e nome no próprio artigo
+    author: { "@type": "Organization", "@id": organizationId, name: site.name, url: absoluteUrl("/") },
+    publisher: {
+      "@type": "Organization",
+      "@id": organizationId,
+      name: site.name,
+      logo: { "@type": "ImageObject", url: absoluteUrl("/logo.png") },
+    },
+    isPartOf: { "@id": `${absoluteUrl("/blog")}#blog` },
   };
 }

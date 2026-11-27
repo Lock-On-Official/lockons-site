@@ -1,0 +1,145 @@
+.card {
+  position: relative;
+  display: grid;
+  align-content: start;
+  gap: 1.1rem;
+  padding: 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--surface);
+  box-shadow: var(--shadow-xs);
+  transition:
+    border-color var(--dur-base) var(--ease-standard),
+    box-shadow var(--dur-base) var(--ease-standard),
+    transform var(--dur-base) var(--ease-standard);
+}
+
+.card:hover {
+  border-color: var(--line-strong);
+  box-shadow: var(--shadow-card-hover);
+  transform: translateY(-2px);
+}
+
+/* clique: o cartão volta ao chão */
+.card:active {
+  box-shadow: var(--shadow-sm);
+  transform: translateY(0);
+}
+
+.body {
+  display: grid;
+  gap: 0.55rem;
+  padding: 0 0.5rem 0.5rem;
+}
+
+.category {
+  font-size: var(--overline-size);
+  font-weight: 600;
+  letter-spacing: var(--overline-tracking);
+  text-transform: uppercase;
+  color: var(--navy-2); /* rótulo, não link: o azul-royal é só do que é clicável */
+}
+
+.title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.015em;
+}
+
+.link {
+  color: var(--ink);
+  text-decoration: none;
+}
+
+/* o link do título cobre o cartão inteiro */
+.link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+}
+
+.link:focus-visible {
+  outline: none;
+}
+
+.link:focus-visible::after {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 3px;
+}
+
+.card:hover .link {
+  color: var(--royal-ink);
+}
+
+.description {
+  font-size: 0.94rem;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.6rem;
+  margin-top: 0.25rem;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+.reading {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.clock {
+  width: 15px;
+  height: 15px;
+}
+
+/* destaque da listagem: capa grande ao lado do texto */
+.featured {
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(1.25rem, 3vw, 2.5rem);
+  padding: 0.85rem;
+  border-radius: 20px;
+}
+
+.featured .link::after {
+  border-radius: 20px;
+}
+
+.featured .body {
+  padding: 0.5rem 1rem 0.5rem 0;
+  gap: 0.75rem;
+}
+
+.featured .title {
+  font-size: clamp(1.4rem, 2.6vw, 1.95rem);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.featured .description {
+  font-size: 1.02rem;
+}
+
+@media (max-width: 800px) {
+  .featured {
+    grid-template-columns: 1fr;
+  }
+
+  .featured .body {
+    padding: 0 0.5rem 0.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card:hover {
+    transform: none;
+  }
+}

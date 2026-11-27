@@ -29,6 +29,7 @@ export const routes: readonly SiteRoute[] = [
   { path: "/seguranca", label: "Segurança", group: "resources", published: true },
   { path: "/implantacao", label: "Implantação", group: "resources", published: true },
   { path: "/perguntas-frequentes", label: "Perguntas frequentes", group: "resources", published: true },
+  { path: "/blog", label: "Blog", group: "resources", published: true },
   { path: "/agendar-demonstracao", label: "Agendar demonstração", group: "resources", published: true },
 
   // Legais: fora do sitemap (e com noindex) até o jurídico entregar o texto; ver src/content/legal.ts.

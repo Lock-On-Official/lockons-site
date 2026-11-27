@@ -6,6 +6,7 @@
   --ink: #1e293b;
   /* #64748B da paleta escurecido: contraste 4,5 ou mais em todos os fundos claros (WCAG AA) */
   --muted: #56667c;
+  --ink-2: #334155; /* texto de apoio mais escuro que o --muted (corpo de artigo, legendas) */
   --line: #e2e8f0;
   --royal: #1e56d9; /* reservado ao que é clicável */
   --royal-2: #286be6;
@@ -37,6 +38,7 @@
   --royal-ink: #1846b8; /* hover de link */
   --focus-ring: var(--royal);
   --shadow-xs: 0 1px 2px rgba(15, 23, 42, 0.05);
+  --shadow-sm: 0 1px 2px rgba(18, 60, 157, 0.05), 0 2px 8px -1px rgba(18, 60, 157, 0.1);
   --shadow-card-hover: 0 18px 40px rgba(18, 60, 157, 0.2);
 
   /*
@@ -97,6 +99,7 @@
   /* conteúdo ocupa 85% da tela: 7,5% de margem de cada lado (24 px ou mais a partir de 320 px) */
   --gutter: 7.5vw;
   --header-h: 4.25rem;
+  --section-pad: clamp(3.5rem, 8vw, 6rem); /* respiro vertical das seções */
 
   color-scheme: light;
 }

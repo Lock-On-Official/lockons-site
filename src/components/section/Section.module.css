@@ -2,7 +2,7 @@
   position: relative;
   /* elementos de fundo (z-index -1) ficam atrás do conteúdo e na frente do fundo da seção */
   isolation: isolate;
-  padding-block: clamp(3.5rem, 8vw, 6rem);
+  padding-block: var(--section-pad);
   /* cartões que entram de lado (quadro do funil) não criam rolagem horizontal */
   overflow-x: clip;
 }
