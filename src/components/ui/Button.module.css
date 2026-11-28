@@ -22,7 +22,7 @@
   border-radius: var(--radius-pill);
 }
 
-/* primário: o acento laranja, uma ação principal por bloco (texto azul-marinho escuro, 6,5:1) */
+/* primário: o acento laranja, uma ação principal por bloco (texto --on-accent; ver tokens.css) */
 .primary {
   background: var(--accent);
   color: var(--on-accent);

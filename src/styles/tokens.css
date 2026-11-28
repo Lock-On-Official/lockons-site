@@ -42,12 +42,14 @@
   --shadow-card-hover: 0 18px 40px rgba(18, 60, 157, 0.2);
 
   /*
-   * Acento laranja: só no botão principal, no "na mira." e na trava da mira. Laranja claro com texto
-   * azul-marinho escuro: o branco reprova no laranja claro (2,4:1); o azul-marinho passa com folga.
+   * Acento laranja: só no botão principal, no "na mira." e na trava da mira.
+   * Texto do botão em azul-claro #DCE8FC por decisão do time (28/11/2026), ciente de que o contraste
+   * fica em 1,9:1 (2,3:1 no hover), abaixo do mínimo de 4,5:1, e de que o Lighthouse acusa isso.
+   * Para voltar ao texto acessível, use #0F1F57 (6,5:1).
    */
-  --accent: #fb8a3c; /* texto --on-accent: 6,5:1 */
-  --accent-hover: #f97316; /* texto --on-accent: 5,5:1 */
-  --on-accent: #0f1f57;
+  --accent: #fb8a3c;
+  --accent-hover: #f97316;
+  --on-accent: #dce8fc;
   --accent-on-dark: #fc9a55; /* "na mira." sobre o azul-marinho escuro (título grande) */
   --accent-ring: rgba(251, 138, 60, 0.35);
   --shadow-cta: 0 1px 2px rgba(15, 31, 87, 0.12), 0 6px 16px -4px rgba(251, 138, 60, 0.55);
