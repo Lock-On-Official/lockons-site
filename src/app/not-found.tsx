@@ -52,8 +52,7 @@ export default function NotFound() {
             <p className={styles.text}>
               O endereço pode ter mudado ou não existir mais. Volte ao início ou siga por um dos atalhos.
             </p>
-            {/* o botão de volta é o laranja desta tela: o do header fica escuro até a página rolar */}
-            <div className={styles.actions} data-hero-cta>
+            <div className={styles.actions}>
               <span className={styles.lockTarget}>
                 <ButtonLink href="/">Voltar ao início</ButtonLink>
                 <LockBrackets />

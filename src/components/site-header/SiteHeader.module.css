@@ -61,95 +61,17 @@
 }
 
 /*
- * Botão do header: azul-marinho com texto branco enquanto o botão laranja do hero ainda está na tela,
- * para a primeira dobra não ter dois laranjas disputando. Quando o hero sai, o laranja aparece por cima
- * e o texto passa ao azul-marinho escuro, os dois puxados pela rolagem. A troca é num ponto só (540 px):
- * uma passagem gradual misturaria o laranja com o azul e daria um marrom no meio. Sem suporte, fica laranja.
+ * Botão do header: em página com "Agendar demonstração" no hero, fica escondido até o botão do hero chegar
+ * perto do cabeçalho; aí o HeaderCta faz o botão "voar" até aqui e marca o lugar com data-docked.
+ * Só um dos dois aparece por vez. Sem esse botão no hero, ele aparece desde o início.
  */
-.bar .cta {
-  position: relative;
-  isolation: isolate;
-  background: var(--navy);
-  color: var(--on-navy);
+.ctaSlot {
+  display: inline-flex;
 }
 
-.bar .cta:hover {
-  background: var(--navy-2);
-}
-
-.bar .cta::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  border-radius: inherit;
-  background: var(--accent);
-  transition: background-color var(--dur-quick) var(--ease-standard);
-}
-
-.bar .cta:hover::before {
-  background: var(--accent-hover);
-}
-
-/* sem suporte à animação por rolagem: laranja desde o topo, como os outros botões principais */
-.bar .cta {
-  color: var(--on-accent);
-}
-
-@supports (animation-timeline: scroll()) {
-  .bar .cta {
-    color: var(--on-navy);
-    animation: cta-ink linear both;
-    animation-timeline: scroll(root);
-    animation-range: 540px 541px;
-  }
-
-  .bar .cta::before {
-    animation: cta-arm linear both;
-    animation-timeline: scroll(root);
-    animation-range: 540px 541px;
-  }
-
-  @keyframes cta-arm {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-
-  @keyframes cta-ink {
-    to {
-      color: var(--on-accent);
-    }
-  }
-}
-
-/* Página sem botão laranja no hero (demonstração, blog, legais) ou "reduzir movimento": laranja desde o topo. */
-:global(body:not(:has([data-hero-cta]))) .bar .cta,
-:global(body:not(:has([data-hero-cta]))) .bar .cta::before {
-  animation: none;
-}
-
-:global(body:not(:has([data-hero-cta]))) .bar .cta {
-  color: var(--on-accent);
-}
-
-:global(body:not(:has([data-hero-cta]))) .bar .cta::before {
-  opacity: 1;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .bar .cta {
-    animation: none;
-    color: var(--on-accent);
-  }
-
-  .bar .cta::before {
-    animation: none;
-    opacity: 1;
-  }
+/* só os blocos com o botão "Agendar demonstração" no hero levam data-hero-cta (home e heros internos) */
+:global(body:has([data-hero-cta])) .ctaSlot:not([data-docked]) {
+  visibility: hidden;
 }
 
 /* Abaixo de 375 px a barra não cabe: o botão mostra só "Agendar"; o leitor de tela continua lendo o nome completo. */
