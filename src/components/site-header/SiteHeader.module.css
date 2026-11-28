@@ -69,7 +69,10 @@
   display: inline-flex;
 }
 
-/* só os blocos com o botão "Agendar demonstração" no hero levam data-hero-cta (home e heros internos) */
+/*
+ * data-hero-cta marca a ação principal no topo da página: o botão "Agendar demonstração" do hero (home e heros
+ * internos), que voa até aqui, ou o botão de volta da 404, onde o do cabeçalho fica escondido de vez.
+ */
 :global(body:has([data-hero-cta])) .ctaSlot:not([data-docked]) {
   visibility: hidden;
 }

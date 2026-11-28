@@ -76,25 +76,6 @@
   height: 18px;
 }
 
-/* o "alvo" que a mira não encontra */
-.target {
-  position: absolute;
-  left: 84%;
-  top: 74%;
-  translate: -50% -50%;
-  display: grid;
-  place-items: center;
-  width: 54px;
-  height: 54px;
-  border: 1.5px dashed var(--royal-2);
-  border-radius: 14px;
-  color: var(--navy-2);
-  font-family: var(--font-display);
-  font-size: 1.6rem;
-  font-weight: 600;
-  opacity: 0.7;
-}
-
 /* Fica atrás do texto e translúcida, para não atrapalhar a leitura. */
 .scope {
   position: absolute;
@@ -119,7 +100,7 @@
 /*
  * Seis paradas de cerca de 0,77 s (deslocamento e giro de 360°): 4,6 s, mais 0,2 s de atraso, uma vez só.
  * O giro acumula (360°, 720°...) para não voltar ao contrário; 2160° no fim equivale ao 0° do início.
- * A quinta parada fica perto do alvo, mas a mira gira e vai embora sem travar.
+ * A mira procura, gira e vai embora sem travar em nada: quem trava é o botão de volta, no fim.
  */
 @keyframes roam {
   0% {
@@ -173,20 +154,6 @@
   100% {
     translate: calc(70cqw - 50%) calc(40cqh - 50%);
     rotate: 2160deg;
-  }
-}
-
-@media (max-width: 860px) {
-  /* espaço livre embaixo do texto para o alvo */
-  .stage {
-    padding-bottom: 7rem;
-  }
-
-  .target {
-    left: 80%;
-    top: auto;
-    bottom: 1.6rem;
-    translate: -50% 0;
   }
 }
 

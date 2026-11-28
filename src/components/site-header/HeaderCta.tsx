@@ -19,7 +19,8 @@ const HEADER_PX = 68;
  * Botão "Agendar demonstração" do cabeçalho. Em página com esse botão no hero, só um dos dois aparece:
  * o do cabeçalho fica escondido (CSS) e, quando a rolagem leva o botão do hero para perto do cabeçalho,
  * uma cópia "voa" do lugar dele até aqui; ao subir de volta, o voo é o inverso. Com "reduzir movimento",
- * a troca é direta. Sem esse botão no hero (artigos, demonstração, 404), o do cabeçalho aparece sempre.
+ * a troca é direta. Sem data-hero-cta (artigos, demonstração), o do cabeçalho aparece sempre; na 404, o
+ * data-hero-cta marca o botão de volta e, sem o de demonstração para voar, o do cabeçalho fica escondido.
  */
 export function HeaderCta() {
   const slotRef = useRef<HTMLSpanElement>(null);

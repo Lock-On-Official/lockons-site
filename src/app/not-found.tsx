@@ -19,17 +19,16 @@ const shortcuts: { icon: IconName; label: string; href: string }[] = [
 ];
 
 /**
- * 404: a mira procura o alvo e não acha; quando para, trava no botão de volta (o único caminho certo).
- * Atalhos para as páginas principais.
+ * 404: a mira procura a página e não acha; quando para, trava no botão de volta (o único caminho certo).
+ * Atalhos para as páginas principais. O botão de demonstração do cabeçalho fica escondido aqui (data-hero-cta).
  */
 export default function NotFound() {
   return (
     <section className={styles.page} aria-labelledby="nao-encontrada-title">
       <div className="container">
         <div className={styles.stage}>
-          {/* Camada de fundo: a mira percorre a página atrás do texto, gira em cada parada e não trava no "?"; depois, as cantoneiras travam no botão de volta. */}
+          {/* Camada de fundo: a mira percorre a página atrás do texto e gira em cada parada; depois, as cantoneiras travam no botão de volta. */}
           <div className={styles.radar} aria-hidden="true">
-            <span className={styles.target}>?</span>
             <svg className={styles.scope} viewBox="0 0 200 200" fill="none" stroke="currentColor">
               <circle cx="100" cy="100" r="92" strokeWidth="1" />
               <circle cx="100" cy="100" r="84" strokeWidth="4" strokeDasharray="1.2 7.6" />
@@ -52,7 +51,8 @@ export default function NotFound() {
             <p className={styles.text}>
               O endereço pode ter mudado ou não existir mais. Volte ao início ou siga por um dos atalhos.
             </p>
-            <div className={styles.actions}>
+            {/* o botão de volta é a ação principal desta tela: com data-hero-cta, o do cabeçalho não aparece */}
+            <div className={styles.actions} data-hero-cta>
               <span className={styles.lockTarget}>
                 <ButtonLink href="/">Voltar ao início</ButtonLink>
                 <LockBrackets />
